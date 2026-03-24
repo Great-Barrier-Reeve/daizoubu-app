@@ -33,6 +33,11 @@
             android:parentActivityName=".MainActivity">
         </activity>
 
+        <activity
+            android:name=".OrderActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
     </application>
 
 </manifest>
