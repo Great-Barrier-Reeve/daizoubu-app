@@ -1,6 +1,7 @@
 package org.greatbarrierreeve.daizoubu;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
             return insets;
 
         });
+
+        // send user to login activity for dev purposes
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
 
     }
 
