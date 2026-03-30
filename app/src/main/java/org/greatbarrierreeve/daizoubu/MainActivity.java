@@ -50,6 +50,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
+
+        });
+
+        // bounties button click event handler
+        buttonGoToBounties.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, BountiesActivity.class);
+                startActivity(intent);
+
+            }
+
         });
 
         // send user to login activity for dev purposes
