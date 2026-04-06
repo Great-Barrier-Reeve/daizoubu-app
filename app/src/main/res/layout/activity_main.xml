@@ -1,32 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<!-- scrollable body -->
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:clipToPadding="false"
+    android:fillViewport="true"
     android:id="@+id/main"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/buttonGoToOrder"
-        android:layout_width="wrap_content"
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/body"
         android:layout_height="wrap_content"
-        android:text="Order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/buttonGoToBounties"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="44dp">
 
-    <Button
-        android:id="@+id/buttonGoToBounties"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bounties"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonGoToOrder"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewAppName"
+            android:includeFontPadding="false"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            app:autoSizeMinTextSize="48dp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintDimensionRatio="H,6:1"
+            app:layout_constraintHeight_min="58dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textViewTagline"
+            android:includeFontPadding="false"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:text="@string/tagline"
+            app:autoSizeMinTextSize="12dp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintDimensionRatio="H,20:1"
+            app:layout_constraintHeight_min="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewAppName" />
+
+        <!-- section for tab buttons -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sectionTabButtons"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTagline">
+
+            <!-- flow for handling tab button spacing -->
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:constraint_referenced_ids="cardTabJio,cardTabOrder,cardTabDsbj"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:flow_horizontalGap="16dp"
+                app:flow_horizontalStyle="spread_inside" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardTabJio"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="1:1">
+
+                <!-- TODO: build cardTabJio-->
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardTabOrder"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="1:1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/textViewCardTabOrder"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:text="@string/order"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="12dp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardTabDsbj"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="1:1">
+
+                <!-- TODO: build cardTabDsbj-->
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardHighlightsBounties"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sectionTabButtons">
+
+            <!-- TODO: build cardHighlightsBounties -->
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:text="highlights of bounties coming soon, but click me to go to bounties page!" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
