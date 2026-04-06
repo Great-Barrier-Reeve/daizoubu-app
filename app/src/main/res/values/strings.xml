@@ -1,3 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-    <string name="app_name">daizoubu</string>
+
+    <string
+        name="app_name"
+        >daizoubu</string>
+
+    <string
+        name="tagline"
+        >Takeaway? That\'s okay!</string>
+
+    <string
+        name="order"
+        >Order</string>
+
 </resources>

@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,8 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonGoToOrder;
-    Button buttonGoToBounties;
+    CardView cardHighlightsBounties;
+    CardView cardTabOrder;
 
 
     @Override
@@ -36,33 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // get references to widgets
-        buttonGoToOrder = findViewById(R.id.buttonGoToOrder);
-        buttonGoToBounties = findViewById(R.id.buttonGoToBounties);
+        // orders card click event handler
+        cardTabOrder = findViewById(R.id.cardTabOrder);
+        cardTabOrder.setOnClickListener(view -> {
 
-        // orders button click event handler
-        buttonGoToOrder.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
-                startActivity(intent);
-
-            }
+            Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+            startActivity(intent);
 
         });
 
-        // bounties button click event handler
-        buttonGoToBounties.setOnClickListener(new View.OnClickListener() {
+        // bounties card click event handler
+        cardHighlightsBounties = findViewById(R.id.cardHighlightsBounties);
+        cardHighlightsBounties.setOnClickListener(view -> {
 
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, BountiesActivity.class);
-                startActivity(intent);
-
-            }
+            Intent intent = new Intent(MainActivity.this, BountiesActivity.class);
+            startActivity(intent);
 
         });
 
