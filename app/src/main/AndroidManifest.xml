@@ -15,6 +15,14 @@
         android:theme="@style/Theme.Daizoubu">
 
         <activity
+            android:name=".ui.order.menu.ItemDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.order.menu.MenuActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 
@@ -30,18 +38,15 @@
 
         <activity
             android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".OrderActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:name=".ui.order.OrderActivity"
+            android:parentActivityName=".MainActivity" />
 
         <activity
             android:name=".BountiesActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity" />
 
     </application>
 

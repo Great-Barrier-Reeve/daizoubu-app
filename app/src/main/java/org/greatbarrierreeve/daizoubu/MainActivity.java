@@ -4,14 +4,14 @@ package org.greatbarrierreeve.daizoubu;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.View;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         cardTabOrder = findViewById(R.id.cardTabOrder);
         cardTabOrder.setOnClickListener(view -> {
 
-            Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
             startActivity(intent);
 
         });
