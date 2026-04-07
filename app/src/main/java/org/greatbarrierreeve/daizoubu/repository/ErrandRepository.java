@@ -36,6 +36,27 @@ public class ErrandRepository {
     }
 
     /**
+     * Get an errand by its runner ID.
+     * @param runnerId
+     * @param callback
+     */
+    public void getErrandByRunnerId(String runnerId, Callback<List<Errand>>callback){
+        Call<List<Errand>> call = apiService.getErrandByRunnerId(runnerId);
+        call.enqueue(callback);
+    }
+
+    /**
+     * Get an errand by its buyer ID.
+     * @param buyerId
+     * @param callback
+     */
+    public void getErrandByBuyerId(String buyerId, Callback<List<Errand>> callback){
+        Call<List<Errand>> call = apiService.getErrandByBuyerId(buyerId);
+        call.enqueue(callback);
+    }
+
+
+    /**
      * Create a new errand.
      * @param errand
      * @param callback

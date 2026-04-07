@@ -18,6 +18,13 @@ public interface ErrandService {
     @GET("/api/errands/{id}")
     Call<Errand> getErrandById(@Path("id") String id);
 
+    @GET("/api/errands/runner/{runnerId}")
+    Call<List<Errand>> getErrandByRunnerId(@Path("runnerId") String runnerId);
+
+    @GET("/api/errands/buyer/{buyerId}")
+    Call<List<Errand>> getErrandByBuyerId(@Path("buyerId") String buyerId);
+
+
     @GET("/api/errands/{id}/status")
     Call<String> getErrandStatusById(@Path("id") String id);
 

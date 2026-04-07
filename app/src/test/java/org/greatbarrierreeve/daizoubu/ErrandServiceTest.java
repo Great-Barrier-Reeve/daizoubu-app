@@ -83,6 +83,31 @@ public class ErrandServiceTest {
             }
         }
 
+
+        @Test
+        public void testGetErrandByRunnerId() throws Exception {
+            Response<List<Errand>> response = errandService.getErrandByRunnerId("123").execute();
+            assertTrue("Response failed " + response.code(), response.isSuccessful());
+            List<Errand> errandResponse = response.body();
+            if (errandResponse != null) {
+                for (Errand errand : errandResponse) {
+                    System.out.println(errand.toString());
+                }
+            }
+        }
+
+        @Test
+        public void testGetErrandByBuyerId() throws Exception {
+            Response<List<Errand>> response = errandService.getErrandByBuyerId("123").execute();
+            assertTrue("Response failed " + response.code(), response.isSuccessful());
+            List<Errand> errandResponse = response.body();
+            if (errandResponse != null) {
+                for (Errand errand : errandResponse) {
+                    System.out.println(errand.toString());
+                }
+            }
+        }
+
         @Test
         public void createErrand() throws Exception{
             Errand errand = new Errand();

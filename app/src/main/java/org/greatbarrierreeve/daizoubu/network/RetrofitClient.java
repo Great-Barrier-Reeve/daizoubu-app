@@ -8,6 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RetrofitClient {
+    // TODO: 7/4/26 REMOVE remove CleartextTRAFFIC in android manifest when deployed
+    // ONLY NEEDED FOR TESTING DUE TO NO HTTPS ON LOCALHOST
+
     //for emulator testing virtual router
 //    private static final String BASE_URL = "http://10.0.2.2:8080";
 
