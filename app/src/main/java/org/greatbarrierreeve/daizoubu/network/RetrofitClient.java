@@ -1,5 +1,6 @@
 package org.greatbarrierreeve.daizoubu.network;
 
+import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 
 import retrofit2.Retrofit;
@@ -18,6 +19,24 @@ public class RetrofitClient {
     private static final String BASE_URL = "http://localhost:8080";
 
     private static ErrandService service;
+    private static AuthService authService;
+    private static Retrofit retrofit = null;
+
+    private static Retrofit getRetrofit() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
+    public static AuthService getAuthService() {
+        if (authService == null) {
+            authService = getRetrofit().create(AuthService.class);
+        }
+        return authService;
+    }
 
     public static ErrandService getService(){
         if (service == null){
