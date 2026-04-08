@@ -7,7 +7,7 @@
     android:id="@+id/bounties"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BountiesActivity">
+    tools:context=".ui.bounties.BountiesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bountiesRecyclerView"
