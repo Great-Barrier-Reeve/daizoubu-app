@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu;
+package org.greatbarrierreeve.daizoubu.ui.bounties;
 
 
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.greatbarrierreeve.daizoubu.R;
 
 
 public class BountiesActivity extends AppCompatActivity {

@@ -15,7 +15,15 @@
         android:theme="@style/Theme.Daizoubu">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.order.menu.ItemDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.order.menu.MenuActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.homepage.MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -29,19 +37,16 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:name=".ui.auth.LoginActivity"
+            android:parentActivityName=".ui.homepage.MainActivity" />
 
         <activity
-            android:name=".OrderActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:name=".ui.order.OrderActivity"
+            android:parentActivityName=".ui.homepage.MainActivity" />
 
         <activity
-            android:name=".BountiesActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:name=".ui.bounties.BountiesActivity"
+            android:parentActivityName=".ui.homepage.MainActivity" />
 
     </application>
 

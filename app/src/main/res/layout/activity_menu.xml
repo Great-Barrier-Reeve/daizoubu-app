@@ -4,14 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bounties"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bounties.BountiesActivity">
+    tools:context=".ui.order.menu.MenuActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bountiesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/menuRecyclerView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
