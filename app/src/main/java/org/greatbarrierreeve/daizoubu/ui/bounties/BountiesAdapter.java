@@ -29,7 +29,7 @@ public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHo
 
             super(view);
 
-            textView = view.findViewById(R.id.textView);
+            textView = view.findViewById(R.id.textViewBounty);
 
         }
 
@@ -63,7 +63,7 @@ public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.text_row_item, viewGroup, false);
+                .inflate(R.layout.bounty_item, viewGroup, false);
         return new ViewHolder(itemView);
 
     }
