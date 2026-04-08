@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <CheckBox
+            android:id="@+id/checkBoxAddOn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/checkBoxAddOn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewAddOnName"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="AddOn"
+            app:layout_constraintBottom_toBottomOf="@id/checkBoxAddOn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxAddOn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewAddOnPrice"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:text="Price"
+            app:layout_constraintBottom_toBottomOf="@id/checkBoxAddOn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
