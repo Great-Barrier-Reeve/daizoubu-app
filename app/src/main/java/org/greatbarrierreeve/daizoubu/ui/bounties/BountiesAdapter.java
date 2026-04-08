@@ -9,24 +9,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.data.model.Errand;
 
 
 public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    private List<Errand> localDataSet;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textView;
+        private final TextView textView;
 
 
         public ViewHolder(View view) {
 
             super(view);
 
-            textView = (TextView) view.findViewById(R.id.textView);
+            textView = view.findViewById(R.id.textView);
 
         }
 
@@ -40,9 +43,17 @@ public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHo
     }
 
 
-    public BountiesAdapter(String[] dataSet) {
+    public BountiesAdapter(List<Errand> dataSet) {
 
         localDataSet = dataSet;
+
+    }
+
+
+    public void setErrands(List<Errand> errands) {
+
+        localDataSet = errands;
+        notifyDataSetChanged();
 
     }
 
@@ -61,7 +72,7 @@ public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        viewHolder.getTextView().setText(localDataSet[position]);
+        viewHolder.getTextView().setText(localDataSet.get(position).toString());
 
     }
 
@@ -69,7 +80,7 @@ public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHo
     @Override
     public int getItemCount() {
 
-        return localDataSet.length;
+        return localDataSet.size();
 
     }
 

@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -15,9 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
+import org.greatbarrierreeve.daizoubu.data.model.Errand;
+import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
+import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
+import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
+import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +74,43 @@ public class ItemDetailActivity extends AppCompatActivity {
             String addOns = "";
             for (AddOnItem addOnItem : selectedAddOns) { addOns += ", " + addOnItem.getName(); }
             String message = String.format("Ordered %s%s", menuItem.getName(), addOns);
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-            // TODO: submit errand to API
+            // Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+            Errand errand = new Errand();
+            errand.setBuyerId("user123");
+            errand.setBounty(new BigDecimal("6.70"));
+            errand.setStatus(ErrandStatus.REQUESTED);
+            errand.setPriorityLevel(PriorityLevel.NORMAL);
+
+            ErrandService errandService = RetrofitClient.getService();
+            ErrandRepository errandRepository = new ErrandRepository(errandService);
+            errandRepository.createErrand(errand, new retrofit2.Callback<>() {
+                @Override
+                public void onResponse(@NonNull retrofit2.Call<Errand> call, @NonNull retrofit2.Response<Errand> response) {
+
+                    if (response.isSuccessful() && response.body() != null) {
+
+                        Errand createdErrand = response.body();
+                        Toast.makeText(ItemDetailActivity.this,
+                                "Order placed! ID: " + createdErrand.getId(),
+                                Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        Toast.makeText(ItemDetailActivity.this,
+                                "Failed to place order: " + response.code(),
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull retrofit2.Call<Errand> call, @NonNull Throwable t) {
+                    Toast.makeText(ItemDetailActivity.this,
+                            "Network error: " + t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
 
         });
 
