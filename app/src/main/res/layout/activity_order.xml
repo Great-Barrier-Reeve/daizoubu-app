@@ -7,7 +7,7 @@
     android:id="@+id/order"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderActivity">
+    tools:context=".ui.order.OrderActivity">
 
     <EditText
         android:hint="Order"

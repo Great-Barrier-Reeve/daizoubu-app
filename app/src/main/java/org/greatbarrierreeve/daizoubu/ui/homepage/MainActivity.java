@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu;
+package org.greatbarrierreeve.daizoubu.ui.homepage;
 
 
 import android.content.Intent;
@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.greatbarrierreeve.daizoubu.ui.bounties.BountiesActivity;
+import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
 
 

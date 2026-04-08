@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu;
+package org.greatbarrierreeve.daizoubu.ui.bounties;
 
 
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.greatbarrierreeve.daizoubu.R;
 
 
 public class BountiesAdapter extends RecyclerView.Adapter<BountiesAdapter.ViewHolder> {
