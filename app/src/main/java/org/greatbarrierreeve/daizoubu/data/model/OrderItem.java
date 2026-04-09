@@ -12,6 +12,7 @@ public class OrderItem implements UserItem {
 
     MenuItem menuItem;
     int qty;
+
     String specialReq;
     List<AddOnItem> userAddOns;
 
@@ -23,6 +24,37 @@ public class OrderItem implements UserItem {
         specialReq = in.readString();
         userAddOns = in.createTypedArrayList(AddOnItem.CREATOR);
 
+    }
+
+    public OrderItem(){
+
+    }
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public String getSpecialReq() {
+        return specialReq;
+    }
+
+    public void setSpecialReq(String specialReq) {
+        this.specialReq = specialReq;
+    }
+
+    public List<AddOnItem> getUserAddOns() {
+        return userAddOns;
+    }
+
+    public void setUserAddOns(List<AddOnItem> userAddOns) {
+        this.userAddOns = userAddOns;
     }
 
 
@@ -70,6 +102,16 @@ public class OrderItem implements UserItem {
         out.writeString(specialReq);
         out.writeTypedList(userAddOns);
 
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "menuItem=" + menuItem +
+                ", qty=" + qty +
+                ", specialReq='" + specialReq + '\'' +
+                ", userAddOns=" + userAddOns +
+                '}';
     }
 
 

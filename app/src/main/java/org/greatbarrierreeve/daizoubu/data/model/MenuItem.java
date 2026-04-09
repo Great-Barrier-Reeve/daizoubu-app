@@ -16,6 +16,17 @@ public class MenuItem implements StoreItem {
     List<AddOnItem> optionAddOns;
 
 
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "basePrice='" + basePrice + '\'' +
+                ", desc='" + desc + '\'' +
+                ", itemId='" + itemId + '\'' +
+                ", name='" + name + '\'' +
+                ", optionAddOns=" + optionAddOns +
+                '}';
+    }
+
     public MenuItem(String itemId, String name, String desc, String basePrice, List<AddOnItem> optionAddOns) {
 
         this.basePrice = basePrice;

@@ -3,14 +3,18 @@ package org.greatbarrierreeve.daizoubu;
 import static org.junit.Assert.assertTrue;
 
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
+import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
+import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -111,11 +115,20 @@ public class ErrandServiceTest {
         @Test
         public void createErrand() throws Exception{
             Errand errand = new Errand();
+            OrderItem orderItem = new OrderItem();
+            List<AddOnItem> list = new ArrayList<AddOnItem>();
+            list.add(new AddOnItem("123", "asd", "asd", "123"));
+            MenuItem menuItem = new MenuItem("asd", "asd, asd", "asd", "123",list );
+            orderItem.setMenuItem(menuItem);
+            orderItem.setQty(5);
+            orderItem.setSpecialReq("asd");
+//            orderItem.setUserAddOns(list);
             errand.setBuyerId("123");
             errand.setRunnerId("234");
             errand.setBounty(new BigDecimal(100));
             errand.setStatus(ErrandStatus.REQUESTED);
             errand.setPriorityLevel(PriorityLevel.NORMAL);
+            errand.setOrderItem(orderItem);
             Response<Errand> response = errandService.createErrand(errand).execute();
             assertTrue("Response failed " + response.code(), response.isSuccessful());
             Errand errandResponse = response.body();

@@ -19,8 +19,20 @@ public class Errand {
     private PriorityLevel priorityLevel;
     private boolean priorityLocked;
 
+    private OrderItem orderItem;
+
+    public OrderItem getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
+    }
+
+
     public Errand() {
     }
+
 
     public String getId() {
         return id;
@@ -102,26 +114,11 @@ public class Errand {
         this.priorityLevel = priorityLevel;
     }
 
-    @Override
-    public String toString() {
-        return "Errand{" +
-                "id='" + id + '\'' +
-                ", buyerId='" + buyerId + '\'' +
-                ", runnerId='" + runnerId + '\'' +
-                ", bounty=" + bounty +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                ", acceptedAt=" + acceptedAt +
-                ", deliveredAt=" + deliveredAt +
-                ", refundedAt=" + refundedAt +
-                ", priorityLevel=" + priorityLevel +
-                ", priorityLocked=" + priorityLocked +
-                '}';
-    }
-
     public boolean isPriorityLocked() {
         return priorityLocked;
     }
+
+
 
     public void setPriorityLocked(boolean priorityLocked) {
         this.priorityLocked = priorityLocked;
@@ -138,5 +135,23 @@ public class Errand {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Errand{" +
+                "id='" + id + '\'' +
+                ", buyerId='" + buyerId + '\'' +
+                ", runnerId='" + runnerId + '\'' +
+                ", bounty=" + bounty +
+                ", status=" + status +
+                ", createdAt=" + createdAt +
+                ", acceptedAt=" + acceptedAt +
+                ", deliveredAt=" + deliveredAt +
+                ", refundedAt=" + refundedAt +
+                ", priorityLevel=" + priorityLevel +
+                ", priorityLocked=" + priorityLocked +
+                ", orderItem=" + orderItem +
+                '}';
     }
 }
