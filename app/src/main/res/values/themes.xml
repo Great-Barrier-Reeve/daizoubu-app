@@ -1,16 +1,29 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Daizoubu" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- base application theme -->
+    <style
+        name="Base.Theme.Daizoubu"
+        parent="Theme.Material3.DayNight.NoActionBar">
 
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
 
+        <item name="android:windowBackground">@color/activityBackground</item>
+
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
+
+    </style>
+
+    <style
+        name="Theme.Daizoubu"
+        parent="Base.Theme.Daizoubu">
+
+        <!-- inter variable font -->
         <item name="android:fontFamily">@font/inter_variable</item>
         <item name="fontFamily">@font/inter_variable</item>
 
     </style>
-
-    <style name="Theme.Daizoubu" parent="Base.Theme.Daizoubu" />
 
 </resources>

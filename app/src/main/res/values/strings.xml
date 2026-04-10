@@ -7,11 +7,31 @@
         >daizoubu</string>
 
     <string
-        name="tagline"
-        >Takeaway? That\'s okay!</string>
+        name="bounties"
+        >dài zǒus</string>
+
+    <string
+        name="bountiesDesc"
+        >Track your orders here or look for bounties.</string>
+
+    <string
+        name="dsbj"
+        >DSBJ</string>
+
+    <string
+        name="jio"
+        >Open Jio</string>
 
     <string
         name="order"
         >Order</string>
+
+    <string
+        name="orderPlace"
+        >Place\nOrder</string>
+
+    <string
+        name="tagline"
+        >Takeaway? That\'s okay!</string>
 
 </resources>
