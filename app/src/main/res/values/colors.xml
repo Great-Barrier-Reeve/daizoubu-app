@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- light mode -->
+    <color name="activityBackground">#FFFFFFFF</color>
+    <color name="colorPrimary">#FF000000</color>
+    <color name="colorSecondary">#FF666666</color>
+
+    <!-- dark mode -->
+    <color name="activityBackgroundDark">#FF323232</color>
+    <color name="colorPrimaryDark">#FFEFEFEF</color>
+    <color name="colorSecondaryDark">#FFCCCCCC</color>
+
 </resources>

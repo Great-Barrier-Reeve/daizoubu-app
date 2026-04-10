@@ -1,150 +1,409 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- scrollable body -->
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:clipToPadding="false"
-    android:fillViewport="true"
+<!-- screen contents -->
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".ui.homepage.MainActivity">
+    tools:context=".ui.homepage.MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- body contents -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/body"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:paddingTop="44dp">
+    <!-- scrollable body -->
+    <androidx.core.widget.NestedScrollView
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-        <TextView
-            android:id="@+id/textViewAppName"
-            android:includeFontPadding="false"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:maxLines="1"
-            android:text="@string/app_name"
-            android:textStyle="bold"
-            app:autoSizeMinTextSize="48dp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintDimensionRatio="H,6:1"
-            app:layout_constraintHeight_min="58dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewTagline"
-            android:includeFontPadding="false"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:maxLines="1"
-            android:text="@string/tagline"
-            app:autoSizeMinTextSize="12dp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintDimensionRatio="H,20:1"
-            app:layout_constraintHeight_min="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewAppName" />
-
-        <!-- section for tab buttons -->
+        <!-- body contents -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/sectionTabButtons"
+            android:id="@+id/body"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTagline">
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp">
 
-            <!-- flow for handling tab button spacing -->
-            <androidx.constraintlayout.helper.widget.Flow
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferAppName"
                 android:layout_height="0dp"
-                android:layout_width="0dp"
-                app:constraint_referenced_ids="cardTabJio,cardTabOrder,cardTabDsbj"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewAppName"
+                android:includeFontPadding="false"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:text="@string/app_name"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold"
+                app:autoSizeMinTextSize="48dp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="H,6:1"
+                app:layout_constraintHeight_min="58dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bufferAppName" />
+
+            <TextView
+                android:id="@+id/textViewTagline"
+                android:includeFontPadding="false"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:text="@string/tagline"
+                android:textColor="?android:attr/textColorSecondary"
+                app:autoSizeMinTextSize="12dp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="H,20:1"
+                app:layout_constraintHeight_min="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewAppName" />
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferSectionTabButtons"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewTagline" />
+
+            <!-- section for tab buttons -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sectionTabButtons"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:flow_horizontalGap="16dp"
-                app:flow_horizontalStyle="spread_inside" />
+                app:layout_constraintTop_toBottomOf="@id/bufferSectionTabButtons">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardTabJio"
+                <!-- flow for handling tab button spacing -->
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:constraint_referenced_ids="cardTabJio,cardTabOrder,cardTabDsbj"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:flow_horizontalGap="16dp"
+                    app:flow_horizontalStyle="spread_inside" />
+
+                <!-- open jio button card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTabJio"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <ImageView
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_jio"
+                            app:layout_constraintBottom_toTopOf="@id/textViewCardTabJio"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/textViewCardTabJio"
+                            android:includeFontPadding="false"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:text="@string/jio"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12dp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,6:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- order button card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTabOrder"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:strokeColor="?attr/colorPrimary"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <ImageView
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_order"
+                            app:layout_constraintBottom_toTopOf="@id/textViewCardTabOrder"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/textViewCardTabOrder"
+                            android:includeFontPadding="false"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:text="@string/order"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12dp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,6:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- dsbj button card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTabDsbj"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <ImageView
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_dsbj"
+                            app:layout_constraintBottom_toTopOf="@id/textViewCardTabDsbj"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/textViewCardTabDsbj"
+                            android:includeFontPadding="false"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:text="@string/dsbj"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12dp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,6:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferSectionHeaderBounties"
                 android:layout_height="0dp"
-                android:layout_width="0dp"
-                app:layout_constraintDimensionRatio="1:1">
+                android:layout_width="match_parent"
+                app:layout_constraintHeight_percent="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sectionTabButtons" />
 
-                <!-- TODO: build cardTabJio-->
+            <!-- section for orders header -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="?android:attr/selectableItemBackground"
+                android:id="@+id/sectionHeaderBounties"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bufferSectionHeaderBounties">
 
-            </androidx.cardview.widget.CardView>
+                <View
+                    android:id="@+id/vertDividerHeaderBounties"
+                    android:layout_height="0dp"
+                    android:layout_width="4dp"
+                    android:background="?attr/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewDescBounties"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewHeaderBounties" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardTabOrder"
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/textViewHeaderBounties"
+                    android:includeFontPadding="false"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:text="@string/bounties"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textStyle="bold"
+                    app:autoSizeMinTextSize="24dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintDimensionRatio="H,12:1"
+                    app:layout_constraintHeight_min="30dp"
+                    app:layout_constraintStart_toEndOf="@+id/vertDividerHeaderBounties"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/textViewDescBounties"
+                    android:includeFontPadding="false"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:text="@string/bountiesDesc"
+                    android:textColor="?android:attr/textColorSecondary"
+                    app:autoSizeMinTextSize="12dp"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintDimensionRatio="H,20:1"
+                    app:layout_constraintHeight_min="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/vertDividerHeaderBounties"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHeaderBounties" />
+
+                <ImageView
+                    android:layout_height="0dp"
+                    android:layout_width="wrap_content"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/icon_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@id/textViewHeaderBounties"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferSectionBounties"
                 android:layout_height="0dp"
-                android:layout_width="0dp"
-                app:layout_constraintDimensionRatio="1:1">
+                android:layout_width="match_parent"
+                app:layout_constraintHeight_percent="0.01"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sectionHeaderBounties" />
 
+            <!-- section for bounties highlights -->
+            <HorizontalScrollView
+                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bufferSectionBounties">
+
+                <!-- container for user orders -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent">
+                    android:layout_width="wrap_content">
 
-                    <TextView
-                        android:gravity="center"
-                        android:id="@+id/textViewCardTabOrder"
-                        android:layout_height="0dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_width="match_parent"
-                        android:maxLines="1"
-                        android:text="@string/order"
-                        android:textStyle="bold"
-                        app:autoSizeMinTextSize="12dp"
-                        app:autoSizeTextType="uniform"
+                    <!-- create order button card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardPlaceOrder"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,6:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@android:color/transparent"
+                        app:strokeWidth="1dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:id="@+id/icon_plus_square"
+                                android:layout_height="0dp"
+                                android:layout_width="0dp"
+                                android:padding="2dp"
+                                android:scaleType="fitEnd"
+                                android:src="@drawable/icon_plus_square"
+                                app:layout_constraintBottom_toTopOf="@id/textViewOrderPlace"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+                            <!-- horizontal center guideline -->
+                            <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/guidelineOrderPlace"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:orientation="horizontal"
+                                app:layout_constraintGuide_percent="0.5" />
+
+                            <TextView
+                                android:gravity="center"
+                                android:id="@+id/textViewOrderPlace"
+                                android:includeFontPadding="false"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:maxLines="2"
+                                android:text="@string/orderPlace"
+                                android:textColor="?android:attr/textColorSecondary"
+                                android:textFontWeight="250"
+                                app:layout_constraintTop_toBottomOf="@id/guidelineOrderPlace" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardTabDsbj"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                app:layout_constraintDimensionRatio="1:1">
-
-                <!-- TODO: build cardTabDsbj-->
-
-            </androidx.cardview.widget.CardView>
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardHighlightsBounties"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_width="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sectionTabButtons">
+    </androidx.core.widget.NestedScrollView>
 
-            <!-- TODO: build cardHighlightsBounties -->
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:text="highlights of bounties coming soon, but click me to go to bounties page!" />
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
