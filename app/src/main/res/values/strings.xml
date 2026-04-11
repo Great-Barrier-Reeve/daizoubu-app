@@ -2,36 +2,22 @@
 
 <resources>
 
-    <string
-        name="app_name"
-        >daizoubu</string>
+    <string name="app_name">daizoubu</string>
 
-    <string
-        name="bounties"
-        >dài zǒus</string>
+    <string name="bounties">dài zǒus</string>
 
-    <string
-        name="bountiesDesc"
-        >Track your orders here or look for bounties.</string>
+    <string name="bountiesDesc">Track your orders here or look for bounties.</string>
 
-    <string
-        name="dsbj"
-        >DSBJ</string>
+    <string name="deliverTo">Deliver To</string>
 
-    <string
-        name="jio"
-        >Open Jio</string>
+    <string name="dsbj">DSBJ</string>
 
-    <string
-        name="order"
-        >Order</string>
+    <string name="jio">Open Jio</string>
 
-    <string
-        name="orderPlace"
-        >Place\nOrder</string>
+    <string name="order">Order</string>
 
-    <string
-        name="tagline"
-        >Takeaway? That\'s okay!</string>
+    <string name="orderPlace">Place\nOrder</string>
+
+    <string name="tagline">Takeaway? That\'s okay!</string>
 
 </resources>

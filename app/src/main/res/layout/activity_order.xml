@@ -1,46 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- screen contents -->
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    tools:context=".ui.order.OrderActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/order"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.order.OrderActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:hint="Order"
-        android:id="@+id/editTextOrder"
-        android:importantForAutofill="no"
-        android:inputType="text"
+    <!-- section for app bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sectionAppBar"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/editTextOrderBounty"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintHeight_percent="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
 
-    <EditText
-        android:hint="Bounty"
-        android:id="@+id/editTextOrderBounty"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:id="@+id/iconBack"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:src="@drawable/icon_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- section for app bar delivery location -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/sectionDeliveryLocation"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                app:cardBackgroundColor="?android:attr/windowBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:id="@+id/textViewDeliverTo"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:maxLines="1"
+                        android:text="@string/deliverTo"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/colorSecondary"
+                        app:autoSizeMinTextSize="14sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toTopOf="@+id/guidelineAppBar"
+                        app:layout_constraintDimensionRatio="16:1"
+                        app:layout_constraintHeight_min="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- horizontal center guideline -->
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidelineAppBar"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:id="@+id/textViewDeliverLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:maxLines="1"
+                        android:text="Location"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="14sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintDimensionRatio="16:1"
+                        app:layout_constraintHeight_min="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/guidelineAppBar" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/buttonSubmitOrder"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextOrder" />
+        app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
 
-    <Button
-        android:id="@+id/buttonSubmitOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit Order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextOrderBounty" />
+        <!-- scrollable body -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <!-- TODO: build stores recycler view after data models and repositories are built -->
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
