@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu;
+package org.greatbarrierreeve.daizoubu.ui.auth;
 
 
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
