@@ -30,6 +30,7 @@
             android:layout_width="match_parent">
 
             <ImageView
+                android:foreground="@drawable/ripple_circle"
                 android:id="@+id/iconBack"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
@@ -49,14 +50,15 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iconCart"
                 app:layout_constraintStart_toEndOf="@id/iconBack"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeWidth="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_width="match_parent">
 
                     <TextView
@@ -106,6 +108,19 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <ImageView
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconCart"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:src="@drawable/icon_shopping_cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -120,7 +135,10 @@
         <!-- scrollable body -->
         <androidx.core.widget.NestedScrollView
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <!-- TODO: build stores recycler view after data models and repositories are built -->
 

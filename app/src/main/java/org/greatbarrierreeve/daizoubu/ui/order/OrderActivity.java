@@ -20,6 +20,7 @@ import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 public class OrderActivity extends AppCompatActivity {
 
     ImageView iconBack;
+    ImageView iconCart;
     MaterialCardView sectionDeliveryLocation;
 
 
@@ -46,6 +47,10 @@ public class OrderActivity extends AppCompatActivity {
         // back button click event handler
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
+
+        // cart button click event handler
+        iconCart = findViewById(R.id.iconCart);
+        iconCart.setOnClickListener(view -> {});
 
     }
 
