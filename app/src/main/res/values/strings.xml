@@ -16,9 +16,15 @@
 
     <string name="jio">Open Jio</string>
 
+    <string name="ok">OK</string>
+
     <string name="order">Order</string>
 
     <string name="orderPlace">Place Order</string>
+
+    <string name="orderPlaced">Order Placed</string>
+
+    <string name="orderPlacedDesc">Looking for daizoubuers now!</string>
 
     <string name="orderPlaceWrapped">Place\nOrder</string>
 
