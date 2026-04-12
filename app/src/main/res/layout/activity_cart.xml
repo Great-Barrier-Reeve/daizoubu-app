@@ -166,7 +166,7 @@
                             app:autoSizeMinTextSize="16sp"
                             app:autoSizeTextType="uniform"
                             app:layout_constraintBottom_toBottomOf="@id/iconPin"
-                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronLocation"
                             app:layout_constraintHeight_percent="0.3"
                             app:layout_constraintStart_toEndOf="@id/bufferDeliveryLocationName"
                             app:layout_constraintTop_toTopOf="@id/iconPin"/>
@@ -184,7 +184,7 @@
                             app:autoSizeMinTextSize="16sp"
                             app:autoSizeTextType="uniform"
                             app:layout_constraintBottom_toTopOf="@id/bufferDeliveryLocationAddress"
-                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronLocation"
                             app:layout_constraintHeight_percent="0.3"
                             app:layout_constraintStart_toEndOf="@id/bufferDeliveryLocationAddress"
                             app:layout_constraintTop_toBottomOf="@id/textViewDeliveryLocationName" />
@@ -201,17 +201,17 @@
 
                         <!-- responsive buffer -->
                         <View
-                            android:id="@+id/bufferIconChevron"
+                            android:id="@+id/bufferIconChevronLocation"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
-                            app:layout_constraintEnd_toStartOf="@id/iconChevron"
+                            app:layout_constraintEnd_toStartOf="@id/iconChevronLocation"
                             app:layout_constraintHeight_percent="0.15"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/iconChevron"
+                            android:id="@+id/iconChevronLocation"
                             android:layout_height="0dp"
                             android:layout_width="0dp"
                             android:src="@drawable/icon_chevron_right"
@@ -300,7 +300,7 @@
                             app:autoSizeMinTextSize="16sp"
                             app:autoSizeTextType="uniform"
                             app:layout_constraintBottom_toBottomOf="@id/iconAlert"
-                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronBounty"
                             app:layout_constraintHeight_percent="0.3"
                             app:layout_constraintStart_toEndOf="@id/bufferHeaderBounty"
                             app:layout_constraintTop_toTopOf="@id/iconAlert"/>
@@ -319,7 +319,7 @@
                             app:autoSizeMinTextSize="16sp"
                             app:autoSizeTextType="uniform"
                             app:layout_constraintBottom_toTopOf="@id/bufferBountyAmount"
-                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronBounty"
                             app:layout_constraintHeight_percent="0.3"
                             app:layout_constraintStart_toEndOf="@id/bufferBountyAmount"
                             app:layout_constraintTop_toBottomOf="@id/textViewHeaderBounty" />
@@ -336,17 +336,17 @@
 
                         <!-- responsive buffer -->
                         <View
-                            android:id="@+id/bufferIconChevron"
+                            android:id="@+id/bufferIconChevronBounty"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintDimensionRatio="1:1"
-                            app:layout_constraintEnd_toStartOf="@id/iconChevron"
+                            app:layout_constraintEnd_toStartOf="@id/iconChevronBounty"
                             app:layout_constraintHeight_percent="0.15"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/iconChevron"
+                            android:id="@+id/iconChevronBounty"
                             android:layout_height="0dp"
                             android:layout_width="0dp"
                             android:src="@drawable/icon_chevron_right"
@@ -379,7 +379,6 @@
                         app:layout_constraintTop_toBottomOf="@id/bufferSectionTotalAmount">
 
                         <TextView
-                            android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:id="@+id/textViewTotalText"
                             android:layout_height="0dp"
@@ -396,7 +395,6 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:id="@+id/textViewTotalAmount"
                             android:layout_height="0dp"
