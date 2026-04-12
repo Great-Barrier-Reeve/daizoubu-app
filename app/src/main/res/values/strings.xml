@@ -4,6 +4,8 @@
 
     <string name="app_name">daizoubu</string>
 
+    <string name="bounty">Bounty</string>
+
     <string name="bounties">dài zǒus</string>
 
     <string name="bountiesDesc">Track your orders here or look for bounties.</string>
@@ -16,7 +18,9 @@
 
     <string name="order">Order</string>
 
-    <string name="orderPlace">Place\nOrder</string>
+    <string name="orderPlace">Place Order</string>
+
+    <string name="orderPlaceWrapped">Place\nOrder</string>
 
     <string name="tagline">Takeaway? That\'s okay!</string>
 

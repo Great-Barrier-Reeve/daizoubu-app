@@ -389,7 +389,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxLines="2"
-                                android:text="@string/orderPlace"
+                                android:text="@string/orderPlaceWrapped"
                                 android:textColor="?android:attr/textColorSecondary"
                                 android:textFontWeight="250"
                                 app:layout_constraintTop_toBottomOf="@id/guidelineOrderPlace" />

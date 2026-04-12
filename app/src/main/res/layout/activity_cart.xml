@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_width="match_parent"
+    tools:context=".ui.order.cart.CartActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- section for app bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sectionAppBar"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintDimensionRatio="6.5:1"
+        app:layout_constraintHeight_min="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconBack"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:src="@drawable/icon_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewTitleOrder"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:text="@string/order"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"
+                app:autoSizeMinTextSize="24sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
+
+        <!-- scrollable window -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <!-- scrollable body -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <!-- TODO: build order items recycler view after data models and repositories are built -->
+
+                    <!-- section for delivery location -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/sectionDeliveryLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"> <!-- TODO: change to btm of recycler view -->
+
+                        <View
+                            android:id="@+id/vertDividerSectionDeliveryLocation"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:background="?attr/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:14.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconPin"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/vertDividerSectionDeliveryLocation"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconPin"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_map_pin_filled"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferIconPin"
+                            app:layout_constraintTop_toBottomOf="@id/bufferIconPin" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferDeliveryLocationName"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconPin"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewDeliveryLocationName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:text="Location Name"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/iconPin"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferDeliveryLocationName"
+                            app:layout_constraintTop_toTopOf="@id/iconPin"/>
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewDeliveryLocationAddress"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Location Address"
+                            android:textColor="?attr/colorSecondary"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toTopOf="@id/bufferDeliveryLocationAddress"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferDeliveryLocationAddress"
+                            app:layout_constraintTop_toBottomOf="@id/textViewDeliveryLocationName" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferDeliveryLocationAddress"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconPin"/>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconChevron"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/iconChevron"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconChevron"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_chevron_right"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionDeliveryLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionDeliveryLocation" />
+
+                    <!-- section for bounty -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/sectionBounty"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionDeliveryLocation">
+
+                        <View
+                            android:id="@+id/vertDividerSectionBounty"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:background="?attr/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:14.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconAlert"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/vertDividerSectionBounty"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconAlert"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_alert_circle_filled"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferIconAlert"
+                            app:layout_constraintTop_toBottomOf="@id/bufferIconAlert" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferHeaderBounty"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconAlert"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewHeaderBounty"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:text="@string/bounty"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/iconAlert"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderBounty"
+                            app:layout_constraintTop_toTopOf="@id/iconAlert"/>
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewBountyAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textColor="?attr/colorSecondary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toTopOf="@id/bufferBountyAmount"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevron"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferBountyAmount"
+                            app:layout_constraintTop_toBottomOf="@id/textViewHeaderBounty" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferBountyAmount"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconAlert"/>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconChevron"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/iconChevron"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconChevron"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_chevron_right"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionTotalAmount"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionBounty" />
+
+                    <!-- section for total amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionTotal"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionTotalAmount">
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewTotalText"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Total"
+                            android:textColor="?attr/colorPrimary"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/textViewTotalAmount"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewTotalAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toEndOf="@id/textViewTotalText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSubmitButton"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionTotal" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/buttonPlaceOrder"
+                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSubmitButton"
+                        app:layout_constraintWidth_percent="0.9" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:id="@+id/textViewPlaceOrder"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/orderPlace"
+                        android:textColor="?android:attr/windowBackground"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="16sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="@id/buttonPlaceOrder"
+                        app:layout_constraintDimensionRatio="H,20:1"
+                        app:layout_constraintEnd_toEndOf="@id/buttonPlaceOrder"
+                        app:layout_constraintStart_toStartOf="@id/buttonPlaceOrder"
+                        app:layout_constraintTop_toTopOf="@id/buttonPlaceOrder" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
