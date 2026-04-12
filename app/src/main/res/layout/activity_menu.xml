@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:clipChildren="false"
-    android:clipToPadding="false"
     android:id="@+id/main"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -13,35 +11,124 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:background="@color/black"
-        android:id="@+id/lineDividerTopBold"
-        android:layout_height="4dp"
-        android:layout_width="0dp"
-        android:layout_marginEnd="-16dp"
-        android:layout_marginStart="-16dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <!-- section for app bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sectionAppBar"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintHeight_percent="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
 
-    <View
-        android:background="@color/black"
-        android:id="@+id/lineDividerTop"
-        android:layout_height="2dp"
-        android:layout_marginEnd="-16dp"
-        android:layout_marginStart="-16dp"
-        android:layout_marginTop="2dp"
-        android:layout_width="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineDividerTopBold" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconBack"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:src="@drawable/icon_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- section for app bar delivery location -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/sectionDeliveryLocation"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                app:cardBackgroundColor="?android:attr/windowBackground"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iconCart"
+                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:id="@+id/textViewDeliverTo"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:maxLines="1"
+                        android:text="@string/deliverTo"
+                        android:textAllCaps="true"
+                        android:textColor="?attr/colorSecondary"
+                        app:autoSizeMinTextSize="14sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toTopOf="@+id/guidelineAppBar"
+                        app:layout_constraintDimensionRatio="16:1"
+                        app:layout_constraintHeight_min="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <!-- horizontal center guideline -->
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidelineAppBar"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                    <TextView
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:id="@+id/textViewDeliverLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:maxLines="1"
+                        android:text="Location"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="14sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintDimensionRatio="16:1"
+                        app:layout_constraintHeight_min="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/guidelineAppBar" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconCart"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:src="@drawable/icon_shopping_cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuRecyclerView"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineDividerTop" />
+        app:layout_constraintTop_toBottomOf="@id/sectionAppBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
