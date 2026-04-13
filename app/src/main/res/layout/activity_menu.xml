@@ -66,7 +66,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:maxLines="1"
-                        android:text="@string/deliverTo"
+                        android:text="@string/deliver_to"
                         android:textAllCaps="true"
                         android:textColor="?attr/colorSecondary"
                         app:autoSizeMinTextSize="14sp"
