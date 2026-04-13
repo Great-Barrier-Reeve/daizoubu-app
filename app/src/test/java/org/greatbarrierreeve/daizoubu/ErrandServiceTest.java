@@ -29,7 +29,7 @@ public class ErrandServiceTest {
 
     @Before
     public void setUp() {
-        errandService = RetrofitClient.getService();
+        errandService = RetrofitClient.getErrandService();
     }
 
     //normal test case

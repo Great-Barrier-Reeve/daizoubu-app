@@ -3,6 +3,13 @@ package org.greatbarrierreeve.daizoubu.network;
 import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 
+import java.io.IOException;
+
+import okhttp3.Headers;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,8 +26,12 @@ public class RetrofitClient {
     private static final String BASE_URL = "http://192.168.10.90:8080/";
 
     private static ErrandService service;
+    private static AuthService authService;
 
-    public static ErrandService getService(){
+    private static Retrofit retrofit =null;
+
+    public static Retrofit getRetrofitInstance(){
+        if(retrofit == null){
 
         OkHttpClient httpClient;
 
@@ -33,6 +44,7 @@ public class RetrofitClient {
                 return chain.proceed(request);
             }
         };
+
         httpClient = new OkHttpClient.Builder().addInterceptor(headAuthInterceptor).build();
 
         if (service == null){
@@ -41,8 +53,18 @@ public class RetrofitClient {
                     .client(httpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            service = retrofit.create(ErrandService.class);
-        }
-        return service;
+
+        }}
+        return retrofit;
     }
+
+    public static ErrandService getErrandService(){
+        return getRetrofitInstance().create(ErrandService.class);
+    }
+
+    public static AuthService getAuthService(){
+        return getRetrofitInstance().create(AuthService.class);
+    }
+
+
 }

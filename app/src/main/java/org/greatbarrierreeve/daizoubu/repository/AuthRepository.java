@@ -1,6 +1,7 @@
 package org.greatbarrierreeve.daizoubu.repository;
 
 import org.greatbarrierreeve.daizoubu.api.AuthService;
+import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.User;
 
 import java.util.Map;
