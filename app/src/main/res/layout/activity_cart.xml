@@ -43,12 +43,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferTitleLocationUser"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:id="@+id/textViewTitleOrder"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
                 android:layout_width="0dp"
                 android:maxLines="1"
                 android:text="@string/order"
@@ -59,7 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.5"
-                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintStart_toEndOf="@id/bufferTitleLocationUser"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

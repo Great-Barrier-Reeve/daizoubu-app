@@ -16,6 +16,10 @@
 
     <string name="jio">Open Jio</string>
 
+    <string name="location">Location</string>
+
+    <string name="locationUser">Your Location</string>
+
     <string name="ok">OK</string>
 
     <string name="order">Order</string>
