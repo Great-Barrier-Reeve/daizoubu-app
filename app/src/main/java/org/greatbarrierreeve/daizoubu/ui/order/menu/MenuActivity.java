@@ -13,12 +13,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.ui.common.GridSpacingItemDecoration;
+import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ import java.util.List;
 public class MenuActivity extends AppCompatActivity {
 
     ImageView iconBack;
-    ImageView iconCart;
-    MaterialCardView sectionDeliveryLocation;
+    MaterialButton buttonPlaceOrder;
+    MaterialCardView sectionAppBar;
     RecyclerView menuRecyclerView;
 
 
@@ -50,16 +52,16 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         // app bar click event handler
-        sectionDeliveryLocation = findViewById(R.id.sectionDeliveryLocation);
-        sectionDeliveryLocation.setOnClickListener(view -> startActivity(new Intent(MenuActivity.this, LocationActivity.class)));
+        sectionAppBar = findViewById(R.id.sectionAppBar);
+        sectionAppBar.setOnClickListener(view -> startActivity(new Intent(MenuActivity.this, LocationActivity.class)));
 
         // back button click event handler
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
 
         // cart button click event handler
-        iconCart = findViewById(R.id.iconCart);
-        iconCart.setOnClickListener(view -> {});
+        buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
+        buttonPlaceOrder.setOnClickListener(view -> startActivity(new Intent(MenuActivity.this, CartActivity.class)));
 
         menuRecyclerView = findViewById(R.id.menuRecyclerView);
         List<AddOnItem> addOns = new ArrayList<>();

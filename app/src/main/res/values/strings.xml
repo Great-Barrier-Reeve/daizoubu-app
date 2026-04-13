@@ -58,6 +58,8 @@
 
     <string name="order_user">Your Order</string>
 
+    <string name="order_view">View Order</string>
+
     <string name="tagline">Takeaway? That\'s okay!</string>
 
 </resources>

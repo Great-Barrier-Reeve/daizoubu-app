@@ -11,17 +11,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 
 
 public class OrderActivity extends AppCompatActivity {
 
     ImageView iconBack;
-    ImageView iconCart;
-    MaterialCardView sectionDeliveryLocation;
+    MaterialButton buttonPlaceOrder;
+    MaterialCardView sectionAppBar;
 
 
     @Override
@@ -41,16 +43,16 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         // app bar click event handler
-        sectionDeliveryLocation = findViewById(R.id.sectionDeliveryLocation);
-        sectionDeliveryLocation.setOnClickListener(view -> startActivity(new Intent(OrderActivity.this, LocationActivity.class)));
+        sectionAppBar = findViewById(R.id.sectionAppBar);
+        sectionAppBar.setOnClickListener(view -> startActivity(new Intent(OrderActivity.this, LocationActivity.class)));
 
         // back button click event handler
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
 
         // cart button click event handler
-        iconCart = findViewById(R.id.iconCart);
-        iconCart.setOnClickListener(view -> {});
+        buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
+        buttonPlaceOrder.setOnClickListener(view -> startActivity(new Intent(OrderActivity.this, CartActivity.class)));
 
     }
 
