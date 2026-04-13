@@ -19,7 +19,7 @@ public class LocationServiceTest {
 
     @Before
     public void setUp(){
-        locationService = RetrofitClient.getService();
+        locationService = RetrofitClient.getErrandService();
     }
 
     @Test

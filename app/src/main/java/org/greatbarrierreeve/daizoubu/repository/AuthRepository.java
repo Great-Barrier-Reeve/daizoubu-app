@@ -22,8 +22,7 @@ public class AuthRepository {
     }
 
     public void verifyUserToken(String idToken, Callback<User> callback) {
-        String authToken = "bearer " + idToken;
-        Call<User> call = authService.verifyUser(authToken);
+        Call<User> call = authService.verifyUser(idToken);
         call.enqueue(callback);
     }
 

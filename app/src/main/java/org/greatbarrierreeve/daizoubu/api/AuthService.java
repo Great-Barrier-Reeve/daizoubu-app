@@ -6,13 +6,14 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 public interface AuthService {
     @GET("api/authenticate/send-link")
     Call<Map<String, String>> sendLink(@Query("email") String email);
 
-    @GET("api/user/verification")
+    @POST("api/user/verification")
     Call<User> verifyUser(@Header("Authorization") String token);
 
     @GET("api/user/{id}")

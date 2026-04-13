@@ -17,7 +17,7 @@ public class StoreServiceTest {
 
     @Before
     public void setUp(){
-        storeService = RetrofitClient.getService();
+        storeService = RetrofitClient.getErrandService();
     }
 
     @Test
