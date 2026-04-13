@@ -26,9 +26,13 @@ public class OrderItem implements UserItem {
 
     }
 
-    public OrderItem(){
-
+    public OrderItem(Builder builder){
+        this.menuItem = builder.menuItem;
+        this.qty = builder.qty;
+        this.specialReq = builder.specialReq;
+        this.userAddOns = builder.userAddOns;
     }
+
     public MenuItem getMenuItem() {
         return menuItem;
     }
@@ -124,12 +128,24 @@ public class OrderItem implements UserItem {
         private List<AddOnItem> userAddOns;
 
 
-        public Builder() {
-
+        public Builder(MenuItem menuitem, int qty) {
+            this.menuItem = menuitem;
+            this.qty = qty;
             // TODO: Build Builder constructor and static setter methods
-
+        }
+        public Builder setSpecialReq(String specialReq) {
+            this.specialReq = specialReq;
+            return this;
         }
 
+        public Builder setUserAddOns(List<AddOnItem> userAddOns) {
+            this.userAddOns = userAddOns;
+            return this;
+        }
+
+        public OrderItem build(){
+            return new OrderItem(this);
+        }
     }
 
 

@@ -41,9 +41,9 @@ public class MenuActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.menuRecyclerView);
         List<MenuItem> dataSrc = new ArrayList<>() {{
-            add(new MenuItem("borger", "Borger", "A delicious borger.", "6.79", new ArrayList<>()));
-            add(new MenuItem("sporger", "Sporger", "A delicious sporger.", "5.31", new ArrayList<>()));
-            add(new MenuItem("florger", "Florger", "A delicious florger.", "7.02", new ArrayList<>()));
+//            add(new MenuItem("borger", "Borger", "A delicious borger.", "6.79", new ArrayList<>()));
+//            add(new MenuItem("sporger", "Sporger", "A delicious sporger.", "5.31", new ArrayList<>()));
+//            add(new MenuItem("florger", "Florger", "A delicious florger.", "7.02", new ArrayList<>()));
         }};
         MenuAdapter menuAdapter = new MenuAdapter(dataSrc);
         recyclerView.setAdapter(menuAdapter);
