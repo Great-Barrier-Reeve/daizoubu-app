@@ -187,7 +187,6 @@ public class Errand {
                 ", acceptedAt=" + acceptedAt +
                 ", deliveredAt=" + deliveredAt +
                 ", refundedAt=" + refundedAt +
-                ", priorityLevel=" + priorityLevel +
                 ", priorityLocked=" + priorityLocked +
                 ", deliveryLocation=" + deliveryLocation +
                 ", storeName='" + storeName + '\'' +

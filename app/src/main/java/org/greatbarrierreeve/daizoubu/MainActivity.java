@@ -2,7 +2,9 @@ package org.greatbarrierreeve.daizoubu;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +13,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
 import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
+
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
 
     CardView cardHighlightsBounties;
     CardView cardTabOrder;
+
 
 
     @Override
@@ -27,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        String uid = UserInfoRepository.getUserId(this);
+        String token = UserInfoRepository.getIdToken(this);
+
+        // Print to Logcat
+        Log.d("DAIZOUBU_DEBUG", "Successfully logged in!");
+        Log.d("DAIZOUBU_DEBUG", "User ID: " + uid);
+        Log.d("DAIZOUBU_DEBUG", "ID Token: " + token);
+
+        SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
+        Map<String, ?> allEntries = prefs.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            Log.d("DAIZOUBU_DEBUG", "Found Key: " + entry.getKey() + " | Value: " + entry.getValue());
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 

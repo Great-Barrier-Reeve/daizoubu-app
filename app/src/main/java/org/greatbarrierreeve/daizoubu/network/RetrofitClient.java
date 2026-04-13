@@ -16,13 +16,13 @@ public class RetrofitClient {
    //private static final String BASE_URL = "http://10.0.2.2:8080";
 
     //for java unit test
-    private static final String BASE_URL = "http://localhost:8080";
+    private static final String BASE_URL = "http://192.168.10.90:8080/";
 
     private static ErrandService service;
     private static AuthService authService;
     private static Retrofit retrofit = null;
 
-    private static Retrofit getRetrofit() {
+    public static Retrofit getRetrofit() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

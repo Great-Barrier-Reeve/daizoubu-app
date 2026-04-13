@@ -1,8 +1,10 @@
 package org.greatbarrierreeve.daizoubu;
 
-
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +16,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.greatbarrierreeve.daizoubu.data.model.User;
+import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
+import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
+import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -22,14 +38,25 @@ public class LoginActivity extends AppCompatActivity {
     Button buttonLogin;
     Button buttonGoToSignup;
 
+    private AuthRepository authRepository;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
+        authRepository = new AuthRepository(RetrofitClient.getAuthService());
+
+        // 2. Immediate Session Check (Skip login if already verified)
+        if (UserInfoRepository.isLoggedIn(this)) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+        handleIntent(getIntent());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
 
@@ -47,23 +74,141 @@ public class LoginActivity extends AppCompatActivity {
 
         // login button click event handler
         buttonLogin.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
+                String email = editTextUsername.getText().toString().trim();
 
-                // TODO: validate username
-                String username = editTextUsername.getText().toString();
+                if (email.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                // TODO: validate password
-                String password = editTextPassword.getText().toString();
+                // SAVE the email locally for the handshake later
+                getSharedPreferences("auth_prefs", MODE_PRIVATE)
+                        .edit()
+                        .putString("pending_email", email)
+                        .apply();
 
-                // display user inputs for dev purposes
-                Toast.makeText(getApplicationContext(), username + password, Toast.LENGTH_SHORT).show();
+                // CALL the backend via repository
+                authRepository.sendLoginLink(email, new Callback<Map<String, String>>() {
+                    @Override
+                    public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "link sent to " + email, Toast.LENGTH_LONG).show();
+                        } else {
+                            Log.e("DAIZOUBU_AUTH", "Server error code: " + response.code());
+                            Toast.makeText(LoginActivity.this, "Server error. Please try again.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                        Log.e("DAIZOUBU_AUTH", "Network error", t);
+                        Toast.makeText(LoginActivity.this, "Connection failed. Check your Wi-Fi.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-
-
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+private void handleIntent(Intent intent) {
+    Uri data = intent.getData();
+    if (data != null) {
+        String link = data.toString();
+        Log.d("DAIZOUBU_AUTH", "Caught the magic link: " + link);
+
+        SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
+        String email = prefs.getString("pending_email", "");
+
+        if (!email.isEmpty()) {
+            handleSignIn(email, link);
+        } else {
+            Toast.makeText(this, "Email missing. Please restart login.", Toast.LENGTH_LONG).show();
+        }
+    }
+}
+
+    // Change this:
+// private void handleSignIn(String emailLink) { ... }
+
+    // To this:
+    private void handleSignIn(String email, String emailLink) {
+        Log.d("DAIZOUBU_AUTH", "Attempting Firebase Sign-In with: " + email);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.isSignInWithEmailLink(emailLink)) {
+            auth.signInWithEmailLink(email, emailLink)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = task.getResult().getUser();
+                            Log.d("DAIZOUBU_AUTH", "FIREBASE SUCCESS! UID: " + user.getUid());
+
+                            // Now get the Token to send to Spring Boot
+                            user.getIdToken(true).addOnSuccessListener(result -> {
+                                String token = result.getToken();
+                                Log.d("DAIZOUBU_AUTH", "TOKEN ACQUIRED: " + token.substring(0, 10) + "...");
+                                issueBackendToken(user, token);
+                            });
+                        } else {
+                            Log.e("DAIZOUBU_AUTH", "FIREBASE ERROR: " + task.getException().getMessage());
+                        }
+                    });
+        } else {
+            Log.e("DAIZOUBU_AUTH", "Link was not a valid Firebase Auth link.");
+        }
+    }
+    private void issueBackendToken(FirebaseUser user, String idToken) {
+        Log.d("DAIZOUBU_AUTH", "Sending token to Spring Boot...");
+        user.getIdToken(true).addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("DAIZOUBU_AUTH", "Could not get Firebase ID Token");
+                return;
+            }
+
+            String token = task.getResult().getToken();
+            Log.d("DAIZOUBU_AUTH", "Firebase Token acquired. Sending to Spring Boot...");
+
+            authRepository.verifyUserToken(token, new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    // THIS IS THE SMOKING GUN LOG:
+                    Log.d("DAIZOUBU_AUTH", "Spring Boot Response Code: " + response.code());
+
+                    if (response.isSuccessful() && response.body() != null) {
+                        SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
+                        boolean isSaved = prefs.edit()
+                                .putString("session_token", token)
+                                .putString("user_id", user.getUid())
+                                .commit(); // Use commit to force the write NOW
+
+                        Log.d("DAIZOUBU_AUTH", "SAVE SUCCESS: " + isSaved);
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Log.e("DAIZOUBU_AUTH", "Backend rejected token. Check if backend uses 'bearer ' or 'Bearer '");
+                        if (response.errorBody() != null) {
+                            try { Log.e("DAIZOUBU_AUTH", "Error: " + response.errorBody().string()); }
+                            catch (Exception e) { e.printStackTrace(); }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.e("DAIZOUBU_AUTH", "NETWORK ERROR: Cannot reach Mac. Check IP or Firewall.");
+                    Log.e("DAIZOUBU_AUTH", "Detail: " + t.getMessage());
+                }
+            });
+        });
+    }
 }
