@@ -13,11 +13,13 @@ public class Errand {
     private BigDecimal bounty;
     private OrderItem orderItem;
     private ErrandStatus status;
+    private PriorityLevel priorityLevel;
+
+
     private Timestamp createdAt;
     private Timestamp acceptedAt;
     private Timestamp deliveredAt;
     private Timestamp refundedAt;
-    private PriorityLevel priorityLevel;
     private boolean priorityLocked;
     private Location deliveryLocation;
     private String storeName;

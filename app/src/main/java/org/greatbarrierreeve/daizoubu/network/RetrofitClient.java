@@ -19,28 +19,29 @@ public class RetrofitClient {
     private static final String BASE_URL = "http://192.168.10.90:8080/";
 
     private static ErrandService service;
-    private static AuthService authService;
-    private static Retrofit retrofit = null;
-
-    public static Retrofit getRetrofit() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-        return retrofit;
-    }
-    public static AuthService getAuthService() {
-        if (authService == null) {
-            authService = getRetrofit().create(AuthService.class);
-        }
-        return authService;
-    }
 
     public static ErrandService getService(){
+
+        OkHttpClient httpClient;
+
+        Interceptor headAuthInterceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Headers header = request.headers().newBuilder().add("Authorization", "as").build();
+                request = request.newBuilder().headers(header).build();
+                return chain.proceed(request);
+            }
+        };
+        httpClient = new OkHttpClient.Builder().addInterceptor(headAuthInterceptor).build();
+
         if (service == null){
-            service = getRetrofit().create(ErrandService.class);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(httpClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            service = retrofit.create(ErrandService.class);
         }
         return service;
     }
