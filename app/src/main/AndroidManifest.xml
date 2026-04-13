@@ -27,13 +27,7 @@
             android:name=".MainActivity"
             android:exported="true">
 
-            <intent-filter>
 
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
-            </intent-filter>
 
         </activity>
 
@@ -42,19 +36,28 @@
 <!--            android:parentActivityName=".MainActivity" />-->
         <activity
             android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:launchMode="singleTask">
 
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
                     android:scheme="https"
-                    android:host="your-project-id.firebaseapp.com"
-                    android:pathPrefix="/login" />
+                    android:host="daizoubu.firebaseapp.com" />
+
+                <data android:scheme="http" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <activity
