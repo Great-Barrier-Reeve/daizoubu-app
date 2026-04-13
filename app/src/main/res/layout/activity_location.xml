@@ -60,7 +60,7 @@
                 android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:maxLines="1"
-                android:text="@string/locationUser"
+                android:text="@string/location_user"
                 android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 app:autoSizeMinTextSize="24sp"
