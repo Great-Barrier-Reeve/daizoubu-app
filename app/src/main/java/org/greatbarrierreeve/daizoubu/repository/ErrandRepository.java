@@ -3,6 +3,7 @@ package org.greatbarrierreeve.daizoubu.repository;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
+import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.Store;
 
 import java.util.List;
@@ -118,6 +119,15 @@ public class ErrandRepository {
      */
     public void getStoreById(String id, Callback <List<Store>> callback){
         Call<List<Store>> call = apiService.getStoreById(id);
+        call.enqueue(callback);
+    }
+
+    /**
+     * Get a list of locations.
+     * @param callback
+     */
+    public void getLocations(Callback<List<Location>> callback){
+        Call<List<Location>> call = apiService.getLocations();
         call.enqueue(callback);
     }
 

@@ -115,26 +115,42 @@ public class ErrandServiceTest {
 
         @Test
         public void createErrand() throws Exception{
-            Errand errand = new Errand();
-            OrderItem orderItem = new OrderItem();
             List<AddOnItem> list = new ArrayList<AddOnItem>();
             list.add(new AddOnItem("123", "asd", "asd", "123"));
-            MenuItem menuItem = new MenuItem("asd", "asd, asd", "asd", "123",list );
-            orderItem.setMenuItem(menuItem);
-            orderItem.setQty(5);
-            orderItem.setSpecialReq("asd");
+            MenuItem menuItem = new MenuItem.Builder(
+                    "asd",
+                    "asd, asd",
+                    "asd",
+                    "123" )
+                    .setOptionAddOns(list)
+                    .build();
+            OrderItem orderItem = new OrderItem.Builder
+                    (menuItem,5)
+                    .setSpecialReq("asd")
+                    .build();
+//            if (menuItem != null)
+//            orderItem.setMenuItem(menuItem);
+//            orderItem.setQty(5);
+//            orderItem.setSpecialReq("asd");
 //            orderItem.setUserAddOns(list);
-            errand.setBuyerId("123");
-            errand.setRunnerId("234");
-            errand.setBounty(new BigDecimal(100));
-            errand.setStatus(ErrandStatus.REQUESTED);
-            errand.setPriorityLevel(PriorityLevel.NORMAL);
-            errand.setOrderItem(orderItem);
-            Location location = new Location();
-            location.setAddress("LT1");
-            location.setDisplayName("ALBERT");
-            errand.setDeliveryLocation(location);
-            errand.setStoreName("Cai fan");
+
+//            errand.setBuyerId("123");
+//            errand.setRunnerId("234");
+//            errand.setBounty(new BigDecimal(100));
+//            errand.setStatus(ErrandStatus.REQUESTED);
+//            errand.setPriorityLevel(PriorityLevel.NORMAL);
+//            errand.setOrderItem(orderItem);
+            Location location = new Location("Albert Hong", "1.102");
+            Errand errand = new Errand(
+                    "123",
+                    "234",
+                    new BigDecimal(100),
+                    orderItem,
+                    ErrandStatus.REQUESTED,
+                    PriorityLevel.NORMAL,
+                    location,
+                    "Cai fan",
+                    new BigDecimal(200));
             Response<Errand> response = errandService.createErrand(errand).execute();
             assertTrue("Response failed " + response.code(), response.isSuccessful());
             Errand errandResponse = response.body();

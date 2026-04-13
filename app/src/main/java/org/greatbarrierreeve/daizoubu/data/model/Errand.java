@@ -24,6 +24,19 @@ public class Errand {
     private Location deliveryLocation;
     private String storeName;
 
+    private BigDecimal subtotal;
+    public Errand(String buyerId, String runnerId, BigDecimal bounty, OrderItem orderItem, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
+        this.buyerId = buyerId;
+        this.runnerId = runnerId;
+        this.bounty = bounty;
+        this.orderItem = orderItem;
+        this.status = status;
+        this.priorityLevel = priorityLevel;
+        this.deliveryLocation = deliveryLocation;
+        this.storeName = storeName;
+        this.subtotal = subtotal;
+    }
+
     public Location getDeliveryLocation() {
         return deliveryLocation;
     }
@@ -49,8 +62,7 @@ public class Errand {
     }
 
 
-    public Errand() {
-    }
+
 
 
     public String getId() {
@@ -143,6 +155,13 @@ public class Errand {
         this.priorityLocked = priorityLocked;
     }
 
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -173,6 +192,7 @@ public class Errand {
                 ", priorityLocked=" + priorityLocked +
                 ", deliveryLocation=" + deliveryLocation +
                 ", storeName='" + storeName + '\'' +
+                ", subtotal=" + subtotal +
                 '}';
     }
 }

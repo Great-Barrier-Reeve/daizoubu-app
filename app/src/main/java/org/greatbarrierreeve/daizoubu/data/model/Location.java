@@ -7,8 +7,9 @@ public class Location {
     private String latitude;
     private String longitude;
 
-    public Location() {
-
+    public Location(String displayName, String address) {
+        this.displayName = displayName;
+        this.address = address;
     }
 
     public String getId() {
@@ -51,4 +52,14 @@ public class Location {
         this.longitude = longitude;
     }
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id='" + id + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", address='" + address + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                '}';
+    }
 }
