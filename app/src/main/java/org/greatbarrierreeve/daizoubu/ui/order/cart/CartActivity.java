@@ -23,8 +23,6 @@ import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 
-import java.math.BigDecimal;
-
 
 public class CartActivity extends AppCompatActivity {
 
@@ -33,6 +31,7 @@ public class CartActivity extends AppCompatActivity {
     ConstraintLayout sectionBounty;
     ImageView iconBack;
     MaterialButton buttonPlaceOrder;
+    TextView textViewBountyAmount;
 
 
     @Override
@@ -53,6 +52,15 @@ public class CartActivity extends AppCompatActivity {
 
         // link to cart view model
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+
+        // display bounty amount in money format
+        textViewBountyAmount = findViewById(R.id.textViewBountyAmount);
+        cartViewModel.getBountyAmount().observe(this, amount -> {
+
+            String money = "$" + amount;
+            textViewBountyAmount.setText(money);
+
+        });
 
         // back button click event handler
         iconBack = findViewById(R.id.iconBack);
@@ -76,7 +84,6 @@ public class CartActivity extends AppCompatActivity {
 
     public void showBountyInputDialog() {
 
-        CartViewModel cartViewModel;
         TextView textViewDialogBountyAmount;
 
         // inflate dialog layout
@@ -90,9 +97,6 @@ public class CartActivity extends AppCompatActivity {
 
         // display dialog
         dialog.show();
-
-        // link to cart view model
-        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
 
         // get bounty input and display in money format
         textViewDialogBountyAmount = dialogView.findViewById(R.id.textViewDialogBountyAmount);
@@ -156,11 +160,8 @@ public class CartActivity extends AppCompatActivity {
         // confirm button click event handler
         dialogView.findViewById(R.id.buttonDialogSubmit).setOnClickListener(view -> {
 
-            BigDecimal finalAmount = cartViewModel.getBountyAmount();
-
-            // do something with finalAmount here
-
-            dialog.dismiss();
+            cartViewModel.confirmBountyInput();
+            dialog.cancel();
 
         });
 
