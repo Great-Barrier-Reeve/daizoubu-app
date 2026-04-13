@@ -301,7 +301,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_width="match_parent"
                     android:maxLines="1"
-                    android:text="@string/bountiesDesc"
+                    android:text="@string/bounties_desc"
                     android:textColor="?android:attr/textColorSecondary"
                     app:autoSizeMinTextSize="12dp"
                     app:autoSizeTextType="uniform"
@@ -389,7 +389,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:maxLines="2"
-                                android:text="@string/orderPlace"
+                                android:text="@string/order_place_wrapped"
                                 android:textColor="?android:attr/textColorSecondary"
                                 android:textFontWeight="250"
                                 app:layout_constraintTop_toBottomOf="@id/guidelineOrderPlace" />

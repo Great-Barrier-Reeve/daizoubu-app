@@ -1,12 +1,9 @@
 package org.greatbarrierreeve.daizoubu.ui.order;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +11,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
+import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 
 
 public class OrderActivity extends AppCompatActivity {
 
-    EditText editTextOrder;
-    EditText editTextOrderBounty;
-    Button buttonSubmitOrder;
+    ImageView iconBack;
+    MaterialButton buttonPlaceOrder;
+    MaterialCardView sectionAppBar;
 
 
     @Override
@@ -32,7 +34,7 @@ public class OrderActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.order), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -40,29 +42,17 @@ public class OrderActivity extends AppCompatActivity {
 
         });
 
-        // get references to widgets
-        editTextOrder = findViewById(R.id.editTextOrder);
-        editTextOrderBounty = findViewById(R.id.editTextOrderBounty);
-        buttonSubmitOrder = findViewById(R.id.buttonSubmitOrder);
+        // app bar click event handler
+        sectionAppBar = findViewById(R.id.sectionAppBar);
+        sectionAppBar.setOnClickListener(view -> startActivity(new Intent(OrderActivity.this, LocationActivity.class)));
 
-        // submit order button click event handler
-        buttonSubmitOrder.setOnClickListener(new View.OnClickListener() {
+        // back button click event handler
+        iconBack = findViewById(R.id.iconBack);
+        iconBack.setOnClickListener(view -> this.finish());
 
-            @Override
-            public void onClick(View view) {
-
-                // TODO: validate order
-                String order = editTextOrder.getText().toString();
-
-                // TODO: validate bounty
-                String bounty = editTextOrderBounty.getText().toString();
-
-                // display user inputs for dev purposes
-                Toast.makeText(getApplicationContext(), order + bounty, Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
+        // cart button click event handler
+        buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
+        buttonPlaceOrder.setOnClickListener(view -> startActivity(new Intent(OrderActivity.this, CartActivity.class)));
 
     }
 

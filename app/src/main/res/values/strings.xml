@@ -2,36 +2,64 @@
 
 <resources>
 
-    <string
-        name="app_name"
-        >daizoubu</string>
+    <string name="amount_enter">Enter Amount</string>
 
-    <string
-        name="bounties"
-        >dài zǒus</string>
+    <string name="app_name">daizoubu</string>
 
-    <string
-        name="bountiesDesc"
-        >Track your orders here or look for bounties.</string>
+    <string name="bounty">Bounty</string>
 
-    <string
-        name="dsbj"
-        >DSBJ</string>
+    <string name="bounties">dài zǒus</string>
 
-    <string
-        name="jio"
-        >Open Jio</string>
+    <string name="bounties_desc">Track your orders here or look for bounties.</string>
 
-    <string
-        name="order"
-        >Order</string>
+    <string name="confirm">Confirm</string>
 
-    <string
-        name="orderPlace"
-        >Place\nOrder</string>
+    <string name="deliver_to">Deliver To</string>
 
-    <string
-        name="tagline"
-        >Takeaway? That\'s okay!</string>
+    <string name="dsbj">DSBJ</string>
+
+    <string name="jio">Open Jio</string>
+
+    <string name="location">Location</string>
+
+    <string name="location_user">Your Location</string>
+
+    <string name="number_one">1</string>
+
+    <string name="number_two">2</string>
+
+    <string name="number_three">3</string>
+
+    <string name="number_four">4</string>
+
+    <string name="number_five">5</string>
+
+    <string name="number_six">6</string>
+
+    <string name="number_seven">7</string>
+
+    <string name="number_eight">8</string>
+
+    <string name="number_nine">9</string>
+
+    <string name="number_zero">0</string>
+
+    <string name="ok">OK</string>
+
+    <string name="order">Order</string>
+
+    <string name="order_place">Place Order</string>
+
+    <string name="order_placed">Order Placed</string>
+
+    <string name="order_placed_desc">Looking for daizoubuers now!</string>
+
+    <string name="order_place_wrapped">Place\nOrder</string>
+
+    <string name="order_user">Your Order</string>
+
+    <string name="order_view">View Order</string>
+
+    <string name="tagline">Takeaway? That\'s okay!</string>
 
 </resources>

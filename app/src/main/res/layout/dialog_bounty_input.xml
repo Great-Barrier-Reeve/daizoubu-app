@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- background rounded card -->
+    <com.google.android.material.card.MaterialCardView
+        android:alpha="0.9"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H,1:1.21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <!-- card contents -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferDialogSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,24:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewDialogSubtitle"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:text="@string/amount_enter"
+                android:textColor="?attr/colorSecondary"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="H,20:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bufferDialogSubtitle" />
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferDialogBountyAmount"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,48:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDialogSubtitle" />
+
+            <TextView
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewDialogBountyAmount"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:text="$67.67"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintDimensionRatio="H,6.67:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bufferDialogBountyAmount" />
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferDivDialog"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,24:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDialogBountyAmount" />
+
+            <!-- horizontal divider -->
+            <View
+                android:alpha="0.5"
+                android:background="?attr/colorSecondary"
+                android:id="@+id/divDialog"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bufferDivDialog" />
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferSectionNumpadDialog"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,24:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divDialog" />
+
+            <!-- section for numpad -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sectionNumpadDialog"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bufferSectionNumpadDialog">
+
+                <!-- section for numpad one -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadOne"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="1"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toStartOf="@id/bufferNumpadTopLeft"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadOne"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_one"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- section for numpad two -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadTwo"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="2"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadTwo"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_two"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- section for numpad three -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadThree"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="3"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintStart_toEndOf="@id/bufferNumpadTopRight"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadThree"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_three"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- section for numpad four -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadFour"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="4"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toStartOf="@id/bufferNumpadTopLeft"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadTopLeft"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadFour"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_four"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- responsive buffer -->
+                <View
+                    android:id="@+id/bufferNumpadTopLeft"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/buttonNumpadTwo"
+                    app:layout_constraintTop_toBottomOf="@id/buttonNumpadTwo"
+                    app:layout_constraintWidth_percent="0.04" />
+
+                <!-- section for numpad five -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadFive"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="5"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadTopLeft"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadFive"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_five"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- responsive buffer -->
+                <View
+                    android:id="@+id/bufferNumpadTopRight"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintStart_toEndOf="@id/buttonNumpadTwo"
+                    app:layout_constraintTop_toBottomOf="@id/buttonNumpadTwo"
+                    app:layout_constraintWidth_percent="0.04" />
+
+                <!-- section for numpad six -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadSix"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="6"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintStart_toEndOf="@id/bufferNumpadTopRight"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadTopRight"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadSix"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_six"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- section for numpad seven -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadSeven"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="7"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toStartOf="@id/bufferNumpadCenterLeft"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadCenterLeft"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadSeven"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_seven"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- responsive buffer -->
+                <View
+                    android:id="@+id/bufferNumpadCenterLeft"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/buttonNumpadFive"
+                    app:layout_constraintTop_toBottomOf="@id/buttonNumpadFive"
+                    app:layout_constraintWidth_percent="0.04" />
+
+                <!-- section for numpad eight -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadEight"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="8"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadCenterLeft"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadEight"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_eight"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- responsive buffer -->
+                <View
+                    android:id="@+id/bufferNumpadCenterRight"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintStart_toEndOf="@id/buttonNumpadFive"
+                    app:layout_constraintTop_toBottomOf="@id/buttonNumpadFive"
+                    app:layout_constraintWidth_percent="0.04" />
+
+                <!-- section for numpad nine -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadNine"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="9"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintStart_toEndOf="@id/bufferNumpadCenterRight"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadCenterRight"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadNine"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_nine"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- section for numpad cancel -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadCancel"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toStartOf="@id/bufferNumpadBottomLeft"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadBottomLeft"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <ImageView
+                            android:id="@+id/iconX"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_x"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- responsive buffer -->
+                <View
+                    android:id="@+id/bufferNumpadBottomLeft"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@id/buttonNumpadEight"
+                    app:layout_constraintTop_toBottomOf="@id/buttonNumpadEight"
+                    app:layout_constraintWidth_percent="0.04" />
+
+                <!-- section for numpad zero -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadZero"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:tag="0"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadBottomLeft"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewNumpadZero"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/number_zero"
+                            android:textColor="?attr/colorSecondary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="H,3:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- responsive buffer -->
+                <View
+                    android:id="@+id/bufferNumpadBottomRight"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintStart_toEndOf="@id/buttonNumpadEight"
+                    app:layout_constraintTop_toBottomOf="@id/buttonNumpadEight"
+                    app:layout_constraintWidth_percent="0.04" />
+
+                <!-- section for numpad delete -->
+                <com.google.android.material.card.MaterialCardView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/buttonNumpadDelete"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1.5:1"
+                    app:layout_constraintStart_toEndOf="@id/bufferNumpadBottomRight"
+                    app:layout_constraintTop_toBottomOf="@id/bufferNumpadBottomRight"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:strokeColor="?attr/colorSecondary"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent">
+
+                        <ImageView
+                            android:id="@+id/iconDelete"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_delete"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferDialogButtonSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,24:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sectionNumpadDialog" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/buttonDialogSubmit"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:cardBackgroundColor="?attr/colorPrimary"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="H,5.1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bufferDialogButtonSubmit"
+                app:layout_constraintWidth_percent="0.68"
+                app:strokeColor="?attr/colorSecondary"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:id="@+id/textViewDialogConfirm"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/confirm"
+                        android:textColor="?android:attr/windowBackground"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="12sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="H,10.2:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/BufferDialogBottom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,24:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonDialogSubmit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
