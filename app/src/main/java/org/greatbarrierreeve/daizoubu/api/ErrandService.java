@@ -1,6 +1,7 @@
 package org.greatbarrierreeve.daizoubu.api;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
+import org.greatbarrierreeve.daizoubu.data.model.Store;
 
 import java.util.List;
 
@@ -36,6 +37,15 @@ public interface ErrandService {
 
     @POST("/api/errands/{id}/transition")
     Call<Errand> transitionErrand(@Path("id") String id, @Body ErrandStatus status);
+
+    @GET("/api/errands/stores/available")
+    Call<List<Store>> getAvailableStores();
+
+    @GET("/api/errands/stores/{id}")
+    Call<List<Store>> getStoreById(@Path("id") String id);
+
+
+
 
     // TODO: 7/4/26 API FOR USER AUTH 
 //    @Get("/api/authenticate/send-link")— send the login link to the users email

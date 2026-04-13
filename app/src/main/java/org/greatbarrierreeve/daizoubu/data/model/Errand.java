@@ -11,15 +11,34 @@ public class Errand {
     private String buyerId;
     private String runnerId;
     private BigDecimal bounty;
+    private OrderItem orderItem;
     private ErrandStatus status;
+    private PriorityLevel priorityLevel;
+
+
     private Timestamp createdAt;
     private Timestamp acceptedAt;
     private Timestamp deliveredAt;
     private Timestamp refundedAt;
-    private PriorityLevel priorityLevel;
     private boolean priorityLocked;
+    private Location deliveryLocation;
+    private String storeName;
 
-    private OrderItem orderItem;
+    public Location getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    public void setDeliveryLocation(Location deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
 
     public OrderItem getOrderItem() {
         return orderItem;
@@ -144,14 +163,16 @@ public class Errand {
                 ", buyerId='" + buyerId + '\'' +
                 ", runnerId='" + runnerId + '\'' +
                 ", bounty=" + bounty +
+                ", orderItem=" + orderItem +
                 ", status=" + status +
+                ", priorityLevel=" + priorityLevel +
                 ", createdAt=" + createdAt +
                 ", acceptedAt=" + acceptedAt +
                 ", deliveredAt=" + deliveredAt +
                 ", refundedAt=" + refundedAt +
-                ", priorityLevel=" + priorityLevel +
                 ", priorityLocked=" + priorityLocked +
-                ", orderItem=" + orderItem +
+                ", deliveryLocation=" + deliveryLocation +
+                ", storeName='" + storeName + '\'' +
                 '}';
     }
 }
