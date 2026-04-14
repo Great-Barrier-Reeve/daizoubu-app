@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         // 2. Immediate Session Check (Skip login if already verified)
-        if (UserInfoRepository.isLoggedIn(this)) {
+        if (UserInfoRepository.isLoggedIn()) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
@@ -136,7 +136,7 @@ private void handleIntent(Intent intent) {
 
         if (!email.isEmpty()) {
             handleSignIn(email, link);
-            if (UserInfoRepository.isLoggedIn(this)) {
+            if (UserInfoRepository.isLoggedIn()) {
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
             }

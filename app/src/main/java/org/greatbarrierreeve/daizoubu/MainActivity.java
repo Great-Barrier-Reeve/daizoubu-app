@@ -19,12 +19,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.User;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
+import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
 import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
 import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -47,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        String uid = UserInfoRepository.getUserId(this);
-        String token = UserInfoRepository.getIdToken(this);
+        String uid = UserInfoRepository.getUserId();
+        String token = UserInfoRepository.getIdToken();
         Log.d("DAIZOUBU_DEBUG", "UID: " + uid);
         Log.d("DAIZOUBU_DEBUG", "TOKEN: " + token);
         authRepository = new AuthRepository(RetrofitClient.getAuthService());
@@ -86,6 +89,29 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+        //dev purpose
+//        ErrandRepository errandRepository = new ErrandRepository(RetrofitClient.getErrandService());
+//        errandRepository.getAvailableErrands(new Callback<List<Errand>>() {
+//            @Override
+//            public void onResponse(Call<List<Errand>> call, Response<List<Errand>> response) {
+//                if(response.isSuccessful()) {
+//                    assert response.body() != null;
+//                    if (!response.body().isEmpty()) {
+//                        List<Errand> errands = response.body();
+//                        for (Errand errand : errands) {
+//                            System.out.println("async WORKS!" + errand.toString());
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Errand>> call, Throwable throwable) {
+//                Log.d("error" , throwable.getMessage());
+//            }
+//        });
+
 
         // send user to login activity for dev purposes
 //        Intent intent = new Intent(MainActivity.this, LoginActivity.class);

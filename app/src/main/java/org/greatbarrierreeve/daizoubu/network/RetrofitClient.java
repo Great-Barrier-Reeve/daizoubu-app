@@ -2,6 +2,7 @@ package org.greatbarrierreeve.daizoubu.network;
 
 import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
 
 import java.io.IOException;
 
@@ -19,10 +20,9 @@ public class RetrofitClient {
 
     //for emulator testing virtual router
 //    private static final String BASE_URL = "http://10.0.2.2:8080";
-     private static final String BASE_URL = "http://192.168.50.249:8080/";
+     private static final String BASE_URL = "http://192.168.50.54:8080/";
 
     //for java unit test
-    // private static final String BASE_URL = "http://192.168.10.90:8080/";
 
     private static ErrandService errandService;
     private static AuthService authService;
@@ -35,7 +35,10 @@ public class RetrofitClient {
                         Request request = chain.request();
                         // This interceptor seems to add a placeholder Authorization header.
                         // Actual token-based auth is handled in Repositories or should be dynamic.
-                        Headers headers = request.headers().newBuilder().add("Authorization", "as").build();
+                        if(UserInfoRepository.getIdToken() == null){
+                            return chain.proceed(request);
+                        }
+                        Headers headers = request.headers().newBuilder().add("Authorization", UserInfoRepository.getIdToken()).build();
                         request = request.newBuilder().headers(headers).build();
                         return chain.proceed(request);
                     })

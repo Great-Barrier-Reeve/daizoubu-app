@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -37,6 +39,8 @@ public class OrderActivity extends AppCompatActivity {
             return insets;
 
         });
+
+        UserInfoRepository.init(this);
 
         // get references to widgets
         editTextOrder = findViewById(R.id.editTextOrder);
