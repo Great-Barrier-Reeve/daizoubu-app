@@ -69,6 +69,11 @@ public class LoginActivity extends AppCompatActivity {
         AuthService service = RetrofitClient.getAuthService();
         authRepository = new AuthRepository(service);
 
+
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+
+
         if (UserInfoRepository.isLoggedIn()) {
             startActivity(new Intent(this, MainActivity.class));
             finish();

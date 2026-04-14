@@ -121,7 +121,7 @@ public class ErrandServiceTest {
                     "asd",
                     "asd, asd",
                     "asd",
-                    "123" )
+                    "123" ,"1")
                     .setOptionAddOns(list)
                     .build();
             OrderItem orderItem = new OrderItem.Builder
