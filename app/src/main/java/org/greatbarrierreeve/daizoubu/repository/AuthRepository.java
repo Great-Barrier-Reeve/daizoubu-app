@@ -1,9 +1,11 @@
 package org.greatbarrierreeve.daizoubu.repository;
 
-import org.greatbarrierreeve.daizoubu.data.model.User;
 import org.greatbarrierreeve.daizoubu.api.AuthService;
+import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.data.model.User;
 
 import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -19,10 +21,8 @@ public class AuthRepository {
         call.enqueue(callback);
     }
 
-// havent test the verification
     public void verifyUserToken(String idToken, Callback<User> callback) {
-        String authToken = "Bearer " + idToken;
-        Call<User> call = authService.verifyUser(authToken);
+        Call<User> call = authService.verifyUser(idToken);
         call.enqueue(callback);
     }
 
@@ -31,5 +31,4 @@ public class AuthRepository {
         call.enqueue(callback);
     }
 }
-
 

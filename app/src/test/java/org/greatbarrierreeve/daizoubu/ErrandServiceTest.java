@@ -3,14 +3,19 @@ package org.greatbarrierreeve.daizoubu;
 import static org.junit.Assert.assertTrue;
 
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
+import org.greatbarrierreeve.daizoubu.data.model.Location;
+import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
+import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +29,7 @@ public class ErrandServiceTest {
 
     @Before
     public void setUp() {
-        errandService = RetrofitClient.getService();
+        errandService = RetrofitClient.getErrandService();
     }
 
     //normal test case
@@ -110,12 +115,42 @@ public class ErrandServiceTest {
 
         @Test
         public void createErrand() throws Exception{
-            Errand errand = new Errand();
-            errand.setBuyerId("123");
-            errand.setRunnerId("234");
-            errand.setBounty(new BigDecimal(100));
-            errand.setStatus(ErrandStatus.REQUESTED);
-            errand.setPriorityLevel(PriorityLevel.NORMAL);
+            List<AddOnItem> list = new ArrayList<AddOnItem>();
+            list.add(new AddOnItem("123", "asd", "asd", "123"));
+            MenuItem menuItem = new MenuItem.Builder(
+                    "asd",
+                    "asd, asd",
+                    "asd",
+                    "123" )
+                    .setOptionAddOns(list)
+                    .build();
+            OrderItem orderItem = new OrderItem.Builder
+                    (menuItem,5)
+                    .setSpecialReq("asd")
+                    .build();
+//            if (menuItem != null)
+//            orderItem.setMenuItem(menuItem);
+//            orderItem.setQty(5);
+//            orderItem.setSpecialReq("asd");
+//            orderItem.setUserAddOns(list);
+
+//            errand.setBuyerId("123");
+//            errand.setRunnerId("234");
+//            errand.setBounty(new BigDecimal(100));
+//            errand.setStatus(ErrandStatus.REQUESTED);
+//            errand.setPriorityLevel(PriorityLevel.NORMAL);
+//            errand.setOrderItem(orderItem);
+            Location location = new Location("Albert Hong", "1.102");
+            Errand errand = new Errand(
+                    "123",
+                    "234",
+                    new BigDecimal(100),
+                    orderItem,
+                    ErrandStatus.REQUESTED,
+                    PriorityLevel.NORMAL,
+                    location,
+                    "Cai fan",
+                    new BigDecimal(200));
             Response<Errand> response = errandService.createErrand(errand).execute();
             assertTrue("Response failed " + response.code(), response.isSuccessful());
             Errand errandResponse = response.body();

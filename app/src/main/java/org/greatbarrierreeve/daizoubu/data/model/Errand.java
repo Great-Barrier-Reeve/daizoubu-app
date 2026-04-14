@@ -11,16 +11,59 @@ public class Errand {
     private String buyerId;
     private String runnerId;
     private BigDecimal bounty;
+    private OrderItem orderItem;
     private ErrandStatus status;
+    private PriorityLevel priorityLevel;
+
+
     private Timestamp createdAt;
     private Timestamp acceptedAt;
     private Timestamp deliveredAt;
     private Timestamp refundedAt;
-    private PriorityLevel priorityLevel;
     private boolean priorityLocked;
+    private Location deliveryLocation;
+    private String storeName;
 
-    public Errand() {
+    private BigDecimal subtotal;
+    public Errand(String buyerId, String runnerId, BigDecimal bounty, OrderItem orderItem, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
+        this.buyerId = buyerId;
+        this.runnerId = runnerId;
+        this.bounty = bounty;
+        this.orderItem = orderItem;
+        this.status = status;
+        this.priorityLevel = priorityLevel;
+        this.deliveryLocation = deliveryLocation;
+        this.storeName = storeName;
+        this.subtotal = subtotal;
     }
+
+    public Location getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    public void setDeliveryLocation(Location deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public OrderItem getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
+    }
+
+
+
+
 
     public String getId() {
         return id;
@@ -102,31 +145,23 @@ public class Errand {
         this.priorityLevel = priorityLevel;
     }
 
-    @Override
-    public String toString() {
-        return "Errand{" +
-                "id='" + id + '\'' +
-                ", buyerId='" + buyerId + '\'' +
-                ", runnerId='" + runnerId + '\'' +
-                ", bounty=" + bounty +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                ", acceptedAt=" + acceptedAt +
-                ", deliveredAt=" + deliveredAt +
-                ", refundedAt=" + refundedAt +
-                ", priorityLevel=" + priorityLevel +
-                ", priorityLocked=" + priorityLocked +
-                '}';
-    }
-
     public boolean isPriorityLocked() {
         return priorityLocked;
     }
+
+
 
     public void setPriorityLocked(boolean priorityLocked) {
         this.priorityLocked = priorityLocked;
     }
 
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,5 +173,26 @@ public class Errand {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Errand{" +
+                "id='" + id + '\'' +
+                ", buyerId='" + buyerId + '\'' +
+                ", runnerId='" + runnerId + '\'' +
+                ", bounty=" + bounty +
+                ", orderItem=" + orderItem +
+                ", status=" + status +
+                ", priorityLevel=" + priorityLevel +
+                ", createdAt=" + createdAt +
+                ", acceptedAt=" + acceptedAt +
+                ", deliveredAt=" + deliveredAt +
+                ", refundedAt=" + refundedAt +
+                ", priorityLocked=" + priorityLocked +
+                ", deliveryLocation=" + deliveryLocation +
+                ", storeName='" + storeName + '\'' +
+                ", subtotal=" + subtotal +
+                '}';
     }
 }
