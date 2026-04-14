@@ -15,17 +15,8 @@ public class MenuItem implements StoreItem {
     String name;
     List<AddOnItem> optionAddOns;
 
+    String storeId;
 
-    @Override
-    public String toString() {
-        return "MenuItem{" +
-                "basePrice='" + basePrice + '\'' +
-                ", desc='" + desc + '\'' +
-                ", itemId='" + itemId + '\'' +
-                ", name='" + name + '\'' +
-                ", optionAddOns=" + optionAddOns +
-                '}';
-    }
 
     public MenuItem(Builder builder) {
 
@@ -34,6 +25,7 @@ public class MenuItem implements StoreItem {
         this.itemId = builder.itemId;
         this.name = builder.name;
         this.optionAddOns = builder. optionAddOns;
+        this.storeId = builder.storeId;
 
     }
 
@@ -48,6 +40,18 @@ public class MenuItem implements StoreItem {
 
     }
 
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "basePrice='" + basePrice + '\'' +
+                ", desc='" + desc + '\'' +
+                ", itemId='" + itemId + '\'' +
+                ", name='" + name + '\'' +
+                ", optionAddOns=" + optionAddOns +
+                ", storeId='" + storeId + '\'' +
+                '}';
+    }
+
     public static class Builder{
         private String basePrice;
         private String desc;
@@ -55,11 +59,15 @@ public class MenuItem implements StoreItem {
         private String name;
         private List<AddOnItem> optionAddOns;
 
-        public Builder(String itemId, String name, String desc, String basePrice) {
+        private String storeId;
+
+
+        public Builder(String itemId, String name, String desc, String basePrice, String storeId) {
             this.basePrice = basePrice;
             this.desc = desc;
             this.itemId = itemId;
             this.name = name;
+            this.storeId = storeId;
         }
 
         public Builder setOptionAddOns(List<AddOnItem> optionAddOns) {
@@ -95,6 +103,38 @@ public class MenuItem implements StoreItem {
 
     @Override
     public String getPrice() { return basePrice; }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setOptionAddOns(List<AddOnItem> optionAddOns) {
+        this.optionAddOns = optionAddOns;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(String basePrice) {
+        this.basePrice = basePrice;
+    }
 
 
     @Override

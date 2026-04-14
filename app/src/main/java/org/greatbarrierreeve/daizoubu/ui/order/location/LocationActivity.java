@@ -13,10 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
 import org.greatbarrierreeve.daizoubu.R;
+
+import java.util.ArrayList;
 
 
 public class LocationActivity extends AppCompatActivity {
@@ -24,6 +29,10 @@ public class LocationActivity extends AppCompatActivity {
     EditText editTextSearchField;
     ImageView iconBack;
     MaterialCardView sectionSearchBar;
+
+    private LocationAdapter adapter;
+
+    private LocationViewModel locationViewModel;
 
 
     @Override
@@ -69,6 +78,19 @@ public class LocationActivity extends AppCompatActivity {
         // back button click event handler
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
+
+//        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+//        adapter = new LocationAdapter(new ArrayList<>());
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+//        locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+
+        locationViewModel.getLocations().observe(this, locationList ->{
+            if(locationList != null){
+                adapter.updateData(locationList);
+            }
+        });
 
     }
 
