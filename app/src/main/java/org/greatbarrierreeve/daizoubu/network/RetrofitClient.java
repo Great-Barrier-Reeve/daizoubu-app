@@ -4,8 +4,6 @@ import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
 
-import java.io.IOException;
-
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -19,8 +17,8 @@ public class RetrofitClient {
     // ONLY NEEDED FOR TESTING DUE TO NO HTTPS ON LOCALHOST
 
     //for emulator testing virtual router
-//    private static final String BASE_URL = "http://10.0.2.2:8080";
-     private static final String BASE_URL = "http://167.71.216.176:8080/";
+    private static final String BASE_URL = "http://10.0.2.2:8080";
+//     private static final String BASE_URL = "http://167.71.216.176:8080/";
 
     private static ErrandService errandService;
     private static AuthService authService;
@@ -31,14 +29,14 @@ public class RetrofitClient {
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addInterceptor(chain -> {
                         Request request = chain.request();
-                        // This interceptor seems to add a placeholder Authorization header.
-                        // Actual token-based auth is handled in Repositories or should be dynamic.
                         if(UserInfoRepository.getIdToken() == null){
                             return chain.proceed(request);
                         }
-                        Headers headers = request.headers().newBuilder().add("Authorization", UserInfoRepository.getIdToken()).build();
-                        request = request.newBuilder().headers(headers).build();
-                        return chain.proceed(request);
+                        else{
+                            Headers headers = request.headers().newBuilder().add("Authorization", UserInfoRepository.getIdToken()).build();
+                            request = request.newBuilder().headers(headers).build();
+                            return chain.proceed(request);
+                        }
                     })
                     .build();
 

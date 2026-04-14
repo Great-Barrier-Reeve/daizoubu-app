@@ -32,20 +32,20 @@ public class OrderActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.order), (v, insets) -> {
-
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-
-        });
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.order), (v, insets) -> {
+//
+//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+//            return insets;
+//
+//        });
 
         UserInfoRepository.init(this);
 
         // get references to widgets
-        editTextOrder = findViewById(R.id.editTextOrder);
-        editTextOrderBounty = findViewById(R.id.editTextOrderBounty);
-        buttonSubmitOrder = findViewById(R.id.buttonSubmitOrder);
+//        editTextOrder = findViewById(R.id.editTextOrder);
+//        editTextOrderBounty = findViewById(R.id.editTextOrderBounty);
+//        buttonSubmitOrder = findViewById(R.id.buttonSubmitOrder);
 
         // submit order button click event handler
         buttonSubmitOrder.setOnClickListener(new View.OnClickListener() {

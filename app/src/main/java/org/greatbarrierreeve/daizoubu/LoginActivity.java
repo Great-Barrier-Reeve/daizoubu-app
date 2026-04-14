@@ -23,6 +23,7 @@ import org.greatbarrierreeve.daizoubu.data.model.User;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
 import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 
 import java.util.Map;
 

@@ -49,7 +49,7 @@ public class BountiesActivity extends AppCompatActivity {
         recyclerView.setAdapter(bountiesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ErrandService errandService = RetrofitClient.getService();
+        ErrandService errandService = RetrofitClient.getErrandService();
         ErrandRepository errandRepository = new ErrandRepository(errandService);
 
         errandRepository.getAvailableErrands(new retrofit2.Callback<>() {
