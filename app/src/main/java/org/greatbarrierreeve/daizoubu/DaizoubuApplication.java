@@ -2,7 +2,7 @@ package org.greatbarrierreeve.daizoubu;
 
 import android.app.Application;
 
-import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.UserInfoRepository;
 
 public class DaizoubuApplication extends Application {
     @Override

@@ -21,7 +21,7 @@ import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
-import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.ErrandRepository;
 
 
 public class BountiesActivity extends AppCompatActivity {

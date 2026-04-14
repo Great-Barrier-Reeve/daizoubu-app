@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu.repository;
+package org.greatbarrierreeve.daizoubu.data.repository;
 
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;

@@ -24,8 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
-import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
-import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.AuthRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.UserInfoRepository;
 import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 
 import retrofit2.Call;

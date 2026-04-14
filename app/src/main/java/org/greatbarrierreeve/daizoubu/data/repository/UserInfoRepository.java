@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu.repository;
+package org.greatbarrierreeve.daizoubu.data.repository;
 import android.content.Context;
 import android.content.SharedPreferences;
 

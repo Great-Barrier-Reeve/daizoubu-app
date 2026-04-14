@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
-import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.ErrandRepository;
 
 import java.util.List;
 

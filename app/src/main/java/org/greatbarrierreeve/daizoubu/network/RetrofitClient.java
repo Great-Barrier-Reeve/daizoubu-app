@@ -2,13 +2,11 @@ package org.greatbarrierreeve.daizoubu.network;
 
 import org.greatbarrierreeve.daizoubu.api.AuthService;
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
-import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.UserInfoRepository;
 
 import okhttp3.Headers;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

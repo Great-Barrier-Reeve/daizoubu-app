@@ -24,9 +24,8 @@ import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
-import org.greatbarrierreeve.daizoubu.data.model.Store;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
-import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.ErrandRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
