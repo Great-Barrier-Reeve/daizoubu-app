@@ -2,6 +2,7 @@ package org.greatbarrierreeve.daizoubu.ui.bounties;
 
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +26,7 @@ import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
 
 public class BountiesActivity extends AppCompatActivity {
 
+    ImageView iconBack;
     RecyclerView recyclerView;
 
 
@@ -44,7 +46,11 @@ public class BountiesActivity extends AppCompatActivity {
 
         });
 
-        recyclerView = findViewById(R.id.bountiesRecyclerView);
+        // back button click event handler
+        iconBack = findViewById(R.id.iconBack);
+        iconBack.setOnClickListener(v -> finish());
+
+        recyclerView = findViewById(R.id.recyclerViewBounties);
         BountiesAdapter bountiesAdapter = new BountiesAdapter(new ArrayList<>());
         recyclerView.setAdapter(bountiesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
