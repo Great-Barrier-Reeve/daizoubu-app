@@ -2,9 +2,14 @@ package org.greatbarrierreeve.daizoubu.ui.homepage;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -12,9 +17,26 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.greatbarrierreeve.daizoubu.data.model.Errand;
+import org.greatbarrierreeve.daizoubu.data.model.User;
+import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
+import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
+import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
+import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
+import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
 import org.greatbarrierreeve.daizoubu.ui.bounties.BountiesActivity;
 import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.ui.order.OrderActivity;
+
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     CardView cardPlaceOrder;
     CardView cardTabOrder;
     ConstraintLayout sectionHeaderOrders;
+    private AuthRepository authRepository;
+
 
 
     @Override
@@ -31,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        String uid = UserInfoRepository.getUserId();
+        String token = UserInfoRepository.getIdToken();
+        Log.d("DAIZOUBU_DEBUG", "UID: " + uid);
+        Log.d("DAIZOUBU_DEBUG", "TOKEN: " + token);
+        authRepository = new AuthRepository(RetrofitClient.getAuthService());
+
+
+
+        SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
+        Map<String, ?> allEntries = prefs.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            Log.d("DAIZOUBU_DEBUG", "Found Key: " + entry.getKey() + " | Value: " + entry.getValue());
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 
@@ -51,6 +88,29 @@ public class MainActivity extends AppCompatActivity {
         // place order button card click event handler
         cardPlaceOrder = findViewById(R.id.cardPlaceOrder);
         cardPlaceOrder.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, OrderActivity.class)));
+
+        //dev purpose
+//        ErrandRepository errandRepository = new ErrandRepository(RetrofitClient.getErrandService());
+//        errandRepository.getAvailableErrands(new Callback<List<Errand>>() {
+//            @Override
+//            public void onResponse(Call<List<Errand>> call, Response<List<Errand>> response) {
+//                if(response.isSuccessful()) {
+//                    assert response.body() != null;
+//                    if (!response.body().isEmpty()) {
+//                        List<Errand> errands = response.body();
+//                        for (Errand errand : errands) {
+//                            System.out.println("async WORKS!" + errand.toString());
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Errand>> call, Throwable throwable) {
+//                Log.d("error" , throwable.getMessage());
+//            }
+//        });
+
 
         // send user to login activity for dev purposes
 //        Intent intent = new Intent(MainActivity.this, LoginActivity.class);

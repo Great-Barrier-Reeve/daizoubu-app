@@ -68,9 +68,12 @@ public class MenuActivity extends AppCompatActivity {
         addOns.add(new AddOnItem("1", "one", "desc of one", "2.79"));
         addOns.add(new AddOnItem("2", "two", "desc of two", "2.19"));
         List<MenuItem> dataSrc = new ArrayList<>() {{
-            add(new MenuItem("borger", "Borger", "A delicious borger.", "6.79", addOns));
-            add(new MenuItem("sporger", "Sporger", "A delicious sporger.", "5.31", new ArrayList<>()));
-            add(new MenuItem("florger", "Florger", "A delicious florger.", "7.02", new ArrayList<>()));
+            add(new MenuItem.Builder("borger", "Borger",
+                    "A delicious borger.",
+                    "6.79")
+                    .setOptionAddOns(addOns).build());
+            add(new MenuItem.Builder("sporger", "Sporger", "A delicious sporger.", "5.31").build());
+            add(new MenuItem.Builder("florger", "Florger", "A delicious florger.", "7.02").build());
         }};
         MenuAdapter menuAdapter = new MenuAdapter(dataSrc);
         menuRecyclerView.setAdapter(menuAdapter);

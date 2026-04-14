@@ -20,8 +20,11 @@ import org.greatbarrierreeve.daizoubu.api.ErrandService;
 import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
+import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
+import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
+import org.greatbarrierreeve.daizoubu.data.model.Store;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
 
@@ -76,13 +79,18 @@ public class ItemDetailActivity extends AppCompatActivity {
             String message = String.format("Ordered %s%s", menuItem.getName(), addOns);
             // Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-            Errand errand = new Errand();
-            errand.setBuyerId("user123");
-            errand.setBounty(new BigDecimal("6.70"));
-            errand.setStatus(ErrandStatus.REQUESTED);
-            errand.setPriorityLevel(PriorityLevel.NORMAL);
+            Errand errand = new Errand(
+                    "user123",
+                    "user234",
+                    new BigDecimal(6.70),
+                    new OrderItem.Builder(menuItem,5).build(),
+                    ErrandStatus.REQUESTED,
+                    PriorityLevel.NORMAL,
+                    new Location("Albert Hong", "LT1"),
+                    "Cai fan",
+                    new BigDecimal(20.0));
 
-            ErrandService errandService = RetrofitClient.getService();
+            ErrandService errandService = RetrofitClient.getErrandService();
             ErrandRepository errandRepository = new ErrandRepository(errandService);
             errandRepository.createErrand(errand, new retrofit2.Callback<>() {
                 @Override

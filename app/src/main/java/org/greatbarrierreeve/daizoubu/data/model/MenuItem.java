@@ -16,13 +16,24 @@ public class MenuItem implements StoreItem {
     List<AddOnItem> optionAddOns;
 
 
-    public MenuItem(String itemId, String name, String desc, String basePrice, List<AddOnItem> optionAddOns) {
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "basePrice='" + basePrice + '\'' +
+                ", desc='" + desc + '\'' +
+                ", itemId='" + itemId + '\'' +
+                ", name='" + name + '\'' +
+                ", optionAddOns=" + optionAddOns +
+                '}';
+    }
 
-        this.basePrice = basePrice;
-        this.desc = desc;
-        this.itemId = itemId;
-        this.name = name;
-        this.optionAddOns = optionAddOns;
+    public MenuItem(Builder builder) {
+
+        this.basePrice = builder.basePrice;
+        this.desc = builder.desc;
+        this.itemId = builder.itemId;
+        this.name = builder.name;
+        this.optionAddOns = builder. optionAddOns;
 
     }
 
@@ -34,6 +45,31 @@ public class MenuItem implements StoreItem {
         itemId = in.readString();
         name = in.readString();
         optionAddOns = in.createTypedArrayList(AddOnItem.CREATOR);
+
+    }
+
+    public static class Builder{
+        private String basePrice;
+        private String desc;
+        private String itemId;
+        private String name;
+        private List<AddOnItem> optionAddOns;
+
+        public Builder(String itemId, String name, String desc, String basePrice) {
+            this.basePrice = basePrice;
+            this.desc = desc;
+            this.itemId = itemId;
+            this.name = name;
+        }
+
+        public Builder setOptionAddOns(List<AddOnItem> optionAddOns) {
+            this.optionAddOns = optionAddOns;
+            return this;
+        }
+
+        public MenuItem build(){
+            return new MenuItem(this);
+        }
 
     }
 

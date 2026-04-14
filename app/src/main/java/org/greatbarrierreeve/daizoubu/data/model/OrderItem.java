@@ -12,6 +12,7 @@ public class OrderItem implements UserItem {
 
     MenuItem menuItem;
     int qty;
+
     String specialReq;
     List<AddOnItem> userAddOns;
 
@@ -23,6 +24,41 @@ public class OrderItem implements UserItem {
         specialReq = in.readString();
         userAddOns = in.createTypedArrayList(AddOnItem.CREATOR);
 
+    }
+
+    public OrderItem(Builder builder){
+        this.menuItem = builder.menuItem;
+        this.qty = builder.qty;
+        this.specialReq = builder.specialReq;
+        this.userAddOns = builder.userAddOns;
+    }
+
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public String getSpecialReq() {
+        return specialReq;
+    }
+
+    public void setSpecialReq(String specialReq) {
+        this.specialReq = specialReq;
+    }
+
+    public List<AddOnItem> getUserAddOns() {
+        return userAddOns;
+    }
+
+    public void setUserAddOns(List<AddOnItem> userAddOns) {
+        this.userAddOns = userAddOns;
     }
 
 
@@ -72,6 +108,16 @@ public class OrderItem implements UserItem {
 
     }
 
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "menuItem=" + menuItem +
+                ", qty=" + qty +
+                ", specialReq='" + specialReq + '\'' +
+                ", userAddOns=" + userAddOns +
+                '}';
+    }
+
 
     // implement builder design pattern
     public static class Builder {
@@ -82,12 +128,24 @@ public class OrderItem implements UserItem {
         private List<AddOnItem> userAddOns;
 
 
-        public Builder() {
-
+        public Builder(MenuItem menuitem, int qty) {
+            this.menuItem = menuitem;
+            this.qty = qty;
             // TODO: Build Builder constructor and static setter methods
-
+        }
+        public Builder setSpecialReq(String specialReq) {
+            this.specialReq = specialReq;
+            return this;
         }
 
+        public Builder setUserAddOns(List<AddOnItem> userAddOns) {
+            this.userAddOns = userAddOns;
+            return this;
+        }
+
+        public OrderItem build(){
+            return new OrderItem(this);
+        }
     }
 
 

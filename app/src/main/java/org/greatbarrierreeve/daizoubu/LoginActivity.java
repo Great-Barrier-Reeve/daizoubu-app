@@ -1,11 +1,9 @@
-package org.greatbarrierreeve.daizoubu.ui.auth;
-
+package org.greatbarrierreeve.daizoubu;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,17 +19,17 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.greatbarrierreeve.daizoubu.R;
-import org.greatbarrierreeve.daizoubu.api.AuthService;
+import org.greatbarrierreeve.daizoubu.data.model.User;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
 import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
 import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -40,18 +38,35 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextPassword;
     Button buttonLogin;
     Button buttonGoToSignup;
-    private AuthRepository authRepository;
 
+    private AuthRepository authRepository;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
         authRepository = new AuthRepository(RetrofitClient.getAuthService());
+
+
+        // get references to widgets
+        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonGoToSignup = findViewById(R.id.buttonGoToSignup);
+
+
+        // 2. Immediate Session Check (Skip login if already verified)
+        if (UserInfoRepository.isLoggedIn()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
 
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -60,41 +75,26 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        // get references to widgets
-        editTextUsername = findViewById(R.id.editTextUsername);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        buttonLogin = findViewById(R.id.buttonLogin);
-        buttonGoToSignup = findViewById(R.id.buttonGoToSignup);
 
-        AuthService service = RetrofitClient.getAuthService();
-        authRepository = new AuthRepository(service);
-
-        if (UserInfoRepository.isLoggedIn()) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-            return;
-        }
         // login button click event handler
         buttonLogin.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-//              TODO: validate username
                 String email = editTextUsername.getText().toString().trim();
 
                 if (email.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
-
                 }
 
+                // SAVE the email locally for the handshake later
                 getSharedPreferences("auth_prefs", MODE_PRIVATE)
                         .edit()
                         .putString("pending_email", email)
                         .apply();
 
-
-                authRepository.sendLoginLink(email, new Callback<>() {
+                // CALL the backend via repository
+                authRepository.sendLoginLink(email, new Callback<Map<String, String>>() {
                     @Override
                     public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                         if (response.isSuccessful()) {
@@ -111,10 +111,13 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Connection failed. Check your Wi-Fi.", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
+
+//        handleIntent(getIntent());
+
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -123,28 +126,33 @@ public class LoginActivity extends AppCompatActivity {
         handleIntent(intent);
     }
 
-    private void handleIntent(Intent intent) {
-        Uri data = intent.getData();
-        if (data != null) {
-            String link = data.toString();
-            Log.d("DAIZOUBU_AUTH", "Caught the magic link: " + link);
+private void handleIntent(Intent intent) {
+    Uri data = intent.getData();
+    if (data != null) {
+        String link = data.toString();
+        Log.d("DAIZOUBU_AUTH", "Caught the magic link: " + link);
 
-            SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
-            String email = prefs.getString("pending_email", "");
+        SharedPreferences prefs = getSharedPreferences("auth_prefs", MODE_PRIVATE);
+        String email = prefs.getString("pending_email", "");
 
-            if (!email.isEmpty()) {
-                handleSignIn(email, link);
-                if (UserInfoRepository.isLoggedIn()) {
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
-                }
-            } else {
-                Toast.makeText(this, "Email missing. Please restart login.", Toast.LENGTH_LONG).show();
+        if (!email.isEmpty()) {
+            handleSignIn(email, link);
+            if (UserInfoRepository.isLoggedIn()) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
             }
+        } else {
+            Toast.makeText(this, "Email missing. Please restart login.", Toast.LENGTH_LONG).show();
         }
     }
+}
+
+
+    // To this:
     private void handleSignIn(String email, String emailLink) {
         Log.d("DAIZOUBU_AUTH", "Attempting Firebase Sign-In with: " + email);
+
+//        auth = FirebaseAuth.getInstance();
         if (auth.isSignInWithEmailLink(emailLink)) {
             auth.signInWithEmailLink(email, emailLink)
                     .addOnCompleteListener(task -> {
