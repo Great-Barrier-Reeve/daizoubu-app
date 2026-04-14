@@ -4,8 +4,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     android:layout_width="match_parent"
     tools:context=".ui.order.OrderActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -58,8 +58,8 @@
 
             <TextView
                 android:gravity="center_vertical"
-                android:includeFontPadding="false"
                 android:id="@+id/textViewDeliverTo"
+                android:includeFontPadding="false"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:maxLines="1"
@@ -88,7 +88,7 @@
                 android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:maxLines="1"
-                android:text="Location"
+                android:text="{Location}"
                 android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 app:autoSizeMinTextSize="14sp"
@@ -104,22 +104,59 @@
 
     <!-- body contents -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
 
-        <!-- scrollable body -->
-        <androidx.core.widget.NestedScrollView
-            android:layout_height="wrap_content"
+        <!-- scrollable window -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
             android:layout_width="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
 
-            <!-- TODO: build stores recycler view after data models and repositories are built -->
+            <!-- scrollable body -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
-        </androidx.core.widget.NestedScrollView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferRecyclerViewStores"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewStores"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferRecyclerViewStores" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -129,16 +166,16 @@
         android:id="@+id/buttonPlaceOrder"
         android:layout_height="0dp"
         android:layout_width="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bufferStickyBottom"
         app:layout_constraintDimensionRatio="H,6:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bufferStickyBottom"
         app:layout_constraintWidth_percent="0.9" />
 
     <TextView
         android:gravity="center"
-        android:includeFontPadding="false"
         android:id="@+id/textViewPlaceOrder"
+        android:includeFontPadding="false"
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:text="@string/order_view"
