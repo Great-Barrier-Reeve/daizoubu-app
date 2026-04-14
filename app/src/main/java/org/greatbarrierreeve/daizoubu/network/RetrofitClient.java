@@ -20,7 +20,7 @@ public class RetrofitClient {
 
     //for emulator testing virtual router
 //    private static final String BASE_URL = "http://10.0.2.2:8080";
-     private static final String BASE_URL = "http://192.168.50.54:8080/";
+     private static final String BASE_URL = "http://167.71.216.176:8080/";
 
     //for java unit test
 
