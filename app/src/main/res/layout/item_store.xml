@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/cardStore"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="?android:attr/windowBackground"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <!-- card for store category -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardStoreCategory"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            app:cardBackgroundColor="?attr/colorPrimary"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewStoreCategory"
+                    android:includeFontPadding="false"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:text="{Category}"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="?android:attr/windowBackground"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:id="@+id/textViewStoreName"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:padding="4dp"
+            android:text="{Store Name}"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold"
+            app:autoSizeMinTextSize="24sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintDimensionRatio="H,10.5:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardStoreCategory" />
+
+        <TextView
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:id="@+id/textViewStoreDesc"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:padding="4dp"
+            android:maxLines="3"
+            android:text="{Store Desc}"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewStoreName"/>
+
+        <!-- responsive buffer -->
+        <View
+            android:id="@+id/bufferDividerBottom"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:layout_constraintDimensionRatio="H,24:1"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewStoreDesc" />
+
+        <!-- responsive buffer -->
+        <View
+            android:alpha="0.1"
+            android:background="?attr/colorSecondary"
+            android:id="@+id/dividerBottom"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:layout_constraintDimensionRatio="H,96:1"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bufferDividerBottom" />
+
+        <!-- responsive buffer -->
+        <View
+            android:id="@+id/bufferBottom"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:layout_constraintDimensionRatio="H,24:1"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerBottom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

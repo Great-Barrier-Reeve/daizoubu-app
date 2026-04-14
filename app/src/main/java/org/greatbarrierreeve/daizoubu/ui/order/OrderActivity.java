@@ -4,19 +4,26 @@ package org.greatbarrierreeve.daizoubu.ui.order;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.ArrayList;
+
 import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
+import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
 
 
 public class OrderActivity extends AppCompatActivity {
@@ -24,6 +31,8 @@ public class OrderActivity extends AppCompatActivity {
     ImageView iconBack;
     MaterialButton buttonPlaceOrder;
     MaterialCardView sectionAppBar;
+    OrderViewModel orderViewModel;
+    RecyclerView recyclerViewStores;
 
 
     @Override
@@ -41,6 +50,27 @@ public class OrderActivity extends AppCompatActivity {
             return insets;
 
         });
+
+        // set up recycler view
+        recyclerViewStores = findViewById(R.id.recyclerViewStores);
+        StoreAdapter storeAdapter = new StoreAdapter(new ArrayList<>(), store -> {
+
+            Intent intent = new Intent(OrderActivity.this, MenuActivity.class);
+            intent.putExtra("store_id", store.getId());
+            startActivity(intent);
+
+        });
+        recyclerViewStores.setAdapter(storeAdapter);
+        recyclerViewStores.setLayoutManager(new LinearLayoutManager(this));
+
+        // set up view model
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
+
+        // update recycler view on data change
+        orderViewModel.getStores().observe(this, storeAdapter::updateStores);
+
+        // display error message
+        orderViewModel.getError().observe(this, error -> Toast.makeText(this, error, Toast.LENGTH_SHORT).show());
 
         // app bar click event handler
         sectionAppBar = findViewById(R.id.sectionAppBar);
