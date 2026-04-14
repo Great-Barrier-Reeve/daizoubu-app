@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_width="match_parent"
+    tools:context=".ui.bounties.bounty.UserBountyActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- section for app bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sectionAppBar"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintDimensionRatio="6.5:1"
+        app:layout_constraintHeight_min="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconBack"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:src="@drawable/icon_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferMyOrder"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewMyOrder"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:text="@string/order_user"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@id/guidelineAppBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintStart_toEndOf="@id/bufferMyOrder" />
+
+            <!-- horizontal center guideline -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineAppBar"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewStoreDetails"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:text="Store Name • Location Name"
+                android:textColor="?attr/colorSecondary"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintStart_toEndOf="@id/bufferMyOrder"
+                app:layout_constraintTop_toBottomOf="@id/guidelineAppBar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
+
+        <!-- scrollable window -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <!-- scrollable body -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionOrderStatus"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- section for order status -->
+                    <androidx.constraintlayout.motion.widget.MotionLayout
+                        android:id="@+id/sectionOrderStatus"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,2.3:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/bufferSectionOrderStatus"
+                        app:layoutDescription="@xml/scene_bounty_progress">
+
+                        <!-- card for current status name -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardStatusName"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardCornerRadius="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="H,4:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.25"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewStatusName"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="Requesting"
+                                    android:textAllCaps="true"
+                                    android:textColor="?android:attr/windowBackground"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="12sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="H,6.5:1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.9" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferStatusDesc"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.04125"
+                            app:layout_constraintStart_toEndOf="@id/cardStatusName"
+                            app:layout_constraintTop_toTopOf="@id/cardStatusName" />
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewStatusDesc"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Looking for a daizoubuer!"
+                            android:textColor="?attr/colorPrimary"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/cardStatusName"
+                            app:layout_constraintDimensionRatio="H,18:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/bufferStatusDesc"
+                            app:layout_constraintTop_toTopOf="@id/cardStatusName" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferStatusName"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            app:layout_constraintDimensionRatio="H,24:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardStatusName" />
+
+                        <!-- horizontal center guideline -->
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guidelineProgressBar"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.53" />
+
+                        <!-- left progress bar -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/progressBarLeft"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:strokeWidth="0dp">
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- right progress bar -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/progressBarRight"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:strokeWidth="0dp">
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- circular card for accepted? status -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/circularCardAccepted"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardAccepted"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardAccepted"
+                            app:layout_constraintStart_toStartOf="@id/cardAccepted"
+                            app:layout_constraintTop_toTopOf="@id/cardAccepted"
+                            app:layout_constraintWidth_percent="0.125"
+                            app:shapeAppearance="@style/CircularCard"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewCircularAccepted"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="@string/number_one"
+                                    android:textColor="?android:attr/windowBackground"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="28sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.75" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewAcceptedStatus"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Accepted"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/cardAccepted"
+                            app:layout_constraintDimensionRatio="6.5:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardAccepted"
+                            app:layout_constraintStart_toStartOf="@id/cardAccepted" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewAcceptedTimestamp"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Timestamp"
+                            android:textColor="?attr/colorSecondary"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintDimensionRatio="6.5:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardAccepted"
+                            app:layout_constraintStart_toStartOf="@id/cardAccepted"
+                            app:layout_constraintTop_toBottomOf="@id/cardAccepted" />
+
+                        <!-- card for accepted? status -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardAccepted"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="visible"
+                            app:cardBackgroundColor="?android:attr/windowBackground"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/cardCollected"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/cardCollected"
+                            app:layout_constraintWidth_percent="0.25"
+                            app:strokeColor="?attr/colorPrimary"
+                            app:strokeWidth="4dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/iconAccepted"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:src="@drawable/icon_accepted"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewAccepted"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="@string/number_one"
+                                    android:textColor="?attr/colorPrimary"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="12sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintStart_toEndOf="@id/bufferAccepted"
+                                    app:layout_constraintTop_toBottomOf="@id/bufferAccepted"
+                                    app:layout_constraintWidth_percent="0.25" />
+
+                                <!-- responsive buffer -->
+                                <View
+                                    android:id="@+id/bufferAccepted"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintHeight_percent="0.08125"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- circular card for collected? status -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/circularCardCollected"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardCollected"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardCollected"
+                            app:layout_constraintStart_toStartOf="@id/cardCollected"
+                            app:layout_constraintTop_toTopOf="@id/cardCollected"
+                            app:layout_constraintWidth_percent="0.125"
+                            app:shapeAppearance="@style/CircularCard"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewCircularCollected"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="@string/number_two"
+                                    android:textColor="?android:attr/windowBackground"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="28sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.75" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewCollectedStatus"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Collection"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/cardCollected"
+                            app:layout_constraintDimensionRatio="6.5:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardCollected"
+                            app:layout_constraintStart_toStartOf="@id/cardCollected" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewCollectedTimestamp"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Timestamp"
+                            android:textColor="?attr/colorSecondary"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintDimensionRatio="6.5:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardCollected"
+                            app:layout_constraintStart_toStartOf="@id/cardCollected"
+                            app:layout_constraintTop_toBottomOf="@id/textViewCollectedStatus" />
+
+                        <!-- card for collected? status -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardCollected"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="invisible"
+                            app:cardBackgroundColor="?android:attr/windowBackground"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/cardDelivered"
+                            app:layout_constraintStart_toEndOf="@id/cardAccepted"
+                            app:layout_constraintTop_toBottomOf="@id/bufferStatusName"
+                            app:layout_constraintWidth_percent="0.25"
+                            app:strokeColor="?attr/colorPrimary"
+                            app:strokeWidth="4dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/iconCollected"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:src="@drawable/icon_collected"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewCollected"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="@string/number_two"
+                                    android:textColor="?attr/colorPrimary"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="12sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintStart_toEndOf="@id/bufferCollected"
+                                    app:layout_constraintTop_toBottomOf="@id/bufferCollected"
+                                    app:layout_constraintWidth_percent="0.25" />
+
+                                <!-- responsive buffer -->
+                                <View
+                                    android:id="@+id/bufferCollected"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintHeight_percent="0.08125"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- circular card for delivered? status -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/circularCardDelivered"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/cardDelivered"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardDelivered"
+                            app:layout_constraintStart_toStartOf="@id/cardDelivered"
+                            app:layout_constraintTop_toTopOf="@id/cardDelivered"
+                            app:layout_constraintWidth_percent="0.125"
+                            app:shapeAppearance="@style/CircularCard"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewCircularDelivered"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="@string/number_three"
+                                    android:textColor="?android:attr/windowBackground"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="28sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.75" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewDeliveredStatus"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Delivery"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/cardDelivered"
+                            app:layout_constraintDimensionRatio="6.5:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardDelivered"
+                            app:layout_constraintStart_toStartOf="@id/cardDelivered" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewDeliveredTimestamp"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Timestamp"
+                            android:textColor="?attr/colorSecondary"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintDimensionRatio="6.5:1"
+                            app:layout_constraintEnd_toEndOf="@id/cardDelivered"
+                            app:layout_constraintStart_toStartOf="@id/cardDelivered"
+                            app:layout_constraintTop_toBottomOf="@id/textViewDeliveredStatus" />
+
+                        <!-- card for delivered? status -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardDelivered"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="invisible"
+                            app:cardBackgroundColor="?android:attr/windowBackground"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/cardCollected"
+                            app:layout_constraintTop_toTopOf="@id/cardCollected"
+                            app:layout_constraintWidth_percent="0.25"
+                            app:strokeColor="?attr/colorPrimary"
+                            app:strokeWidth="4dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/iconDelivered"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:src="@drawable/icon_delivered"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewDelivered"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="@string/number_three"
+                                    android:textColor="?attr/colorPrimary"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="12sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintStart_toEndOf="@id/bufferDelivered"
+                                    app:layout_constraintTop_toBottomOf="@id/bufferDelivered"
+                                    app:layout_constraintWidth_percent="0.25" />
+
+                                <!-- responsive buffer -->
+                                <View
+                                    android:id="@+id/bufferDelivered"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    app:layout_constraintDimensionRatio="1:1"
+                                    app:layout_constraintHeight_percent="0.08125"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionDaizoubuer"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionOrderStatus" />
+
+                    <!-- section for daizoubuer -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionDaizoubuer"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionDaizoubuer">
+
+                        <View
+                            android:id="@+id/vertDividerSectionDaizoubuer"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:background="?attr/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:14.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconUser"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/vertDividerSectionDaizoubuer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconUser"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_user"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferIconUser"
+                            app:layout_constraintTop_toBottomOf="@id/bufferIconUser" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferHeaderDaizoubuer"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconUser"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewHeaderDaizoubuer"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:text="Daizoubuer Name"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/iconUser"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconPhoneDaizoubuer"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderDaizoubuer"
+                            app:layout_constraintTop_toTopOf="@id/iconUser"/>
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewDaizoubuerDesc"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="5.0★   67 daizoubus"
+                            android:textColor="?attr/colorSecondary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toTopOf="@id/bufferDaizoubuerDesc"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconPhoneDaizoubuer"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferDaizoubuerDesc"
+                            app:layout_constraintTop_toBottomOf="@id/textViewHeaderDaizoubuer" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferDaizoubuerDesc"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconUser"/>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconPhoneDaizoubuer"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/buttonPhoneDaizoubuer"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- button to phone daizoubuer -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:id="@+id/buttonPhoneDaizoubuer"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_phone"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/textViewDaizoubuerDesc"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.65"
+                            app:layout_constraintTop_toTopOf="@id/textViewHeaderDaizoubuer"
+                            app:shapeAppearance="@style/CircularCard"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/iconPhone"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:src="@drawable/icon_phone"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionBounty"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionDaizoubuer" />
+
+                    <!-- TODO: build recycler view for order items -->
+
+                    <!-- section for bounty amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionBounty"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionBounty">
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewBountyText"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="@string/bounty"
+                            android:textColor="?attr/colorPrimary"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/textViewBountyAmount"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewBountyAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toEndOf="@id/textViewBountyText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- section for total amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionTotal"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionBounty">
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewTotalText"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Total"
+                            android:textColor="?attr/colorPrimary"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/textViewTotalAmount"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewTotalAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toEndOf="@id/textViewTotalText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSubmitButton"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionTotal" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/buttonPlaceOrder"
+                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSubmitButton"
+                        app:layout_constraintWidth_percent="0.9" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:id="@+id/textViewPlaceOrder"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/order_cancel"
+                        android:textColor="?android:attr/windowBackground"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="16sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="@id/buttonPlaceOrder"
+                        app:layout_constraintDimensionRatio="H,20:1"
+                        app:layout_constraintEnd_toEndOf="@id/buttonPlaceOrder"
+                        app:layout_constraintStart_toStartOf="@id/buttonPlaceOrder"
+                        app:layout_constraintTop_toTopOf="@id/buttonPlaceOrder" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

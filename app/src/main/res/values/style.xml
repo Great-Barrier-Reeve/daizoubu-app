@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    
+    <style name="CircularCard" parent="ShapeAppearance.Material3.Corner.None">
+
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+
+    </style>
 
     <style name="TransparentDialog" parent="Theme.AppCompat.Dialog">
 

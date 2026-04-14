@@ -8,9 +8,13 @@
 
     <string name="bounty">Bounty</string>
 
+    <string name="bounty_accept">Accept Bounty</string>
+
     <string name="bounties">dài zǒus</string>
 
     <string name="bounties_desc">Track your orders here or look for bounties.</string>
+
+    <string name="collect_from">Collect From</string>
 
     <string name="confirm">Confirm</string>
 
@@ -22,7 +26,7 @@
 
     <string name="location">Location</string>
 
-    <string name="location_user">Your Location</string>
+    <string name="location_user">My Location</string>
 
     <string name="number_one">1</string>
 
@@ -48,6 +52,10 @@
 
     <string name="order">Order</string>
 
+    <string name="order_cancel">Cancel Order</string>
+
+    <string name="order_details">Order Details</string>
+
     <string name="order_place">Place Order</string>
 
     <string name="order_placed">Order Placed</string>
@@ -56,10 +64,16 @@
 
     <string name="order_place_wrapped">Place\nOrder</string>
 
-    <string name="order_user">Your Order</string>
+    <string name="order_user">My Order</string>
 
     <string name="order_view">View Order</string>
 
     <string name="tagline">Takeaway? That\'s okay!</string>
+
+    <string name="you_collect">You Collect</string>
+
+    <string name="you_earn">You Earn</string>
+
+    <string name="you_pay">You Pay</string>
 
 </resources>

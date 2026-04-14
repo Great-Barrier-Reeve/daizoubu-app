@@ -15,34 +15,39 @@
         android:theme="@style/Theme.Daizoubu"
         android:name =".DaizoubuApplication"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".ui.bounties.bounty.BountyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bounties.bounty.UserBountyActivity"
+            android:parentActivityName=".ui.bounties.BountiesActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.order.cart.CartActivity"
             android:parentActivityName=".ui.order.OrderActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.order.location.LocationActivity"
             android:parentActivityName=".ui.order.OrderActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.order.menu.ItemDetailActivity"
             android:parentActivityName=".ui.order.OrderActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.order.menu.MenuActivity"
             android:parentActivityName=".ui.order.OrderActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.homepage.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-
         <activity
             android:name=".ui.auth.LoginActivity"
             android:parentActivityName=".ui.homepage.MainActivity"
@@ -76,12 +81,10 @@
             android:name=".ui.order.OrderActivity"
             android:parentActivityName=".ui.homepage.MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.bounties.BountiesActivity"
             android:parentActivityName=".ui.homepage.MainActivity"
             android:screenOrientation="portrait" />
-
     </application>
 
 </manifest>

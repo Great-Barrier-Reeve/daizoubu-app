@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_width="match_parent"
+    tools:context=".ui.bounties.bounty.BountyActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- section for app bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sectionAppBar"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintDimensionRatio="6.5:1"
+        app:layout_constraintHeight_min="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconBack"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:src="@drawable/icon_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- responsive buffer -->
+            <View
+                android:id="@+id/bufferOrderDetails"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintStart_toEndOf="@id/iconBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewOrderDetails"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:text="@string/order_details"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@id/guidelineAppBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintStart_toEndOf="@id/bufferOrderDetails" />
+
+            <!-- horizontal center guideline -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineAppBar"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:id="@+id/textViewOrderTimestamp"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:text="Posted 67 mins ago"
+                android:textColor="?attr/colorSecondary"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.3"
+                app:layout_constraintStart_toEndOf="@id/bufferOrderDetails"
+                app:layout_constraintTop_toBottomOf="@id/guidelineAppBar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
+
+        <!-- scrollable window -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <!-- scrollable body -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionBountyAmount"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- section for bounty amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionBountyAmount"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionBountyAmount">
+
+                        <!-- card for bounty header -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardBountyHeader"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardCornerRadius="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="H,4:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.25"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent">
+
+                                <TextView
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:id="@+id/textViewBountyHeader"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:maxLines="1"
+                                    android:text="Bounty"
+                                    android:textAllCaps="true"
+                                    android:textColor="?android:attr/windowBackground"
+                                    android:textStyle="bold"
+                                    app:autoSizeMinTextSize="12sp"
+                                    app:autoSizeTextType="uniform"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="H,6.5:1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.9" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textViewBountyAmount"
+                            android:includeFontPadding="false"
+                            android:layout_height="0dp"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:text="$67.67"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="48dp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintDimensionRatio="H,6:1"
+                            app:layout_constraintHeight_min="58dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardBountyHeader" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionStoreLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionBountyAmount" />
+
+                    <!-- section for store location -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/sectionStoreLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionStoreLocation">
+
+                        <View
+                            android:id="@+id/vertDividerSectionStoreLocation"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:background="?attr/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:14.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferLocationOne"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/vertDividerSectionStoreLocation"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/textViewLocationOne"
+                            android:includeFontPadding="false"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:text="@string/number_one"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferLocationOne"
+                            app:layout_constraintTop_toBottomOf="@id/bufferLocationOne" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferHeaderCollect"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/textViewLocationOne"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:id="@+id/textViewHeaderCollect"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:text="@string/collect_from"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/textViewLocationOne"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronStore"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderCollect"
+                            app:layout_constraintTop_toTopOf="@id/textViewLocationOne"/>
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewStoreLocationName"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Location Name"
+                            android:textColor="?attr/colorSecondary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toTopOf="@id/bufferStoreLocationName"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronStore"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderCollect"
+                            app:layout_constraintTop_toBottomOf="@id/textViewHeaderCollect" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferStoreLocationName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/textViewLocationOne"/>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconChevronStore"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/iconChevronStore"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconChevronStore"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_chevron_right"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionDeliverLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionStoreLocation" />
+
+                    <!-- section for deliver location -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/sectionDeliverLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionDeliverLocation">
+
+                        <View
+                            android:id="@+id/vertDividerSectionDeliverLocation"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:background="?attr/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:14.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferLocationTwo"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/vertDividerSectionDeliverLocation"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/textViewLocationTwo"
+                            android:includeFontPadding="false"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:text="@string/number_two"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferLocationTwo"
+                            app:layout_constraintTop_toBottomOf="@id/bufferLocationTwo" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferHeaderDeliver"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/textViewLocationTwo"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:id="@+id/textViewHeaderDeliver"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:text="@string/deliver_to"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/textViewLocationTwo"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronDeliver"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderDeliver"
+                            app:layout_constraintTop_toTopOf="@id/textViewLocationTwo"/>
+
+                        <TextView
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewDeliverLocationName"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="Location Name"
+                            android:textColor="?attr/colorSecondary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toTopOf="@id/bufferDeliverLocationName"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconChevronDeliver"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderDeliver"
+                            app:layout_constraintTop_toBottomOf="@id/textViewHeaderDeliver" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferDeliverLocationName"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/textViewLocationTwo"/>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconChevronDeliver"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/iconChevronDeliver"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconChevronDeliver"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_chevron_right"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.5"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionOrderItems"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionDeliverLocation" />
+
+                    <!-- TODO: build recycler view for order items -->
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionPay"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionDeliverLocation" /> <!-- TODO: change after recycler view built -->
+
+                    <!-- section for pay amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionPay"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionPay">
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewPayText"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="@string/you_pay"
+                            android:textColor="?attr/colorPrimary"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/textViewPayAmount"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewPayAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toEndOf="@id/textViewPayText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- section for collect amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionCollect"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionPay">
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewCollectText"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="@string/you_collect"
+                            android:textColor="?attr/colorPrimary"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/textViewCollectAmount"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewCollectAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toEndOf="@id/textViewCollectText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- section for earn amount -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionEarn"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionCollect">
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewEarnText"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="@string/you_earn"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/textViewEarnAmount"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewEarnAmount"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="$0.00"
+                            android:textAlignment="textEnd"
+                            android:textColor="?attr/colorPrimary"
+                            android:textFontWeight="450"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintStart_toEndOf="@id/textViewEarnText"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionDaizouer"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionEarn" />
+
+                    <!-- section for daizouer -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionDaizouer"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionDaizouer">
+
+                        <View
+                            android:id="@+id/vertDividerSectionDaizouer"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:background="?attr/colorPrimary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:14.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconUser"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/vertDividerSectionDaizouer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iconUser"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_user"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferIconUser"
+                            app:layout_constraintTop_toBottomOf="@id/bufferIconUser" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferHeaderDaizouer"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconUser"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewHeaderDaizouer"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:text="Daizouer Name"
+                            android:textColor="?attr/colorPrimary"
+                            android:textStyle="bold"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toBottomOf="@id/iconUser"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconPhoneDaizouer"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferHeaderDaizouer"
+                            app:layout_constraintTop_toTopOf="@id/iconUser"/>
+
+                        <TextView
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:id="@+id/textViewDaizouerDesc"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:maxLines="1"
+                            android:text="5.0★   67 daizous"
+                            android:textColor="?attr/colorSecondary"
+                            android:textFontWeight="300"
+                            app:autoSizeMinTextSize="16sp"
+                            app:autoSizeTextType="uniform"
+                            app:layout_constraintBottom_toTopOf="@id/bufferDaizouerDesc"
+                            app:layout_constraintEnd_toStartOf="@id/bufferIconPhoneDaizouer"
+                            app:layout_constraintHeight_percent="0.3"
+                            app:layout_constraintStart_toEndOf="@id/bufferDaizouerDesc"
+                            app:layout_constraintTop_toBottomOf="@id/textViewHeaderDaizouer" />
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferDaizouerDesc"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintStart_toEndOf="@id/iconUser"/>
+
+                        <!-- responsive buffer -->
+                        <View
+                            android:id="@+id/bufferIconPhoneDaizouer"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toStartOf="@id/buttonPhoneDaizouer"
+                            app:layout_constraintHeight_percent="0.15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- button to phone daizouer -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:id="@+id/buttonPhoneDaizouer"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:src="@drawable/icon_phone"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="@id/textViewDaizouerDesc"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.65"
+                            app:layout_constraintTop_toTopOf="@id/textViewHeaderDaizouer"
+                            app:shapeAppearance="@style/CircularCard"
+                            app:strokeWidth="0dp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/iconPhone"
+                                    android:layout_height="0dp"
+                                    android:layout_width="0dp"
+                                    android:src="@drawable/icon_phone"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintDimensionRatio="1"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHeight_percent="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSection"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionDaizouer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/buttonPlaceOrder"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bufferStickyBottom"
+        app:layout_constraintDimensionRatio="H,6:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <TextView
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:id="@+id/textViewPlaceOrder"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:text="@string/bounty_accept"
+        android:textColor="?android:attr/windowBackground"
+        android:textStyle="bold"
+        app:autoSizeMinTextSize="16sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@id/buttonPlaceOrder"
+        app:layout_constraintDimensionRatio="H,20:1"
+        app:layout_constraintEnd_toEndOf="@id/buttonPlaceOrder"
+        app:layout_constraintStart_toStartOf="@id/buttonPlaceOrder"
+        app:layout_constraintTop_toTopOf="@id/buttonPlaceOrder" />
+
+    <!-- responsive buffer -->
+    <View
+        android:id="@+id/bufferStickyBottom"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintDimensionRatio="H,24:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
