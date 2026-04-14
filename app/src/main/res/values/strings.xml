@@ -22,7 +22,7 @@
 
     <string name="location">Location</string>
 
-    <string name="location_user">Your Location</string>
+    <string name="location_user">My Location</string>
 
     <string name="number_one">1</string>
 
@@ -48,6 +48,8 @@
 
     <string name="order">Order</string>
 
+    <string name="order_cancel">Cancel Order</string>
+
     <string name="order_place">Place Order</string>
 
     <string name="order_placed">Order Placed</string>
@@ -56,7 +58,7 @@
 
     <string name="order_place_wrapped">Place\nOrder</string>
 
-    <string name="order_user">Your Order</string>
+    <string name="order_user">My Order</string>
 
     <string name="order_view">View Order</string>
 

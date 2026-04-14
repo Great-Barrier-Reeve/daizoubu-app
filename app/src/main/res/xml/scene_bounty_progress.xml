@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- progress bar for accepted? status -->
+    <ConstraintSet android:id="@+id/stateAccepted">
+
+        <Constraint
+            android:id="@+id/progressBarLeft"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineProgressBar"
+            app:layout_constraintEnd_toEndOf="@id/circularCardAccepted"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintStart_toStartOf="@id/circularCardAccepted"
+            app:layout_constraintTop_toBottomOf="@id/guidelineProgressBar" />
+
+        <Constraint
+            android:id="@+id/progressBarRight"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineProgressBar"
+            app:layout_constraintEnd_toEndOf="@id/circularCardCollected"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintStart_toStartOf="@id/circularCardCollected"
+            app:layout_constraintTop_toBottomOf="@id/guidelineProgressBar" />
+
+    </ConstraintSet>
+
+    <!-- progress bar for collected? status -->
+    <ConstraintSet android:id="@+id/stateCollected">
+
+        <Constraint
+            android:id="@+id/progressBarLeft"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineProgressBar"
+            app:layout_constraintEnd_toEndOf="@id/circularCardCollected"
+            app:layout_constraintHeight_percent="0.05"
+            app:layout_constraintStart_toStartOf="@id/circularCardAccepted"
+            app:layout_constraintTop_toBottomOf="@id/guidelineProgressBar" />
+
+        <Constraint
+            android:id="@+id/progressBarRight"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineProgressBar"
+            app:layout_constraintEnd_toEndOf="@id/circularCardCollected"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="@id/circularCardCollected"
+            app:layout_constraintTop_toBottomOf="@id/guidelineProgressBar" />
+
+    </ConstraintSet>
+
+    <!-- progress bar for delivered? status -->
+    <ConstraintSet android:id="@+id/stateDelivered">
+
+        <Constraint
+            android:id="@+id/progressBarLeft"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineProgressBar"
+            app:layout_constraintEnd_toEndOf="@id/circularCardCollected"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="@id/circularCardAccepted"
+            app:layout_constraintTop_toBottomOf="@id/guidelineProgressBar" />
+
+        <Constraint
+            android:id="@+id/progressBarRight"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineProgressBar"
+            app:layout_constraintEnd_toEndOf="@id/circularCardDelivered"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="@id/circularCardCollected"
+            app:layout_constraintTop_toBottomOf="@id/guidelineProgressBar" />
+
+    </ConstraintSet>
+
+    <!-- accepted? → collected? transition -->
+    <Transition
+        android:id="@+id/transitionToCollected"
+        app:constraintSetEnd="@id/stateCollected"
+        app:constraintSetStart="@id/stateAccepted"
+        app:duration="400"
+        app:motionInterpolator="easeInOut" />
+
+    <!-- collected? → delivered? transition -->
+    <Transition
+        android:id="@+id/transitionToDelivered"
+        app:constraintSetEnd="@id/stateDelivered"
+        app:constraintSetStart="@id/stateCollected"
+        app:duration="400"
+        app:motionInterpolator="easeInOut" />
+
+    <!-- reset to accepted? transition -->
+    <Transition
+        android:id="@+id/transitionToAccepted"
+        app:constraintSetEnd="@id/stateAccepted"
+        app:constraintSetStart="@id/stateCollected"
+        app:duration="400"
+        app:motionInterpolator="easeInOut" />
+
+</MotionScene>
