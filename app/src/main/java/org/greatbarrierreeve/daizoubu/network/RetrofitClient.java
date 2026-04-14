@@ -22,8 +22,6 @@ public class RetrofitClient {
 //    private static final String BASE_URL = "http://10.0.2.2:8080";
      private static final String BASE_URL = "http://167.71.216.176:8080/";
 
-    //for java unit test
-
     private static ErrandService errandService;
     private static AuthService authService;
     private static Retrofit retrofit = null;

@@ -51,9 +51,4 @@ public interface ErrandService {
 
 
 
-
-    // TODO: 7/4/26 API FOR USER AUTH 
-//    @Get("/api/authenticate/send-link")— send the login link to the users email
-//    @Get /api/user/verification - verify ID token if user not in db will auto create
-//    @Get /api/user/{id}
 }

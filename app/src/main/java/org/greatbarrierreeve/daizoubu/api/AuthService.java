@@ -9,6 +9,8 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+
+
 public interface AuthService {
     @GET("api/authenticate/send-link")
     Call<Map<String, String>> sendLink(@Query("email") String email);

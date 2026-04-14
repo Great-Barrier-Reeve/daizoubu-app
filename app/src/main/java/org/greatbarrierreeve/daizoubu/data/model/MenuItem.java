@@ -77,6 +77,10 @@ public class MenuItem implements StoreItem {
     @Override
     public int describeContents() { return 0; }
 
+
+    public List<AddOnItem> getOptionAddOns() { return optionAddOns; }
+
+
     @Override
     public String getDesc() { return desc; }
 

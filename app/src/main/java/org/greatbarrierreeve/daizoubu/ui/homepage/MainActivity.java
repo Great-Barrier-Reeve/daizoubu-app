@@ -1,4 +1,4 @@
-package org.greatbarrierreeve.daizoubu;
+package org.greatbarrierreeve.daizoubu.ui.homepage;
 
 
 import android.content.Intent;
@@ -12,6 +12,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,6 +27,9 @@ import org.greatbarrierreeve.daizoubu.repository.AuthRepository;
 import org.greatbarrierreeve.daizoubu.repository.ErrandRepository;
 import org.greatbarrierreeve.daizoubu.repository.UserInfoRepository;
 import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
+import org.greatbarrierreeve.daizoubu.ui.bounties.BountiesActivity;
+import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.ui.order.OrderActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -37,8 +41,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView cardHighlightsBounties;
+    CardView cardPlaceOrder;
     CardView cardTabOrder;
+    ConstraintLayout sectionHeaderOrders;
     private AuthRepository authRepository;
 
 
@@ -72,23 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // orders card click event handler
+        // orders tab button card click event handler
         cardTabOrder = findViewById(R.id.cardTabOrder);
-        cardTabOrder.setOnClickListener(view -> {
+        cardTabOrder.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, OrderActivity.class)));
 
-            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-            startActivity(intent);
+        // bounties section header click event handler
+        sectionHeaderOrders = findViewById(R.id.sectionHeaderBounties);
+        sectionHeaderOrders.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, BountiesActivity.class)));
 
-        });
-
-        // bounties card click event handler
-        cardHighlightsBounties = findViewById(R.id.cardHighlightsBounties);
-        cardHighlightsBounties.setOnClickListener(view -> {
-
-            Intent intent = new Intent(MainActivity.this, BountiesActivity.class);
-            startActivity(intent);
-
-        });
+        // place order button card click event handler
+        cardPlaceOrder = findViewById(R.id.cardPlaceOrder);
+        cardPlaceOrder.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, OrderActivity.class)));
 
         //dev purpose
 //        ErrandRepository errandRepository = new ErrandRepository(RetrofitClient.getErrandService());
@@ -118,6 +117,5 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
     }
-
 
 }

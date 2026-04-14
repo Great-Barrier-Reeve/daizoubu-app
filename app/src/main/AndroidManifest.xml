@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -14,60 +13,74 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Daizoubu"
-        android:name=".DaizoubuApplication">
+        android:name =".DaizoubuApplication"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ui.order.cart.CartActivity"
+            android:parentActivityName=".ui.order.OrderActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.order.location.LocationActivity"
+            android:parentActivityName=".ui.order.OrderActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.order.menu.ItemDetailActivity"
-            android:exported="false" />
+            android:parentActivityName=".ui.order.OrderActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.order.menu.MenuActivity"
-            android:exported="false" />
+            android:parentActivityName=".ui.order.OrderActivity"
+            android:screenOrientation="portrait" />
 
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
-
+            android:name=".ui.homepage.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".LoginActivity"-->
-<!--            android:parentActivityName=".MainActivity" />-->
+
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".ui.auth.LoginActivity"
+            android:parentActivityName=".ui.homepage.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:launchMode="singleTask">
 
-            <intent-filter>
+        <intent-filter>
 
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.LAUNCHER" />
 
-            </intent-filter>
+        </intent-filter>
 
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="https" />
-                <data android:scheme="http"/>
-                <data android:host="daizoubu.firebaseapp.com" />
+            <data android:scheme="https" />
+            <data android:scheme="http"/>
+            <data android:host="daizoubu.firebaseapp.com" />
 
-            </intent-filter>
+        </intent-filter>
 
         </activity>
 
         <activity
             android:name=".ui.order.OrderActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.homepage.MainActivity"
+            android:screenOrientation="portrait" />
 
         <activity
-            android:name=".BountiesActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ui.bounties.BountiesActivity"
+            android:parentActivityName=".ui.homepage.MainActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
