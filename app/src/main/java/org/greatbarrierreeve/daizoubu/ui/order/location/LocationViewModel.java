@@ -47,4 +47,6 @@ public class LocationViewModel extends ViewModel {
         });
 
     }
+
+
 }
