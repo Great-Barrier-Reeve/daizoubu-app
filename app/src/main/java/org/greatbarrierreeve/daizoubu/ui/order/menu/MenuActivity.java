@@ -4,27 +4,26 @@ package org.greatbarrierreeve.daizoubu.ui.order.menu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.ArrayList;
+
 import org.greatbarrierreeve.daizoubu.R;
-import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
-import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.ui.common.GridSpacingItemDecoration;
 import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -32,7 +31,8 @@ public class MenuActivity extends AppCompatActivity {
     ImageView iconBack;
     MaterialButton buttonPlaceOrder;
     MaterialCardView sectionAppBar;
-    RecyclerView menuRecyclerView;
+    MenuViewModel menuViewModel;
+    RecyclerView recyclerViewMenuItems;
 
 
     @Override
@@ -51,6 +51,35 @@ public class MenuActivity extends AppCompatActivity {
 
         });
 
+        // get store id from order activity intent
+        String storeId = getIntent().getStringExtra("store_id");
+
+        // set up recycler view
+        recyclerViewMenuItems = findViewById(R.id.recyclerViewMenuItems);
+        MenuItemAdapter menuItemAdapter = new MenuItemAdapter(new ArrayList<>(), menuItem -> {
+
+            Intent intent = new Intent(MenuActivity.this, ItemDetailActivity.class);
+            intent.putExtra("menu_item", menuItem);
+            startActivity(intent);
+
+        });
+        recyclerViewMenuItems.setAdapter(menuItemAdapter);
+        recyclerViewMenuItems.setLayoutManager(new GridLayoutManager(this, 2));
+
+        // programmatically adjust grid spacing based on position
+        int spacing = getResources().getDimensionPixelSize(R.dimen.grid_spacing);
+        recyclerViewMenuItems.addItemDecoration(new GridSpacingItemDecoration(2, spacing));
+
+        // set up view model
+        menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
+        menuViewModel.fetchMenu(storeId);
+
+        // update recycler view on data change
+        menuViewModel.getMenu().observe(this, menuItemAdapter::updateMenu);
+
+        // display error message
+        menuViewModel.getError().observe(this, error -> Toast.makeText(this, error, Toast.LENGTH_SHORT).show());
+
         // app bar click event handler
         sectionAppBar = findViewById(R.id.sectionAppBar);
         sectionAppBar.setOnClickListener(view -> startActivity(new Intent(MenuActivity.this, LocationActivity.class)));
@@ -62,27 +91,6 @@ public class MenuActivity extends AppCompatActivity {
         // cart button click event handler
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
         buttonPlaceOrder.setOnClickListener(view -> startActivity(new Intent(MenuActivity.this, CartActivity.class)));
-
-        menuRecyclerView = findViewById(R.id.menuRecyclerView);
-        List<AddOnItem> addOns = new ArrayList<>();
-        addOns.add(new AddOnItem("1", "one", "desc of one", "2.79"));
-        addOns.add(new AddOnItem("2", "two", "desc of two", "2.19"));
-//        List<MenuItem> dataSrc = new ArrayList<>() {{
-//            add(new MenuItem.Builder("borger", "Borger",
-//                    "A delicious borger.",
-//                    "6.79")
-//                    .setOptionAddOns(addOns).build());
-//            add(new MenuItem.Builder("sporger", "Sporger", "A delicious sporger.", "5.31").build());
-//            add(new MenuItem.Builder("florger", "Florger", "A delicious florger.", "7.02").build());
-//        }};
-        List<MenuItem> dataSrc = new ArrayList<>();
-        MenuAdapter menuAdapter = new MenuAdapter(dataSrc);
-        menuRecyclerView.setAdapter(menuAdapter);
-        menuRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
-        // programmatically adjust grid spacing based on position
-        int spacing = getResources().getDimensionPixelSize(R.dimen.grid_spacing);
-        menuRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, spacing));
 
     }
 

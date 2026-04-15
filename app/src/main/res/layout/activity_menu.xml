@@ -3,9 +3,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_height="match_parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     android:layout_width="match_parent"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp"
     tools:context=".ui.order.menu.MenuActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -57,8 +57,8 @@
 
             <TextView
                 android:gravity="center_vertical"
-                android:includeFontPadding="false"
                 android:id="@+id/textViewDeliverTo"
+                android:includeFontPadding="false"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:maxLines="1"
@@ -87,7 +87,7 @@
                 android:layout_height="0dp"
                 android:layout_width="0dp"
                 android:maxLines="1"
-                android:text="Location"
+                android:text="{Location}"
                 android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
                 app:autoSizeMinTextSize="14sp"
@@ -101,49 +101,100 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/menuRecyclerView"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sectionAppBar" />
-
-    <com.google.android.material.button.MaterialButton
-        android:clickable="true"
-        android:focusable="true"
-        android:id="@+id/buttonPlaceOrder"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        app:layout_constraintDimensionRatio="H,6:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bufferStickyBottom"
-        app:layout_constraintWidth_percent="0.9" />
-
-    <TextView
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:id="@+id/textViewPlaceOrder"
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:text="@string/order_view"
-        android:textColor="?android:attr/windowBackground"
-        android:textStyle="bold"
-        app:autoSizeMinTextSize="16sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@id/buttonPlaceOrder"
-        app:layout_constraintDimensionRatio="H,20:1"
-        app:layout_constraintEnd_toEndOf="@id/buttonPlaceOrder"
-        app:layout_constraintStart_toStartOf="@id/buttonPlaceOrder"
-        app:layout_constraintTop_toTopOf="@id/buttonPlaceOrder" />
-
-    <!-- responsive buffer -->
-    <View
-        android:id="@+id/bufferStickyBottom"
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="0dp"
         android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="26:1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
+
+        <!-- scrollable window -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <!-- scrollable body -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferRecyclerViewMenu"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewMenuItems"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferRecyclerViewMenu" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/buttonPlaceOrder"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintDimensionRatio="H,6:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bufferStickyBottom"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <TextView
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:id="@+id/textViewPlaceOrder"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:text="@string/order_view"
+            android:textColor="?android:attr/windowBackground"
+            android:textStyle="bold"
+            app:autoSizeMinTextSize="16sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/buttonPlaceOrder"
+            app:layout_constraintDimensionRatio="H,20:1"
+            app:layout_constraintEnd_toEndOf="@id/buttonPlaceOrder"
+            app:layout_constraintStart_toStartOf="@id/buttonPlaceOrder"
+            app:layout_constraintTop_toTopOf="@id/buttonPlaceOrder" />
+
+        <!-- responsive buffer -->
+        <View
+            android:id="@+id/bufferStickyBottom"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="26:1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
