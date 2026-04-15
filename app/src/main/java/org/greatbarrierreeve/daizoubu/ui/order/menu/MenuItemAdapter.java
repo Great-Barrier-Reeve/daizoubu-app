@@ -1,14 +1,12 @@
 package org.greatbarrierreeve.daizoubu.ui.order.menu;
 
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -17,15 +15,22 @@ import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 
 
-public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
+public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHolder> {
 
-    private final List<MenuItem> localDataSet;
+    private List<MenuItem> menuItems;
+    private final OnMenuItemClickListener onMenuItemClickListener;
+
+
+    public interface OnMenuItemClickListener {
+
+        void onMenuItemClick(MenuItem menuItem);
+
+    }
 
 
     // provides reference to type of views used
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final CardView cardItem;
         private final TextView textViewItemName;
         private final TextView textViewItemPrice;
 
@@ -34,7 +39,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
             super(view);
 
-            cardItem = view.findViewById(R.id.cardItem);
             textViewItemName = view.findViewById(R.id.textViewItemName);
             textViewItemPrice = view.findViewById(R.id.textViewItemPrice);
 
@@ -44,9 +48,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
 
     // initialise dataset of adapter
-    public MenuAdapter(List<MenuItem> dataSet) {
+    public MenuItemAdapter(List<MenuItem> menuItems, OnMenuItemClickListener listener) {
 
-        localDataSet = dataSet;
+        this.menuItems = menuItems;
+        this.onMenuItemClickListener = listener;
 
     }
 
@@ -54,30 +59,24 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     // create new views (invoked by layout manager)
     @NonNull
     @Override
-    public MenuAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MenuItemAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.menu_item, viewGroup, false);
-        return new MenuAdapter.ViewHolder(itemView);
+                .inflate(R.layout.item_menu, viewGroup, false);
+        return new MenuItemAdapter.ViewHolder(itemView);
 
     }
 
 
     // replace contents of view (invoked by layout manager)
     @Override
-    public void onBindViewHolder(MenuAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(MenuItemAdapter.ViewHolder viewHolder, final int position) {
 
-        MenuItem menuItem = localDataSet.get(position);
+        MenuItem menuItem = menuItems.get(position);
         viewHolder.textViewItemName.setText(menuItem.getName());
         viewHolder.textViewItemPrice.setText(menuItem.getPrice());
 
-        viewHolder.cardItem.setOnClickListener(view -> {
-
-            Intent intent = new Intent(view.getContext(), ItemDetailActivity.class);
-            intent.putExtra("menuItem", menuItem);
-            view.getContext().startActivity(intent);
-
-        });
+        viewHolder.itemView.setOnClickListener(v -> onMenuItemClickListener.onMenuItemClick(menuItem));
 
     }
 
@@ -86,7 +85,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
 
-        return localDataSet.size();
+        return menuItems.size();
+
+    }
+
+
+    public void updateMenu(List<MenuItem> menuItems) {
+
+        this.menuItems = menuItems;
+        notifyDataSetChanged();
 
     }
 

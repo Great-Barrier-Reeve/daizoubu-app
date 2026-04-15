@@ -2,6 +2,7 @@ package org.greatbarrierreeve.daizoubu.api;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
 import org.greatbarrierreeve.daizoubu.data.model.Location;
+import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.data.model.Store;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public interface ErrandService {
     @GET("/api/errands/locations")
     Call<List<Location>> getLocations();
 
-
-
+    @GET("/api/errands/menu/{id}")
+    Call<List<MenuItem>> getMenu(@Path("id") String id);
 
 }
