@@ -73,8 +73,11 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
     public void onBindViewHolder(MenuItemAdapter.ViewHolder viewHolder, final int position) {
 
         MenuItem menuItem = menuItems.get(position);
+
         viewHolder.textViewItemName.setText(menuItem.getName());
-        viewHolder.textViewItemPrice.setText(menuItem.getPrice());
+
+        String itemPrice = String.format("$%.2f", Double.parseDouble(menuItem.getPrice()));
+        viewHolder.textViewItemPrice.setText(itemPrice);
 
         viewHolder.itemView.setOnClickListener(v -> onMenuItemClickListener.onMenuItemClick(menuItem));
 
