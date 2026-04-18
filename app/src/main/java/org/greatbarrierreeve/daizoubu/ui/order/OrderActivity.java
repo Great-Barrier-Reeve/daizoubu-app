@@ -3,7 +3,9 @@ package org.greatbarrierreeve.daizoubu.ui.order;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +23,7 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.ArrayList;
 
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.data.repository.CartRepository;
 import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
@@ -33,6 +36,7 @@ public class OrderActivity extends AppCompatActivity {
     MaterialCardView sectionAppBar;
     OrderViewModel orderViewModel;
     RecyclerView recyclerViewStores;
+    TextView textViewPlaceOrder;
 
 
     @Override
@@ -82,7 +86,14 @@ public class OrderActivity extends AppCompatActivity {
 
         // cart button click event handler
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
+        textViewPlaceOrder = findViewById(R.id.textViewPlaceOrder);
         buttonPlaceOrder.setOnClickListener(view -> startActivity(new Intent(OrderActivity.this, CartActivity.class)));
+
+        CartRepository.getInstance().getItems().observe(this, items -> {
+            int visibility = (items != null && !items.isEmpty()) ? View.VISIBLE : View.GONE;
+            buttonPlaceOrder.setVisibility(visibility);
+            textViewPlaceOrder.setVisibility(visibility);
+        });
 
     }
 
