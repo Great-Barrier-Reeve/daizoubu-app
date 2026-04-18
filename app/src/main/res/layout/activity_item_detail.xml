@@ -3,50 +3,236 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_height="match_parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     android:layout_width="match_parent"
     tools:context=".ui.order.menu.ItemDetailActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:gravity="center_horizontal"
-        android:id="@+id/textViewTitle"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="48dp"
-        android:text="Title"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:gravity="center_horizontal"
-        android:id="@+id/textViewDesc"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="Description."
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/addOnRecyclerView"
+    <!-- section for app bar -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/sectionAppBar"
         android:layout_height="0dp"
-        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardBackgroundColor="?android:attr/windowBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintDimensionRatio="6.5:1"
+        app:layout_constraintHeight_min="58dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewDesc" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
 
-    <Button
-        android:gravity="center"
-        android:id="@+id/buttonSubmitOrder"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:layout_width="wrap_content"
-        android:text="Price"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_circle"
+                android:id="@+id/iconX"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:src="@drawable/icon_x"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- body contents -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionAppBar">
+
+        <!-- scrollable window -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <!-- scrollable body -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferTitle"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- responsive spacer -->
+                    <View
+                        android:id="@+id/spacerTitle"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,6.5:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferTitle" />
+
+                    <TextView
+                        android:breakStrategy="balanced"
+                        android:gravity="center"
+                        android:id="@+id/textViewTitle"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:text="{Item Name}"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="24sp"
+                        android:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="@id/spacerTitle"
+                        app:layout_constraintStart_toStartOf="@id/spacerTitle"
+                        app:layout_constraintTop_toTopOf="@id/spacerTitle" />
+
+                    <TextView
+                        android:breakStrategy="high_quality"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/textViewDesc"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:text="{Item Desc}"
+                        android:textColor="?attr/colorSecondary"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/spacerTitle" />
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferImage"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textViewDesc" />
+
+                    <ImageView
+                        android:id="@+id/imageViewItem"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:src="@drawable/food_placeholder"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferImage" />
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferHeaderAddOns"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imageViewItem" />
+
+                    <TextView
+                        android:id="@+id/textViewHeaderAddOns"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/add_ons"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        android:autoSizeMinTextSize="20sp"
+                        android:autoSizeTextType="uniform"
+                        app:layout_constraintDimensionRatio="H,13:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferHeaderAddOns" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/addOnRecyclerView"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textViewHeaderAddOns" />
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferButtonOrderAdd"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/addOnRecyclerView" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/buttonOrderAdd"
+                        android:layout_height="0dp"
+                        android:layout_width="0dp"
+                        app:layout_constraintDimensionRatio="H,6:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferButtonOrderAdd"
+                        app:layout_constraintWidth_percent="0.9" />
+
+                    <TextView
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:id="@+id/textViewOrderAdd"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/order_add"
+                        android:textColor="?android:attr/windowBackground"
+                        android:textStyle="bold"
+                        app:autoSizeMinTextSize="16sp"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="@id/buttonOrderAdd"
+                        app:layout_constraintDimensionRatio="H,20:1"
+                        app:layout_constraintEnd_toEndOf="@id/buttonOrderAdd"
+                        app:layout_constraintStart_toStartOf="@id/buttonOrderAdd"
+                        app:layout_constraintTop_toTopOf="@id/buttonOrderAdd" />
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/buttonOrderAdd" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

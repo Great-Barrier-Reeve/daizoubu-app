@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,7 +23,8 @@ public class OrderItem implements UserItem {
         menuItem = in.readParcelable(MenuItem.class.getClassLoader());
         qty = in.readInt();
         specialReq = in.readString();
-        userAddOns = in.createTypedArrayList(AddOnItem.CREATOR);
+        List<AddOnItem> read = in.createTypedArrayList(AddOnItem.CREATOR);
+        userAddOns = read != null ? read : new ArrayList<>();
 
     }
 
@@ -122,16 +124,15 @@ public class OrderItem implements UserItem {
     // implement builder design pattern
     public static class Builder {
 
-        private MenuItem menuItem;
+        private final MenuItem menuItem;
         private int qty;
         private String specialReq;
-        private List<AddOnItem> userAddOns;
+        private List<AddOnItem> userAddOns = new ArrayList<>();
 
 
         public Builder(MenuItem menuitem, int qty) {
             this.menuItem = menuitem;
             this.qty = qty;
-            // TODO: Build Builder constructor and static setter methods
         }
         public Builder setSpecialReq(String specialReq) {
             this.specialReq = specialReq;
