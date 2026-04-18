@@ -9,9 +9,15 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
+import org.greatbarrierreeve.daizoubu.data.repository.CartRepository;
+
+import java.util.List;
+
 
 public class CartViewModel extends AndroidViewModel {
 
+    private final CartRepository cartRepository = CartRepository.getInstance();
     private final MutableLiveData<String> bountyAmount = new MutableLiveData<>("0.00");
     private final SharedPreferences prefs;
     private String bountyInput = "";
@@ -97,7 +103,23 @@ public class CartViewModel extends AndroidViewModel {
     public String getBountyInput() { return bountyInput; }
 
 
+    // getter method for items
+    public LiveData<List<OrderItem>> getItems() { return cartRepository.getItems(); }
+
+
+    // remove item from cart
+    public void remove(OrderItem item) { cartRepository.remove(item); }
+
+
     // setter method for bounty amount
     public void setBountyAmount(String amount) { bountyAmount.setValue(amount); }
+
+
+    // submit order errand
+    public void submitOrder() {
+
+        cartRepository.clear();
+
+    }
 
 }

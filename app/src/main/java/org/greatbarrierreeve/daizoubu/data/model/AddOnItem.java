@@ -9,7 +9,6 @@ public class AddOnItem implements StoreItem {
 
     String basePrice;
     String desc;
-    boolean isSelected = false;
     String itemId;
     String name;
 
@@ -28,7 +27,6 @@ public class AddOnItem implements StoreItem {
 
         basePrice = in.readString();
         desc = in.readString();
-        isSelected = in.readByte() != 0;
         itemId = in.readString();
         name = in.readString();
 
@@ -40,9 +38,6 @@ public class AddOnItem implements StoreItem {
 
     @Override
     public String getDesc() { return desc; }
-
-
-    public boolean getIsSelected() { return isSelected; }
 
 
     @Override
@@ -57,15 +52,11 @@ public class AddOnItem implements StoreItem {
     public String getPrice() { return basePrice; }
 
 
-    public void setIsSelected(boolean isSelected) { this.isSelected = isSelected; }
-
-
     @Override
     public void writeToParcel(Parcel out, int flags) {
 
         out.writeString(basePrice);
         out.writeString(desc);
-        out.writeInt(isSelected ? 1 : 0);
         out.writeString(itemId);
         out.writeString(name);
 

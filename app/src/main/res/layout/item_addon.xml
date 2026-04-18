@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/checkBoxAddOn"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -18,22 +18,24 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:ellipsize="end"
             android:id="@+id/textViewAddOnName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="AddOn"
+            android:maxLines="1"
+            android:text="{AddOn}"
+            android:textAlignment="textStart"
             app:layout_constraintBottom_toBottomOf="@id/checkBoxAddOn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintEnd_toStartOf="@+id/textViewAddOnPrice"
             app:layout_constraintStart_toEndOf="@+id/checkBoxAddOn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewAddOnPrice"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_width="wrap_content"
-            android:text="Price"
+            android:text="{Price}"
+            android:textAlignment="textEnd"
             app:layout_constraintBottom_toBottomOf="@id/checkBoxAddOn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
