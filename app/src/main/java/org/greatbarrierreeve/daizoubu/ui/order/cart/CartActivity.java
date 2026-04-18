@@ -16,6 +16,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -27,6 +31,8 @@ import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 public class CartActivity extends AppCompatActivity {
 
     CartViewModel cartViewModel;
+    CartItemAdapter cartItemAdapter;
+    RecyclerView recyclerViewCartItems;
     ConstraintLayout sectionDeliveryLocation;
     ConstraintLayout sectionBounty;
     ImageView iconBack;
@@ -52,6 +58,12 @@ public class CartActivity extends AppCompatActivity {
 
         // link to cart view model
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+
+        recyclerViewCartItems = findViewById(R.id.recyclerViewCartItems);
+        cartItemAdapter = new CartItemAdapter(new ArrayList<>(), orderItem -> cartViewModel.remove(orderItem));
+        recyclerViewCartItems.setAdapter(cartItemAdapter);
+        recyclerViewCartItems.setLayoutManager(new LinearLayoutManager(this));
+        cartViewModel.getItems().observe(this, cartItemAdapter::updateItems);
 
         // display bounty amount in money format
         textViewBountyAmount = findViewById(R.id.textViewBountyAmount);

@@ -106,7 +106,33 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent">
 
-                    <!-- TODO: build order items recycler view after data models and repositories are built -->
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferCartItems"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewCartItems"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferCartItems" />
+
+                    <!-- responsive buffer -->
+                    <View
+                        android:id="@+id/bufferSectionDeliveryLocation"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,12:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerViewCartItems" />
 
                     <!-- section for delivery location -->
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,7 +145,7 @@
                         app:layout_constraintDimensionRatio="H,6:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"> <!-- TODO: change to btm of recycler view -->
+                        app:layout_constraintTop_toBottomOf="@+id/bufferSectionDeliveryLocation">
 
                         <View
                             android:id="@+id/vertDividerSectionDeliveryLocation"
@@ -234,7 +260,7 @@
 
                     <!-- responsive buffer -->
                     <View
-                        android:id="@+id/bufferSectionDeliveryLocation"
+                        android:id="@+id/bufferSectionBounty"
                         android:layout_height="0dp"
                         android:layout_width="match_parent"
                         app:layout_constraintDimensionRatio="H,12:1"
@@ -253,7 +279,7 @@
                         app:layout_constraintDimensionRatio="H,6:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/bufferSectionDeliveryLocation">
+                        app:layout_constraintTop_toBottomOf="@id/bufferSectionBounty">
 
                         <View
                             android:id="@+id/vertDividerSectionBounty"
