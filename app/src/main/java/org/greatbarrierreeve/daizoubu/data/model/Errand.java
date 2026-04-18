@@ -1,6 +1,7 @@
 package org.greatbarrierreeve.daizoubu.data.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 //  Firestore document model for errands. Stored in errands collection.
@@ -11,7 +12,7 @@ public class Errand {
     private String buyerId;
     private String runnerId;
     private BigDecimal bounty;
-    private OrderItem orderItem;
+    private List<OrderItem> orderItems;
     private ErrandStatus status;
     private PriorityLevel priorityLevel;
 
@@ -25,11 +26,11 @@ public class Errand {
     private String storeName;
 
     private BigDecimal subtotal;
-    public Errand(String buyerId, String runnerId, BigDecimal bounty, OrderItem orderItem, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
+    public Errand(String buyerId, String runnerId, BigDecimal bounty, List<OrderItem> orderItems, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
         this.buyerId = buyerId;
         this.runnerId = runnerId;
         this.bounty = bounty;
-        this.orderItem = orderItem;
+        this.orderItems = orderItems;
         this.status = status;
         this.priorityLevel = priorityLevel;
         this.deliveryLocation = deliveryLocation;
@@ -53,12 +54,12 @@ public class Errand {
         this.storeName = storeName;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
 
@@ -182,7 +183,7 @@ public class Errand {
                 ", buyerId='" + buyerId + '\'' +
                 ", runnerId='" + runnerId + '\'' +
                 ", bounty=" + bounty +
-                ", orderItem=" + orderItem +
+                ", orderItems=" + orderItems +
                 ", status=" + status +
                 ", priorityLevel=" + priorityLevel +
                 ", createdAt=" + createdAt +
