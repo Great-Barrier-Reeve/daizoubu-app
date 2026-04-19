@@ -1,9 +1,11 @@
 package org.greatbarrierreeve.daizoubu.api;
+import org.greatbarrierreeve.daizoubu.data.model.AcceptRequest;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
 import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.data.model.Store;
+import org.greatbarrierreeve.daizoubu.data.model.TransitionRequest;
 
 import java.util.List;
 
@@ -35,10 +37,10 @@ public interface ErrandService {
     Call<Errand> createErrand(@Body Errand errand);
 
     @POST("/api/errands/{id}/accept")
-    Call<Errand> acceptErrand(@Path("id") String id, @Body String runnerId);
+    Call<Errand> acceptErrand(@Path("id") String id, @Body AcceptRequest request);
 
     @POST("/api/errands/{id}/transition")
-    Call<Errand> transitionErrand(@Path("id") String id, @Body ErrandStatus status);
+    Call<Errand> transitionErrand(@Path("id") String id, @Body TransitionRequest request);
 
     @GET("/api/errands/stores/available")
     Call<List<Store>> getAvailableStores();

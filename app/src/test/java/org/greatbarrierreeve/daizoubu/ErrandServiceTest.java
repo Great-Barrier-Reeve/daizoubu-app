@@ -3,6 +3,7 @@ package org.greatbarrierreeve.daizoubu;
 import static org.junit.Assert.assertTrue;
 
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.data.model.AcceptRequest;
 import org.greatbarrierreeve.daizoubu.data.model.AddOnItem;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
@@ -10,6 +11,7 @@ import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
+import org.greatbarrierreeve.daizoubu.data.model.TransitionRequest;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.junit.Before;
 import org.junit.Test;
@@ -124,10 +126,10 @@ public class ErrandServiceTest {
                     "123" ,"1")
                     .setOptionAddOns(list)
                     .build();
-            OrderItem orderItem = new OrderItem.Builder
-                    (menuItem,5)
-                    .setSpecialReq("asd")
-                    .build();
+//            OrderItem orderItem = new OrderItem.Builder
+//                    (menuItem,5)
+//                    .setSpecialReq("asd")
+//                    .build();
 //            if (menuItem != null)
 //            orderItem.setMenuItem(menuItem);
 //            orderItem.setQty(5);
@@ -140,6 +142,11 @@ public class ErrandServiceTest {
 //            errand.setStatus(ErrandStatus.REQUESTED);
 //            errand.setPriorityLevel(PriorityLevel.NORMAL);
 //            errand.setOrderItem(orderItem);
+            List<OrderItem> orderItem = new ArrayList<OrderItem>();
+
+            OrderItem item = new OrderItem.Builder(menuItem,5).build();
+            orderItem.add(item);
+
             Location location = new Location("Albert Hong", "1.102");
             Errand errand = new Errand(
                     "123",
@@ -159,5 +166,30 @@ public class ErrandServiceTest {
             }
 
         }
+        @Test
+        public void transitionAcceptErrand() throws Exception{
+            AcceptRequest acceptRequest = new AcceptRequest();
+            acceptRequest.setRunnerId("234");
+            Response<Errand> response = errandService.acceptErrand("84KsRoqTLMCMDPJm7jnm", acceptRequest).execute();
+            assertTrue("Response failed " + response.code(), response.isSuccessful());
+            if(response.body() != null){
+                System.out.println(response.body());
+            }
+        }
+        @Test
+        public void transitionErrand() throws Exception{
+            TransitionRequest transitionRequest = new TransitionRequest();
+            transitionRequest.setTargetStatus(ErrandStatus.DELIVERED);
+            Response<Errand> response = errandService.transitionErrand("84KsRoqTLMCMDPJm7jnm", transitionRequest).execute();
+            assertTrue("Response failed " + response.code(), response.isSuccessful());
+            if(response.body() != null){
+                System.out.println(response.body());
+            }
+
+         }
+
+
+
+
 
 }

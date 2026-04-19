@@ -1,11 +1,13 @@
 package org.greatbarrierreeve.daizoubu.data.repository;
 
 import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.data.model.AcceptRequest;
 import org.greatbarrierreeve.daizoubu.data.model.Errand;
 import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
 import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.MenuItem;
 import org.greatbarrierreeve.daizoubu.data.model.Store;
+import org.greatbarrierreeve.daizoubu.data.model.TransitionRequest;
 
 import java.util.List;
 
@@ -72,11 +74,11 @@ public class ErrandRepository {
     /**
      * Accept an errand.
      * @param id
-     * @param runnerId
+     * @param request
      * @param callback
      */
-    public void acceptErrand(String id, String runnerId, Callback<Errand> callback){
-        Call<Errand> call = apiService.acceptErrand(id, runnerId);
+    public void acceptErrand(String id, AcceptRequest request, Callback<Errand> callback){
+        Call<Errand> call = apiService.acceptErrand(id, request);
         call.enqueue(callback);
     }
 
@@ -96,11 +98,11 @@ public class ErrandRepository {
      * Transition the status of an errand.
      *
      * @param id
-     * @param status
+     * @param request
      * @param callback
      */
-    public void transitionErrand(String id, ErrandStatus status, Callback<Errand> callback){
-        Call<Errand> call = apiService.transitionErrand(id, status);
+    public void transitionErrand(String id, TransitionRequest request, Callback<Errand> callback){
+        Call<Errand> call = apiService.transitionErrand(id, request);
         call.enqueue(callback);
     }
 
