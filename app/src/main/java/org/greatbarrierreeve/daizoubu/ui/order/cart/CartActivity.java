@@ -35,6 +35,7 @@ import org.greatbarrierreeve.daizoubu.data.model.Location;
 import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
 import org.greatbarrierreeve.daizoubu.data.repository.ErrandRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.LocationRepository;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
@@ -50,6 +51,8 @@ public class CartActivity extends AppCompatActivity {
     ImageView iconBack;
     MaterialButton buttonPlaceOrder;
     TextView textViewBountyAmount;
+    TextView textViewDeliveryLocationName;
+    TextView textViewDeliveryLocationAddress;
 
 
     @Override
@@ -89,6 +92,9 @@ public class CartActivity extends AppCompatActivity {
         // back button click event handler
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
+
+        textViewDeliveryLocationName = findViewById(R.id.textViewDeliveryLocationName);
+        textViewDeliveryLocationAddress = findViewById(R.id.textViewDeliveryLocationAddress);
 
         // delivery location section click event handler
         sectionDeliveryLocation = findViewById(R.id.sectionDeliveryLocation);
@@ -154,6 +160,14 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Location location = LocationRepository.getLocation();
+        textViewDeliveryLocationName.setText(location.getDisplayName());
+        textViewDeliveryLocationAddress.setText(location.getAddress());
+    }
 
     public void showBountyInputDialog() {
 

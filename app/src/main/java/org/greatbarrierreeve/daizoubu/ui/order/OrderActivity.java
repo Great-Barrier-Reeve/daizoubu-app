@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 import org.greatbarrierreeve.daizoubu.R;
 import org.greatbarrierreeve.daizoubu.data.repository.CartRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.LocationRepository;
 import org.greatbarrierreeve.daizoubu.ui.order.cart.CartActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.menu.MenuActivity;
@@ -36,6 +37,7 @@ public class OrderActivity extends AppCompatActivity {
     MaterialCardView sectionAppBar;
     OrderViewModel orderViewModel;
     RecyclerView recyclerViewStores;
+    TextView textViewDeliverLocation;
     TextView textViewPlaceOrder;
 
 
@@ -84,6 +86,8 @@ public class OrderActivity extends AppCompatActivity {
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
 
+        textViewDeliverLocation = findViewById(R.id.textViewDeliverLocation);
+
         // cart button click event handler
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
         textViewPlaceOrder = findViewById(R.id.textViewPlaceOrder);
@@ -95,6 +99,12 @@ public class OrderActivity extends AppCompatActivity {
             textViewPlaceOrder.setVisibility(visibility);
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        textViewDeliverLocation.setText(LocationRepository.getLocation().getDisplayName());
     }
 
 }
