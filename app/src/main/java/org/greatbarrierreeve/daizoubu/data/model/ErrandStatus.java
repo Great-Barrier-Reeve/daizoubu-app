@@ -5,5 +5,6 @@ public enum ErrandStatus {
     ACCEPTED,
     DELIVERED,
     REFUNDED,
-    CANCELLED
+    CANCELLED,
+    COLLECTED
 }

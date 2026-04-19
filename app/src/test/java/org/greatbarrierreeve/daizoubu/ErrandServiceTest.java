@@ -126,31 +126,16 @@ public class ErrandServiceTest {
                     "123" ,"1")
                     .setOptionAddOns(list)
                     .build();
-//            OrderItem orderItem = new OrderItem.Builder
-//                    (menuItem,5)
-//                    .setSpecialReq("asd")
-//                    .build();
-//            if (menuItem != null)
-//            orderItem.setMenuItem(menuItem);
-//            orderItem.setQty(5);
-//            orderItem.setSpecialReq("asd");
-//            orderItem.setUserAddOns(list);
 
-//            errand.setBuyerId("123");
-//            errand.setRunnerId("234");
-//            errand.setBounty(new BigDecimal(100));
-//            errand.setStatus(ErrandStatus.REQUESTED);
-//            errand.setPriorityLevel(PriorityLevel.NORMAL);
-//            errand.setOrderItem(orderItem);
             List<OrderItem> orderItem = new ArrayList<OrderItem>();
 
-            OrderItem item = new OrderItem.Builder(menuItem,5).build();
+            OrderItem item = new OrderItem.Builder(menuItem,5).setUserAddOns(list).setSpecialReq("asd").build();
             orderItem.add(item);
 
             Location location = new Location("Albert Hong", "1.102");
             Errand errand = new Errand(
-                    "123",
-                    "234",
+                    "1231",
+                    "2324",
                     new BigDecimal(100),
                     orderItem,
                     ErrandStatus.REQUESTED,
@@ -160,6 +145,9 @@ public class ErrandServiceTest {
                     new BigDecimal(200));
             Response<Errand> response = errandService.createErrand(errand).execute();
             assertTrue("Response failed " + response.code(), response.isSuccessful());
+            if(response.errorBody()!=null){
+                System.out.println(response.errorBody().string());
+            }
             Errand errandResponse = response.body();
             if (errandResponse != null){
                 System.out.println(errandResponse.toString());

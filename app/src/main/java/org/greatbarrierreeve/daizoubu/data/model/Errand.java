@@ -12,7 +12,7 @@ public class Errand {
     private String buyerId;
     private String runnerId;
     private BigDecimal bounty;
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItem;
     private ErrandStatus status;
     private PriorityLevel priorityLevel;
 
@@ -26,11 +26,11 @@ public class Errand {
     private String storeName;
 
     private BigDecimal subtotal;
-    public Errand(String buyerId, String runnerId, BigDecimal bounty, List<OrderItem> orderItems, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
+    public Errand(String buyerId, String runnerId, BigDecimal bounty, List<OrderItem> orderItem, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
         this.buyerId = buyerId;
         this.runnerId = runnerId;
         this.bounty = bounty;
-        this.orderItems = orderItems;
+        this.orderItem = orderItem;
         this.status = status;
         this.priorityLevel = priorityLevel;
         this.deliveryLocation = deliveryLocation;
@@ -54,12 +54,12 @@ public class Errand {
         this.storeName = storeName;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
+    public List<OrderItem> getOrderItem() {
+        return orderItem;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setOrderItem(List<OrderItem> orderItem) {
+        this.orderItem = orderItem;
     }
 
 
@@ -183,7 +183,7 @@ public class Errand {
                 ", buyerId='" + buyerId + '\'' +
                 ", runnerId='" + runnerId + '\'' +
                 ", bounty=" + bounty +
-                ", orderItems=" + orderItems +
+                ", orderItems=" + orderItem +
                 ", status=" + status +
                 ", priorityLevel=" + priorityLevel +
                 ", createdAt=" + createdAt +
