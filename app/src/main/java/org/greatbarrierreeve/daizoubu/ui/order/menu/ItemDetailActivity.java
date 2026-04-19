@@ -78,11 +78,16 @@ public class ItemDetailActivity extends AppCompatActivity {
             String message = String.format("Ordered %s%s", menuItem.getName(), addOns);
             // Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
+            List<OrderItem> orderItem = new ArrayList<OrderItem>();
+
+            OrderItem item = new OrderItem.Builder(menuItem,5).build();
+            orderItem.add(item);
+
             Errand errand = new Errand(
                     "user123",
                     "user234",
                     new BigDecimal(6.70),
-                    new OrderItem.Builder(menuItem,5).build(),
+                    orderItem,
                     ErrandStatus.REQUESTED,
                     PriorityLevel.NORMAL,
                     new Location("Albert Hong", "LT1"),

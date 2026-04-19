@@ -124,10 +124,6 @@ public class ErrandServiceTest {
                     "123" ,"1")
                     .setOptionAddOns(list)
                     .build();
-            OrderItem orderItem = new OrderItem.Builder
-                    (menuItem,5)
-                    .setSpecialReq("asd")
-                    .build();
 //            if (menuItem != null)
 //            orderItem.setMenuItem(menuItem);
 //            orderItem.setQty(5);
@@ -140,6 +136,12 @@ public class ErrandServiceTest {
 //            errand.setStatus(ErrandStatus.REQUESTED);
 //            errand.setPriorityLevel(PriorityLevel.NORMAL);
 //            errand.setOrderItem(orderItem);
+
+            List<OrderItem> orderItem = new ArrayList<OrderItem>();
+
+            OrderItem item = new OrderItem.Builder(menuItem,5).build();
+            orderItem.add(item);
+
             Location location = new Location("Albert Hong", "1.102");
             Errand errand = new Errand(
                     "123",
