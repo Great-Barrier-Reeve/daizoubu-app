@@ -14,8 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.gson.Gson;
 
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.data.model.Errand;
+import org.greatbarrierreeve.daizoubu.ui.bounties.BountiesAdapter;
 
 
 public class UserBountyActivity extends AppCompatActivity {
@@ -23,6 +26,7 @@ public class UserBountyActivity extends AppCompatActivity {
     ImageView iconBack;
     MaterialCardView buttonPhoneDaizoubuer;
     private MotionLayout motionLayout;
+    private Errand errand;
 
     public enum ProgressStep {
         ACCEPTED,
@@ -38,6 +42,11 @@ public class UserBountyActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_bounty);
+
+        String errandJson = getIntent().getStringExtra(BountiesAdapter.EXTRA_ERRAND);
+        if (errandJson != null) {
+            errand = new Gson().fromJson(errandJson, Errand.class);
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 
