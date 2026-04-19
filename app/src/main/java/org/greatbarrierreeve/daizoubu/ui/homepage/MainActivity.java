@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMyRuns    = findViewById(R.id.recyclerViewMyRuns);
         recyclerViewBounties  = findViewById(R.id.recyclerViewBounties);
 
-        myOrdersAdapter          = new BountiesAdapter(new ArrayList<>());
-        myRunsAdapter            = new BountiesAdapter(new ArrayList<>());
-        availableBountiesAdapter = new BountiesAdapter(new ArrayList<>());
+        myOrdersAdapter          = new BountiesAdapter(new ArrayList<>(), uid);
+        myRunsAdapter            = new BountiesAdapter(new ArrayList<>(), uid);
+        availableBountiesAdapter = new BountiesAdapter(new ArrayList<>(), uid);
 
         setupRecyclerView(recyclerViewMyOrders, myOrdersAdapter);
         setupRecyclerView(recyclerViewMyRuns, myRunsAdapter);

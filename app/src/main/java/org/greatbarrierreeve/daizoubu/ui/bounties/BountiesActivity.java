@@ -75,9 +75,11 @@ public class BountiesActivity extends AppCompatActivity {
         recyclerViewMyRuns   = findViewById(R.id.recyclerViewMyDeliveries);
         recyclerViewBounties = findViewById(R.id.recyclerViewBounties);
 
-        myOrdersAdapter          = new BountiesAdapter(new ArrayList<>());
-        myRunsAdapter            = new BountiesAdapter(new ArrayList<>());
-        availableBountiesAdapter = new BountiesAdapter(new ArrayList<>());
+        String userId = UserInfoRepository.getUserId();
+
+        myOrdersAdapter          = new BountiesAdapter(new ArrayList<>(), userId);
+        myRunsAdapter            = new BountiesAdapter(new ArrayList<>(), userId);
+        availableBountiesAdapter = new BountiesAdapter(new ArrayList<>(), userId);
 
         setupRecyclerView(recyclerViewMyOrders, myOrdersAdapter);
         setupRecyclerView(recyclerViewMyRuns, myRunsAdapter);
@@ -85,7 +87,6 @@ public class BountiesActivity extends AppCompatActivity {
 
         ErrandService errandService = RetrofitClient.getErrandService();
         ErrandRepository errandRepository = new ErrandRepository(errandService);
-        String userId = UserInfoRepository.getUserId();
 
         fetchMyOrders(errandRepository, userId);
         fetchMyRuns(errandRepository, userId);
