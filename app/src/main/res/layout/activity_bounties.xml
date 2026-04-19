@@ -106,24 +106,225 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent">
 
-                    <!-- responsive buffer -->
+                    <!-- top buffer -->
                     <View
-                        android:id="@+id/bufferRecyclerViewBounties"
+                        android:id="@+id/bufferTop"
                         android:layout_height="0dp"
                         android:layout_width="match_parent"
                         app:layout_constraintDimensionRatio="H,24:1"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_percent="0.15"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewBounties"
+                    <!-- section for my orders -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionMyOrders"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferTop">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardHeaderMyOrders"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardCornerRadius="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="H,4:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.35"
+                            app:strokeWidth="0dp">
+
+                            <TextView
+                                android:id="@+id/textViewHeaderMyOrders"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:text="My Orders"
+                                android:textAllCaps="true"
+                                android:textColor="?android:attr/windowBackground"
+                                android:textStyle="bold"
+                                app:autoSizeMinTextSize="12sp"
+                                app:autoSizeTextType="uniform" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textViewEmptyMyOrders"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text="No orders yet."
+                            android:textColor="?attr/colorSecondary"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardHeaderMyOrders" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewMyOrders"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardHeaderMyOrders" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- buffer between sections -->
+                    <View
+                        android:id="@+id/bufferAfterMyOrders"
                         android:layout_height="0dp"
                         android:layout_width="match_parent"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintHeight_percent="0.15"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/bufferRecyclerViewBounties" />
+                        app:layout_constraintTop_toBottomOf="@id/sectionMyOrders" />
+
+                    <!-- section for my deliveries -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionMyDeliveries"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferAfterMyOrders">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardHeaderMyDeliveries"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardCornerRadius="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="H,4:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.35"
+                            app:strokeWidth="0dp">
+
+                            <TextView
+                                android:id="@+id/textViewHeaderMyDeliveries"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:text="My Runs"
+                                android:textAllCaps="true"
+                                android:textColor="?android:attr/windowBackground"
+                                android:textStyle="bold"
+                                app:autoSizeMinTextSize="12sp"
+                                app:autoSizeTextType="uniform" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textViewEmptyMyDeliveries"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text="No runs yet."
+                            android:textColor="?attr/colorSecondary"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardHeaderMyDeliveries" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewMyDeliveries"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardHeaderMyDeliveries" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- buffer between sections -->
+                    <View
+                        android:id="@+id/bufferAfterMyDeliveries"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionMyDeliveries" />
+
+                    <!-- section for available bounties -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sectionAvailableBounties"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/bufferAfterMyDeliveries">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardHeaderAvailableBounties"
+                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            app:cardBackgroundColor="?attr/colorPrimary"
+                            app:cardCornerRadius="0dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintDimensionRatio="H,4:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.5"
+                            app:strokeWidth="0dp">
+
+                            <TextView
+                                android:id="@+id/textViewHeaderAvailableBounties"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:text="Available Bounties"
+                                android:textAllCaps="true"
+                                android:textColor="?android:attr/windowBackground"
+                                android:textStyle="bold"
+                                app:autoSizeMinTextSize="12sp"
+                                app:autoSizeTextType="uniform" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textViewEmptyAvailableBounties"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text="No bounties available."
+                            android:textColor="?attr/colorSecondary"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardHeaderAvailableBounties" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewBounties"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cardHeaderAvailableBounties" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- bottom buffer -->
+                    <View
+                        android:id="@+id/bufferBottom"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        app:layout_constraintDimensionRatio="H,24:1"
+                        app:layout_constraintHeight_percent="0.15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sectionAvailableBounties" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
