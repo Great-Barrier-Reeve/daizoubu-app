@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.repository.CartRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -105,6 +106,10 @@ public class CartViewModel extends AndroidViewModel {
 
     // getter method for items
     public LiveData<List<OrderItem>> getItems() { return cartRepository.getItems(); }
+
+
+    // getter method for cart subtotal
+    public BigDecimal getSubtotal() { return cartRepository.getSubtotal(); }
 
 
     // remove item from cart

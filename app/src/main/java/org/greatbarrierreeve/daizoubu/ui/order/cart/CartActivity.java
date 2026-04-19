@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,11 +21,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.android.material.button.MaterialButton;
 
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.api.ErrandService;
+import org.greatbarrierreeve.daizoubu.data.model.Errand;
+import org.greatbarrierreeve.daizoubu.data.model.ErrandStatus;
+import org.greatbarrierreeve.daizoubu.data.model.Location;
+import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
+import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
+import org.greatbarrierreeve.daizoubu.data.repository.ErrandRepository;
+import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
 
@@ -88,7 +100,56 @@ public class CartActivity extends AppCompatActivity {
 
         // place order button click event handler
         buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
-        buttonPlaceOrder.setOnClickListener(view -> showOrderSuccessDialog());
+        buttonPlaceOrder.setOnClickListener(view -> {
+
+            List<OrderItem> cartItems = cartViewModel.getItems().getValue();
+            if (cartItems == null || cartItems.isEmpty()) {
+                Toast.makeText(CartActivity.this, "Cart Empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            BigDecimal bounty = new BigDecimal(cartViewModel.getBountyAmount().getValue());
+            BigDecimal subtotal = cartViewModel.getSubtotal();
+
+            Errand errand = new Errand(
+                    "user123",
+                    "user234",
+                    bounty,
+                    cartItems,
+                    ErrandStatus.REQUESTED,
+                    PriorityLevel.NORMAL,
+                    new Location("Albert Hong", "LT1"),
+                    "Cai fan",
+                    subtotal);
+
+            ErrandService errandService = RetrofitClient.getErrandService();
+            ErrandRepository errandRepository = new ErrandRepository(errandService);
+            errandRepository.createErrand(errand, new retrofit2.Callback<>() {
+                @Override
+                public void onResponse(@NonNull retrofit2.Call<Errand> call, @NonNull retrofit2.Response<Errand> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        Errand createdErrand = response.body();
+                        cartViewModel.submitOrder();
+                        Toast.makeText(CartActivity.this,
+                                "Order placed! ID: " + createdErrand.getId(),
+                                Toast.LENGTH_SHORT).show();
+                        showOrderSuccessDialog();
+                    } else {
+                        Toast.makeText(CartActivity.this,
+                                "Failed to place order: " + response.code(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull retrofit2.Call<Errand> call, @NonNull Throwable t) {
+                    Toast.makeText(CartActivity.this,
+                            "Network error: " + t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        });
 
 
     }
