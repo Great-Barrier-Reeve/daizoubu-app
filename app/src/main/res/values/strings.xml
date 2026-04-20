@@ -12,6 +12,10 @@
 
     <string name="bounty_accept">Accept Bounty</string>
 
+    <string name="bounty_accepted">Bounty Accepted</string>
+
+    <string name="bounty_accepted_desc">Time to dài zǒu and zǒu bù!</string>
+
     <string name="bounties">dài zǒus</string>
 
     <string name="bounties_desc">Track your orders here or look for bounties.</string>
