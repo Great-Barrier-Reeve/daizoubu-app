@@ -75,7 +75,7 @@ public class BountiesActivity extends AppCompatActivity {
         recyclerViewMyRuns   = findViewById(R.id.recyclerViewMyDeliveries);
         recyclerViewBounties = findViewById(R.id.recyclerViewBounties);
 
-        String userId = UserInfoRepository.getUserId();
+        String userId = "user123";
 
         myOrdersAdapter          = new BountiesAdapter(new ArrayList<>(), userId);
         myRunsAdapter            = new BountiesAdapter(new ArrayList<>(), userId);

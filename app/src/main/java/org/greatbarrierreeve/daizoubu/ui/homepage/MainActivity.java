@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        String uid = UserInfoRepository.getUserId();
+        String uid = "user123";
         String token = UserInfoRepository.getIdToken();
         Log.d("DAIZOUBU_DEBUG", "UID: " + uid);
         Log.d("DAIZOUBU_DEBUG", "TOKEN: " + token);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         setupRecyclerView(recyclerViewBounties, availableBountiesAdapter);
 
         ErrandRepository errandRepository = new ErrandRepository(RetrofitClient.getErrandService());
-        String userId = UserInfoRepository.getUserId();
+        String userId = "user123";
 
         fetchMyOrders(errandRepository, userId);
         fetchMyRuns(errandRepository, userId);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupRecyclerView(RecyclerView rv, BountiesAdapter adapter) {
         rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rv.setNestedScrollingEnabled(false);
     }
 
