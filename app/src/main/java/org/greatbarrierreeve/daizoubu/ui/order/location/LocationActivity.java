@@ -3,6 +3,8 @@ package org.greatbarrierreeve.daizoubu.ui.order.location;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 
 import org.greatbarrierreeve.daizoubu.R;
+import org.greatbarrierreeve.daizoubu.data.repository.LocationRepository;
 
 import java.util.ArrayList;
 
@@ -79,15 +82,27 @@ public class LocationActivity extends AppCompatActivity {
         iconBack = findViewById(R.id.iconBack);
         iconBack.setOnClickListener(view -> this.finish());
 
-//        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//        adapter = new LocationAdapter(new ArrayList<>());
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_locations);
+        adapter = new LocationAdapter(new ArrayList<>(), location -> {
+            LocationRepository.saveLocation(location);
+            finish();
+        });
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setNestedScrollingEnabled(false);
 
-//        locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+        editTextSearchField.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.filter(s.toString());
+            }
+            @Override public void afterTextChanged(Editable s) {}
+        });
 
-        locationViewModel.getLocations().observe(this, locationList ->{
-            if(locationList != null){
+        locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+
+        locationViewModel.getLocations().observe(this, locationList -> {
+            if (locationList != null) {
                 adapter.updateData(locationList);
             }
         });

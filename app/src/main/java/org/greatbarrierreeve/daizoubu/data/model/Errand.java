@@ -1,6 +1,7 @@
 package org.greatbarrierreeve.daizoubu.data.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 //  Firestore document model for errands. Stored in errands collection.
@@ -11,7 +12,7 @@ public class Errand {
     private String buyerId;
     private String runnerId;
     private BigDecimal bounty;
-    private OrderItem orderItem;
+    private List<OrderItem> orderItem;
     private ErrandStatus status;
     private PriorityLevel priorityLevel;
 
@@ -25,7 +26,7 @@ public class Errand {
     private String storeName;
 
     private BigDecimal subtotal;
-    public Errand(String buyerId, String runnerId, BigDecimal bounty, OrderItem orderItem, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
+    public Errand(String buyerId, String runnerId, BigDecimal bounty, List<OrderItem> orderItem, ErrandStatus status, PriorityLevel priorityLevel, Location deliveryLocation, String storeName, BigDecimal subtotal) {
         this.buyerId = buyerId;
         this.runnerId = runnerId;
         this.bounty = bounty;
@@ -53,11 +54,11 @@ public class Errand {
         this.storeName = storeName;
     }
 
-    public OrderItem getOrderItem() {
+    public List<OrderItem> getOrderItem() {
         return orderItem;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
+    public void setOrderItem(List<OrderItem> orderItem) {
         this.orderItem = orderItem;
     }
 
@@ -182,7 +183,7 @@ public class Errand {
                 ", buyerId='" + buyerId + '\'' +
                 ", runnerId='" + runnerId + '\'' +
                 ", bounty=" + bounty +
-                ", orderItem=" + orderItem +
+                ", orderItems=" + orderItem +
                 ", status=" + status +
                 ", priorityLevel=" + priorityLevel +
                 ", createdAt=" + createdAt +
