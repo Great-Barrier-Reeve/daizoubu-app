@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        String uid = "user123";
+        String uid = UserInfoRepository.getUserId();
         String token = UserInfoRepository.getIdToken();
         Log.d("DAIZOUBU_DEBUG", "UID: " + uid);
         Log.d("DAIZOUBU_DEBUG", "TOKEN: " + token);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         setupRecyclerView(recyclerViewBounties, availableBountiesAdapter);
 
         ErrandRepository errandRepository = new ErrandRepository(RetrofitClient.getErrandService());
-        String userId = "user123";
+        String userId = UserInfoRepository.getUserId();
 
         fetchMyOrders(errandRepository, userId);
         fetchMyRuns(errandRepository, userId);

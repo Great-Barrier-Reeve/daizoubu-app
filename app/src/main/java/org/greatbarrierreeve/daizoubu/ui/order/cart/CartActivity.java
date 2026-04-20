@@ -36,6 +36,7 @@ import org.greatbarrierreeve.daizoubu.data.model.OrderItem;
 import org.greatbarrierreeve.daizoubu.data.model.PriorityLevel;
 import org.greatbarrierreeve.daizoubu.data.repository.ErrandRepository;
 import org.greatbarrierreeve.daizoubu.data.repository.LocationRepository;
+import org.greatbarrierreeve.daizoubu.data.repository.UserInfoRepository;
 import org.greatbarrierreeve.daizoubu.network.RetrofitClient;
 import org.greatbarrierreeve.daizoubu.ui.homepage.MainActivity;
 import org.greatbarrierreeve.daizoubu.ui.order.location.LocationActivity;
@@ -131,13 +132,13 @@ public class CartActivity extends AppCompatActivity {
             BigDecimal subtotal = cartViewModel.getSubtotal();
 
             Errand errand = new Errand(
-                    "user123",
-                    "user234",
+                    UserInfoRepository.getUserId(),
+                    "",
                     bounty,
                     cartItems,
                     ErrandStatus.REQUESTED,
                     PriorityLevel.NORMAL,
-                    new Location("Albert Hong", "LT1"),
+                    LocationRepository.getLocation(),
                     "Cai fan",
                     subtotal);
 
