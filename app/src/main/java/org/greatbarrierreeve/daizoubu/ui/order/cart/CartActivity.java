@@ -51,6 +51,7 @@ public class CartActivity extends AppCompatActivity {
     ImageView iconBack;
     MaterialButton buttonPlaceOrder;
     TextView textViewBountyAmount;
+    TextView textViewTotalAmount;
     TextView textViewDeliveryLocationName;
     TextView textViewDeliveryLocationAddress;
 
@@ -78,15 +79,27 @@ public class CartActivity extends AppCompatActivity {
         cartItemAdapter = new CartItemAdapter(new ArrayList<>(), orderItem -> cartViewModel.remove(orderItem));
         recyclerViewCartItems.setAdapter(cartItemAdapter);
         recyclerViewCartItems.setLayoutManager(new LinearLayoutManager(this));
-        cartViewModel.getItems().observe(this, cartItemAdapter::updateItems);
 
-        // display bounty amount in money format
+        // display bounty and total amounts
         textViewBountyAmount = findViewById(R.id.textViewBountyAmount);
+        textViewTotalAmount  = findViewById(R.id.textViewTotalAmount);
+
+        Runnable updateTotal = () -> {
+            BigDecimal subtotal = cartViewModel.getSubtotal();
+            String bountyStr = cartViewModel.getBountyAmount().getValue();
+            BigDecimal bounty = (bountyStr != null && !bountyStr.isEmpty())
+                    ? new BigDecimal(bountyStr) : BigDecimal.ZERO;
+            textViewTotalAmount.setText("$" + String.format("%.2f", subtotal.add(bounty)));
+        };
+
         cartViewModel.getBountyAmount().observe(this, amount -> {
+            textViewBountyAmount.setText("$" + amount);
+            updateTotal.run();
+        });
 
-            String money = "$" + amount;
-            textViewBountyAmount.setText(money);
-
+        cartViewModel.getItems().observe(this, items -> {
+            cartItemAdapter.updateItems(items);
+            updateTotal.run();
         });
 
         // back button click event handler
