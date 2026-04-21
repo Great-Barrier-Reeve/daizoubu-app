@@ -1,5 +1,7 @@
 package org.greatbarrierreeve.daizoubu.data.model;
 
+//Getter and Setter methods needed for jackson json serialisation
+
 public class Store {
 
     private String id;

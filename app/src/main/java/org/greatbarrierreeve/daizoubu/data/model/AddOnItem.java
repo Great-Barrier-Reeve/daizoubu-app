@@ -4,6 +4,8 @@ package org.greatbarrierreeve.daizoubu.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+//Getter and Setter methods needed for jackson json serialisation
+
 
 public class AddOnItem implements StoreItem {
 

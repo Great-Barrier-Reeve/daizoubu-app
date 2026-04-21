@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import java.math.BigDecimal;
 import java.util.List;
 
+//Getter and Setter methods needed for jackson json serialisation
 
 public class OrderItem implements UserItem {
 
