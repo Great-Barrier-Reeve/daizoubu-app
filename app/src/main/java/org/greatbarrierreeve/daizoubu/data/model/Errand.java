@@ -6,6 +6,8 @@ import java.util.Objects;
 
 //  Firestore document model for errands. Stored in errands collection.
 //  Bounty and all money values use BigDecimal. Dates use Firestore Timestamp.
+//Getter and Setter methods needed for jackson json serialisation
+
 public class Errand {
 
     private String id;

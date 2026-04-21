@@ -7,6 +7,8 @@ import android.os.Parcelable;
 import java.util.List;
 
 
+//Getter and Setter methods needed for jackson json serialisation
+
 public class MenuItem implements StoreItem {
 
     String basePrice;
