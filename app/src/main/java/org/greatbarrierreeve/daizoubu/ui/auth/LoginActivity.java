@@ -62,10 +62,17 @@ public class LoginActivity extends AppCompatActivity {
 
         // get references to widgets
         editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
+        buttonGoToSignup = findViewById(R.id.buttonGoToSignup);
 
         AuthService service = RetrofitClient.getAuthService();
         authRepository = new AuthRepository(service);
+
+
+//        startActivity(new Intent(this, MainActivity.class));
+//        finish();
+
 
         if (UserInfoRepository.isLoggedIn()) {
             startActivity(new Intent(this, MainActivity.class));
