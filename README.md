@@ -15,7 +15,7 @@ daizoubu is an Android app that connects **buyers** who want food  delivered wit
 
 ## Screenshots
 
-*Screenshots coming soon.*
+<img width="180" alt="screenshot_homepage" src="https://github.com/user-attachments/assets/5ce72f02-393e-4c9c-b6b4-58cb589af59b" /> <img width="180" alt="screenshot_order" src="https://github.com/user-attachments/assets/b7f7ec6b-3c70-4d46-8b52-d4bec62b7e0e" /> <img width="180" alt="screenshot_userBounty" src="https://github.com/user-attachments/assets/87e856a0-45ef-43bf-813b-b2546e2b733e" /> <img width="180" alt="screenshot_bounty" src="https://github.com/user-attachments/assets/136d228f-12fb-4323-836a-4d518da0b84e" />
 
 ## Tech Stack
 
